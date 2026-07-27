@@ -23,6 +23,7 @@ wheels/
 # Poetry
 poetry.lock
 .venv/
+.test-venv/
 venv/
 
 # IDE

@@ -116,21 +116,40 @@ Original scraped recipes in `data/` directory contain reviews with `has_modifica
   "modifications_applied": [
     {
       "source_review": {
-        "text": "I added an extra egg yolk for chewier texture",
+        "text": "I added an egg and halved the sugar",
         "rating": 5
       },
       "modification_type": "addition",
-      "reasoning": "Improves texture and chewiness",
+      "reasoning": "Extra egg improves structure",
+      "status": "applied",
+      "changes_made": [...]
+    },
+    {
+      "source_review": {
+        "text": "I added an egg and halved the sugar",
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "Less sugar reduces sweetness",
+      "status": "applied",
       "changes_made": [...]
     }
   ],
+  "modifications_by_review": [
+    {
+      "source_review": { "text": "I added an egg and halved the sugar", "rating": 5 },
+      "modifications": ["...same two tips grouped under one review..."]
+    }
+  ],
   "enhancement_summary": {
-    "total_changes": 1,
-    "change_types": ["addition"],
-    "expected_impact": "Chewier texture and improved consistency"
+    "total_changes": 2,
+    "change_types": ["addition", "quantity_adjustment"],
+    "expected_impact": "..."
   }
 }
 ```
+
+One review can yield multiple discrete tips. Each tip keeps `source_review` so counts stay explainable, and `modifications_by_review` groups them for inspection.
 
 ## How It Works
 
