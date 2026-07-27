@@ -18,6 +18,7 @@ from pydantic import ValidationError
 from .env_loader import load_project_env
 from .models import ModificationObject, ModificationSet, Recipe, Review
 from .prompts import build_simple_prompt
+from .tip_eligibility import select_candidate_reviews
 
 
 DEFAULT_MODELS = {
@@ -139,9 +140,11 @@ class TweakExtractor:
         """
         Extract all discrete modifications clearly stated in one review.
         """
+        # Candidate selection happens upstream; do not hard-refuse on the scraper hint.
         if not review.has_modification:
-            logger.warning("Review has no modification flag set")
-            return []
+            logger.debug(
+                "Review lacks scraper has_modification hint; extracting anyway as candidate"
+            )
 
         prompt = build_simple_prompt(
             review.text, recipe.title, recipe.ingredients, recipe.instructions
@@ -248,10 +251,10 @@ class TweakExtractor:
         """
         import random
 
-        modification_reviews = [r for r in reviews if r.has_modification]
+        modification_reviews = select_candidate_reviews(reviews)
 
         if not modification_reviews:
-            logger.warning("No reviews with modifications found")
+            logger.warning("No extraction-candidate reviews found")
             return None, None
 
         selected_review = random.choice(modification_reviews)

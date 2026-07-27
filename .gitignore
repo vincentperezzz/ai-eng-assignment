@@ -59,3 +59,5 @@ scorecardwork/*
 
 # Candidate grading workspace - large files and sensitive data
 candidate-grading/
+
+.scratch_venv/

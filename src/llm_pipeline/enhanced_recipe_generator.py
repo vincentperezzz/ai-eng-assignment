@@ -49,6 +49,7 @@ class EnhancedRecipeGenerator:
             source_review=self.create_source_review(source_review),
             modification_type=modification.modification_type,
             reasoning=modification.reasoning,
+            evidence=modification.evidence,
             changes_made=change_records or [],
             status=status,  # type: ignore[arg-type]
             unapplied_reason=unapplied_reason,
@@ -141,6 +142,8 @@ class EnhancedRecipeGenerator:
         original_recipe: Recipe,
         modified_recipe: Recipe,
         modification_records: List[ModificationApplied],
+        max_reviews: Optional[int] = None,
+        candidates_considered: Optional[int] = None,
     ) -> EnhancedRecipe:
         logger.info(
             f"Generating enhanced recipe for: {original_recipe.title} "
@@ -166,6 +169,8 @@ class EnhancedRecipeGenerator:
             total_time=getattr(original_recipe, "total_time", None),
             created_at=datetime.now().isoformat(),
             pipeline_version=self.pipeline_version,
+            max_reviews=max_reviews,
+            candidates_considered=candidates_considered,
         )
 
         applied_count = sum(1 for mod in modification_records if mod.status == "applied")

@@ -42,6 +42,14 @@ class ModificationObject(BaseModel):
 
     reasoning: str = Field(description="Why this modification improves the recipe")
 
+    evidence: Literal["tested", "untested"] = Field(
+        default="tested",
+        description=(
+            "tested = reviewer reports they actually made this change; "
+            "untested = next-time preference or wish"
+        ),
+    )
+
     edits: List[ModificationEdit] = Field(description="List of atomic edits to apply")
 
 
@@ -82,6 +90,10 @@ class ModificationApplied(BaseModel):
     )
     modification_type: str = Field(description="Category of modification")
     reasoning: str = Field(description="Why this modification was suggested")
+    evidence: Literal["tested", "untested"] = Field(
+        default="tested",
+        description="Whether the review presents this as a tested tip or untested suggestion",
+    )
     changes_made: List[ChangeRecord] = Field(
         default_factory=list,
         description="Detailed list of changes made when status is applied",
@@ -151,6 +163,14 @@ class EnhancedRecipe(BaseModel):
     created_at: str = Field(description="When this enhanced recipe was created")
     pipeline_version: str = Field(
         default="1.0.0", description="Version of the pipeline that created this"
+    )
+    max_reviews: Optional[int] = Field(
+        default=None,
+        description="Review budget used for this run (None means no cap)",
+    )
+    candidates_considered: Optional[int] = Field(
+        default=None,
+        description="How many extraction-candidate reviews were available before the budget cap",
     )
 
 

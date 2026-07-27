@@ -242,32 +242,40 @@ Longer responses and bounded quotas introduced runtime noise. The final repo han
 
 ## 10. Known Limitations And Future Improvements
 
-### Addressed in this revision (v1.1)
+### Addressed in this revision (v1.1–v1.2)
 
-Within-review discrete modifications are now supported:
+Within-review discrete modifications (v1.1):
 
 - extraction returns a `ModificationSet` (list of tips) per review
 - enhanced output keeps a flat list **and** `modifications_by_review` grouping
 - each tip carries `source_review` plus `status` (`applied` / `unapplied`)
 - conflicting tips that target the same recipe text are left visible but not auto-applied
 
+Tip eligibility (v1.2):
+
+- soft candidate pool = featured + scraper hints + small recall cues (`need`, `threw in`, quantity-ish patterns)
+- scraper `has_modification` is a hint, not a hard refusal for all reviews
+- each tip carries `evidence` (`tested` | `untested`); only tested tips are auto-applied
+- untested suggestions stay visible as `unapplied` with a clear reason
+- enhanced output records `max_reviews` and `candidates_considered`
+
 Known limitations still open:
 
-1. **Scraper `has_modification` gate** — the pipeline hard-filters on the scraper’s regex flag; some genuine tweak reviews never reach the LLM.
-2. **Demo `max_reviews` defaults to 1** — multi-review aggregation is implemented and unit-tested, but default live smoke runs usually show one review’s tips for quota reasons.
-3. **Fuzzy `replace` whole-line fallback** — when a surgical substring edit fails but similarity ≥ 0.6, the matched line can be overwritten entirely; wrong-line matches are possible on paraphrased finds.
-4. **`add_after` / `remove` matching** — substring-aware rescue was focused on `replace`; the other operations remain fuzzier.
-5. **Dead few-shot prompt path** — inherited brace bug leaves `build_few_shot_prompt` unusable; live extraction uses the simple prompt (now list-aware).
-6. **Conflict detection is coarse** — only same `(target, find)` pairs within one review; richer conflict resolution is deferred.
+1. **Demo `max_reviews` defaults to 1** — multi-review aggregation is implemented and unit-tested, but default live smoke runs usually show one review’s tips for quota reasons.
+2. **Fuzzy `replace` whole-line fallback** — when a surgical substring edit fails but similarity ≥ 0.6, the matched line can be overwritten entirely; wrong-line matches are possible on paraphrased finds.
+3. **`add_after` / `remove` matching** — substring-aware rescue was focused on `replace`; the other operations remain fuzzier.
+4. **Dead few-shot prompt path** — inherited brace bug leaves `build_few_shot_prompt` unusable; live extraction uses the simple prompt (now list-aware).
+5. **Conflict detection is coarse** — only same `(target, find)` pairs within one review; richer conflict resolution is deferred.
+6. **Candidate recall is still heuristic** — soft cues recover some scraper misses (e.g. Nikujaga-style “need 1 lb”), but not every tip phrasing; no second LLM eligibility call.
 
 Future improvements:
 
-1. Recompute or LLM-classify “contains a modification” instead of trusting scraper regex alone.
-2. Guard fuzzy replaces (same-entity / token overlap checks) before whole-line overwrite.
-3. Wire substring matching into `add_after` and `remove`, and revive few-shot examples after fixing the format-string brace.
-4. Build a stable offline fixture suite that covers representative recipes and reviews without requiring live LLM calls.
-5. Raise default demo `max_reviews` (or ship a second artifact) so multi-review aggregation is visible in committed outputs.
-6. Richer conflict resolution beyond shared find-target detection.
+1. Guard fuzzy replaces (same-entity / token overlap checks) before whole-line overwrite.
+2. Wire substring matching into `add_after` and `remove`, and revive few-shot examples after fixing the format-string brace.
+3. Build a stable offline fixture suite that covers representative recipes and reviews without requiring live LLM calls.
+4. Raise default demo `max_reviews` (or ship a second artifact) so multi-review aggregation is visible in committed outputs.
+5. Richer conflict resolution beyond shared find-target detection.
+6. Optional ranking beyond featured + stars if helpfulness signals become available.
 
 
 ## 11. Final Summary

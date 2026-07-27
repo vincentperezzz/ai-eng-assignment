@@ -13,4 +13,4 @@ We decided one Review can yield many discrete Modifications in a single extracti
 
 - Enhanced JSON now has flat `modifications_applied` (each with `source_review` + `status`) and grouped `modifications_by_review`
 - Unapplied tips stay visible with reasons; within-review conflicts are shown but not auto-applied
-- Scraper `has_modification` gate and safer fuzzy overwrite remain deferred
+- Soft tip eligibility and tested-only apply are covered in `0002-tip-eligibility.md`

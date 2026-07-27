@@ -130,6 +130,14 @@ Outcome:
 30. Added unit tests for egg/sugar split, unapplied retention, payload parsing, and conflict detection (15 tests passing).
 31. Recorded the decision in `docs/adr/0001-modification-set-per-review.md` and updated this trajectory / assessment docs.
 
+## Follow-up: Tip Eligibility (v1.2)
+
+32. Softened scraper has_modification into a candidate-pool hint; featured + regex hints + recall cues (
+eed, 	hrew in, quantity-ish) may reach extraction; pure no-cue praise stays out.
+33. Added evidence (	ested | untested) on each tip; apply only tested; keep untested visible as unapplied (and exclude them from within-review conflict checks).
+34. Recorded max_reviews and candidates_considered on enhanced output for budget honesty.
+35. Added unit tests for Nikujaga-style recall, untested-not-applied, praise-only exclusion, and metadata; ADR docs/adr/0002-tip-eligibility.md.
+
 ## Final Outcome
 
 The agent work did not attempt to solve every possible problem in the repo. It focused on the most important question in the brief: whether the pipeline actually works reliably enough to trust. The final result is materially stronger in determinism, edit correctness, attribution quality, test coverage, and environment flexibility.

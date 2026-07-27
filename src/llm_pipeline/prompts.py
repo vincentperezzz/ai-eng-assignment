@@ -13,6 +13,7 @@ When a user shares their experience modifying a recipe, you need to:
    Example: "I added an egg and halved the sugar" -> two modifications (addition + quantity_adjustment)
 3. Understand why they made each change
 4. Convert each modification into structured edit operations
+5. Label whether each tip is tested or untested
 
 You must output valid JSON that matches the ModificationSet schema:
 a top-level object with a "modifications" array. Each array item is one discrete tip.
@@ -22,6 +23,10 @@ Honesty rules:
 - Do not invent related tips or guess extras
 - If the review states only one tip, return a one-item list
 - If the review states no concrete tip, return an empty list
+
+Evidence labels:
+- "tested": the reviewer reports they actually made this change (I added / I used / I made with / threw in)
+- "untested": preference, wish, or next-time advice (next time / prefer / wish / should try / I would)
 
 Categories:
 - "ingredient_substitution": Replacing one ingredient with another
@@ -49,20 +54,28 @@ Extract the recipe modifications from this review. The user has made changes to 
 
 Output a JSON object with this structure:
 {{
-    "modification_type": "quantity_adjustment|ingredient_substitution|technique_change|addition|removal",
-    "reasoning": "Brief explanation of why this modification improves the recipe",
-    "edits": [
+    "modifications": [
         {{
-            "target": "ingredients|instructions",
-            "operation": "replace|add_after|remove",
-            "find": "exact text to find",
-            "replace": "replacement text (for replace operations)",
-            "add": "text to add (for add_after operations)"
+            "modification_type": "quantity_adjustment|ingredient_substitution|technique_change|addition|removal",
+            "reasoning": "Brief explanation of why this one tip improves the recipe",
+            "evidence": "tested|untested",
+            "edits": [
+                {{
+                    "target": "ingredients|instructions",
+                    "operation": "replace|add_after|remove",
+                    "find": "exact text to find",
+                    "replace": "replacement text (for replace operations)",
+                    "add": "text to add (for add_after operations)"
+                }}
+            ]
         }}
     ]
-}
+}}
 
-Focus on concrete changes the user actually made, not general suggestions."""
+Rules:
+- One array item per discrete tip
+- evidence=tested when the reviewer did the change; untested for next-time/prefer/wish
+- Return an empty modifications list when there is no concrete tip"""
 
 FEW_SHOT_EXAMPLES = [
     {
@@ -74,22 +87,27 @@ FEW_SHOT_EXAMPLES = [
             "2 eggs",
         ],
         "expected_output": {
-            "modification_type": "quantity_adjustment",
-            "reasoning": "Makes cookies more chewy and flavorful by increasing brown sugar ratio",
-            "edits": [
+            "modifications": [
                 {
-                    "target": "ingredients",
-                    "operation": "replace",
-                    "find": "1 cup white sugar",
-                    "replace": "0.5 cup white sugar",
-                },
-                {
-                    "target": "ingredients",
-                    "operation": "replace",
-                    "find": "1 cup packed brown sugar",
-                    "replace": "1.5 cups packed brown sugar",
-                },
-            ],
+                    "modification_type": "quantity_adjustment",
+                    "reasoning": "Makes cookies more chewy and flavorful by increasing brown sugar ratio",
+                    "evidence": "tested",
+                    "edits": [
+                        {
+                            "target": "ingredients",
+                            "operation": "replace",
+                            "find": "1 cup white sugar",
+                            "replace": "0.5 cup white sugar",
+                        },
+                        {
+                            "target": "ingredients",
+                            "operation": "replace",
+                            "find": "1 cup packed brown sugar",
+                            "replace": "1.5 cups packed brown sugar",
+                        },
+                    ],
+                }
+            ]
         },
     },
     {
@@ -100,42 +118,52 @@ FEW_SHOT_EXAMPLES = [
             "0.5 teaspoon salt",
         ],
         "expected_output": {
-            "modification_type": "addition",
-            "reasoning": "Helps cookies retain shape and prevents spreading during baking",
-            "edits": [
+            "modifications": [
                 {
-                    "target": "ingredients",
-                    "operation": "add_after",
-                    "find": "0.5 teaspoon salt",
-                    "add": "1 teaspoon cream of tartar",
-                },
-                {
-                    "target": "ingredients",
-                    "operation": "remove",
-                    "find": "2 teaspoons hot water",
-                },
-            ],
+                    "modification_type": "addition",
+                    "reasoning": "Helps cookies retain shape and prevents spreading during baking",
+                    "evidence": "tested",
+                    "edits": [
+                        {
+                            "target": "ingredients",
+                            "operation": "add_after",
+                            "find": "0.5 teaspoon salt",
+                            "add": "1 teaspoon cream of tartar",
+                        },
+                        {
+                            "target": "ingredients",
+                            "operation": "remove",
+                            "find": "2 teaspoons hot water",
+                        },
+                    ],
+                }
+            ]
         },
     },
     {
         "review": "I used 1 tsp of salt instead of 1/2 tsp and omitted the nuts. Much better flavor without being too salty.",
         "ingredients": ["0.5 teaspoon salt", "1 cup chopped walnuts"],
         "expected_output": {
-            "modification_type": "quantity_adjustment",
-            "reasoning": "Improves flavor balance without making cookies too salty",
-            "edits": [
+            "modifications": [
                 {
-                    "target": "ingredients",
-                    "operation": "replace",
-                    "find": "0.5 teaspoon salt",
-                    "replace": "1 teaspoon salt",
-                },
-                {
-                    "target": "ingredients",
-                    "operation": "remove",
-                    "find": "1 cup chopped walnuts",
-                },
-            ],
+                    "modification_type": "quantity_adjustment",
+                    "reasoning": "Improves flavor balance without making cookies too salty",
+                    "evidence": "tested",
+                    "edits": [
+                        {
+                            "target": "ingredients",
+                            "operation": "replace",
+                            "find": "0.5 teaspoon salt",
+                            "replace": "1 teaspoon salt",
+                        },
+                        {
+                            "target": "ingredients",
+                            "operation": "remove",
+                            "find": "1 cup chopped walnuts",
+                        },
+                    ],
+                }
+            ]
         },
     },
     {
@@ -145,22 +173,27 @@ FEW_SHOT_EXAMPLES = [
             "Bake in the preheated oven until edges are nicely browned, about 10 minutes",
         ],
         "expected_output": {
-            "modification_type": "technique_change",
-            "reasoning": "Higher temperature and shorter time creates crispier edges",
-            "edits": [
+            "modifications": [
                 {
-                    "target": "instructions",
-                    "operation": "replace",
-                    "find": "350 degrees F",
-                    "replace": "375 degrees F",
-                },
-                {
-                    "target": "instructions",
-                    "operation": "replace",
-                    "find": "about 10 minutes",
-                    "replace": "about 8-9 minutes",
-                },
-            ],
+                    "modification_type": "technique_change",
+                    "reasoning": "Higher temperature and shorter time creates crispier edges",
+                    "evidence": "tested",
+                    "edits": [
+                        {
+                            "target": "instructions",
+                            "operation": "replace",
+                            "find": "350 degrees F",
+                            "replace": "375 degrees F",
+                        },
+                        {
+                            "target": "instructions",
+                            "operation": "replace",
+                            "find": "about 10 minutes",
+                            "replace": "about 8-9 minutes",
+                        },
+                    ],
+                }
+            ]
         },
     },
 ]
@@ -223,6 +256,7 @@ Output a JSON object with this structure:
         {{
             "modification_type": "quantity_adjustment|ingredient_substitution|technique_change|addition|removal",
             "reasoning": "Brief explanation of why this one tip improves the recipe",
+            "evidence": "tested|untested",
             "edits": [
                 {{
                     "target": "ingredients|instructions",
@@ -240,5 +274,7 @@ Rules:
 - One array item per discrete tip (do not merge unrelated tips into one object)
 - Only include tips clearly stated in the review text
 - Do not invent tips
-- Focus on concrete changes the user actually made, not general suggestions"""
+- evidence=tested when the reviewer says they actually did the change
+- evidence=untested for next-time / prefer / wish / should-try language
+- Focus on concrete tips; return an empty modifications list for praise-only text"""
 

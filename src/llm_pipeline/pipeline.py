@@ -20,6 +20,7 @@ from .enhanced_recipe_generator import EnhancedRecipeGenerator
 from .models import EnhancedRecipe, ModificationObject, Recipe, Review
 from .modification_conflicts import conflicting_modification_indices
 from .recipe_modifier import RecipeModifier
+from .tip_eligibility import select_candidate_reviews
 from .tweak_extractor import TweakExtractor
 
 
@@ -30,7 +31,7 @@ class LLMAnalysisPipeline:
         self,
         openai_api_key: Optional[str] = None,
         output_dir: str = "data/enhanced",
-        pipeline_version: str = "1.1.0",
+        pipeline_version: str = "1.2.0",
         tweak_extractor: Optional[TweakExtractor] = None,
         recipe_modifier: Optional[RecipeModifier] = None,
         enhanced_generator: Optional[EnhancedRecipeGenerator] = None,
@@ -177,19 +178,20 @@ class LLMAnalysisPipeline:
             reviews = self.parse_reviews_data(recipe_data)
 
             logger.info(f"Loaded recipe: {recipe.title}")
+            hint_count = len([r for r in reviews if r.has_modification])
             logger.info(
-                f"Found {len(reviews)} reviews, {len([r for r in reviews if r.has_modification])} with modifications"
+                f"Found {len(reviews)} reviews, {hint_count} with scraper modification hints"
             )
 
-            if not any(r.has_modification for r in reviews):
-                logger.warning("No reviews with modifications found")
+            candidate_reviews = select_candidate_reviews(reviews)
+            if not candidate_reviews:
+                logger.warning("No extraction-candidate reviews found")
                 return None
 
-            candidate_reviews = [r for r in reviews if r.has_modification]
-
-            # Step 1: Extract modifications from prioritized reviews.
+            # Step 1: Extract modifications from soft-eligibility candidates.
             logger.info(
-                f"Step 1: Extracting modifications from {len(candidate_reviews)} prioritized reviews..."
+                f"Step 1: Extracting modifications from {len(candidate_reviews)} "
+                "candidate reviews..."
             )
             extracted_modifications = self.tweak_extractor.extract_modifications(
                 candidate_reviews, recipe, max_reviews=max_reviews
@@ -220,10 +222,40 @@ class LLMAnalysisPipeline:
 
             for key in review_order:
                 batch = review_batches[key]
-                mods_only = [modification for modification, _ in batch]
-                conflicting = conflicting_modification_indices(mods_only)
+                # Untested tips are never applied; exclude them from conflict checks
+                # so they do not block tested tips that share a find-target.
+                tested_indexed = [
+                    (index, modification)
+                    for index, (modification, _) in enumerate(batch)
+                    if modification.evidence != "untested"
+                ]
+                relative_conflicts = conflicting_modification_indices(
+                    [modification for _, modification in tested_indexed]
+                )
+                conflicting = {
+                    tested_indexed[relative_index][0]
+                    for relative_index in relative_conflicts
+                }
 
                 for index, (modification, source_review) in enumerate(batch):
+                    if modification.evidence == "untested":
+                        modification_records.append(
+                            self.enhanced_generator.create_modification_record(
+                                modification,
+                                source_review,
+                                change_records=[],
+                                status="unapplied",
+                                unapplied_reason=(
+                                    "Untested suggestion (next-time / preference language); "
+                                    "kept visible but not auto-applied"
+                                ),
+                            )
+                        )
+                        logger.info(
+                            f"Left {modification.modification_type} unapplied: untested evidence"
+                        )
+                        continue
+
                     if index in conflicting:
                         modification_records.append(
                             self.enhanced_generator.create_modification_record(
@@ -290,7 +322,11 @@ class LLMAnalysisPipeline:
             logger.info("Step 3: Generating enhanced recipe with attribution...")
 
             enhanced_recipe = self.enhanced_generator.generate_enhanced_recipe_from_records(
-                recipe, modified_recipe, modification_records
+                recipe,
+                modified_recipe,
+                modification_records,
+                max_reviews=max_reviews,
+                candidates_considered=len(candidate_reviews),
             )
 
             logger.info(f"Generated enhanced recipe: {enhanced_recipe.title}")
