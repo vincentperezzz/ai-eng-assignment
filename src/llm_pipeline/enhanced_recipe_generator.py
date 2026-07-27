@@ -163,7 +163,7 @@ class EnhancedRecipeGenerator:
             modifications_by_review=modifications_by_review,
             enhancement_summary=enhancement_summary,
             description=original_recipe.description,
-            servings=original_recipe.servings,
+            servings=modified_recipe.servings,
             prep_time=getattr(original_recipe, "prep_time", None),
             cook_time=getattr(original_recipe, "cook_time", None),
             total_time=getattr(original_recipe, "total_time", None),

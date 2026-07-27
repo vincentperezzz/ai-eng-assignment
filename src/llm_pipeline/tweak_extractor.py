@@ -24,11 +24,20 @@ from .tip_eligibility import select_candidate_reviews
 DEFAULT_MODELS = {
     "openai": "gpt-4o-mini",
     "gemini": "gemini-3.5-flash",
+    "dashscope": "qwen3.7-plus",
 }
 
 DEFAULT_BASE_URLS = {
     "openai": None,
     "gemini": "https://generativelanguage.googleapis.com/v1beta/openai/",
+    # International (Singapore) OpenAI-compatible endpoint; override with LLM_BASE_URL if needed.
+    "dashscope": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+}
+
+PROVIDER_ALIASES = {
+    "alibaba": "dashscope",
+    "qwen": "dashscope",
+    "aliyun": "dashscope",
 }
 
 
@@ -48,7 +57,7 @@ class TweakExtractor:
         Args:
             api_key: Provider API key (defaults to env var for configured provider)
             model: Model to use for extraction
-            provider: LLM provider, one of "openai" or "gemini"
+            provider: LLM provider, one of "openai", "gemini", or "dashscope"
             base_url: Optional base URL override for OpenAI-compatible providers
         """
         load_project_env()
@@ -59,7 +68,8 @@ class TweakExtractor:
 
         if not self.api_key:
             raise ValueError(
-                "No LLM API key configured. Set GEMINI_API_KEY for Google AI Studio or OPENAI_API_KEY for OpenAI."
+                "No LLM API key configured. Set DASHSCOPE_API_KEY (or QWEN_API_KEY) for "
+                "Alibaba Model Studio, GEMINI_API_KEY for Google AI Studio, or OPENAI_API_KEY."
             )
 
         client_kwargs = {"api_key": self.api_key}
@@ -75,12 +85,18 @@ class TweakExtractor:
     def resolve_provider(provider: Optional[str]) -> str:
         resolved_provider = (provider or os.getenv("LLM_PROVIDER") or "").strip().lower()
         if resolved_provider:
+            resolved_provider = PROVIDER_ALIASES.get(resolved_provider, resolved_provider)
             if resolved_provider not in DEFAULT_MODELS:
                 raise ValueError(
-                    f"Unsupported LLM provider '{resolved_provider}'. Use 'openai' or 'gemini'."
+                    "Unsupported LLM provider "
+                    f"'{resolved_provider}'. Use 'openai', 'gemini', or 'dashscope'."
                 )
             return resolved_provider
 
+        if os.getenv("DASHSCOPE_API_KEY") or os.getenv("QWEN_API_KEY") or os.getenv(
+            "QWAN_API_KEY"
+        ) or os.getenv("ALIBABA_API_KEY"):
+            return "dashscope"
         if os.getenv("GEMINI_API_KEY"):
             return "gemini"
         return "openai"
@@ -89,12 +105,17 @@ class TweakExtractor:
     def resolve_api_key(provider: str) -> Optional[str]:
         if provider == "gemini":
             return os.getenv("GEMINI_API_KEY")
+        if provider == "dashscope":
+            return (
+                os.getenv("DASHSCOPE_API_KEY")
+                or os.getenv("ALIBABA_API_KEY")
+                or os.getenv("QWEN_API_KEY")
+                or os.getenv("QWAN_API_KEY")  # common typo alias in local env
+            )
         return os.getenv("OPENAI_API_KEY")
 
     @staticmethod
     def resolve_base_url(provider: str) -> Optional[str]:
-        if provider == "gemini":
-            return os.getenv("LLM_BASE_URL") or DEFAULT_BASE_URLS[provider]
         return os.getenv("LLM_BASE_URL") or DEFAULT_BASE_URLS[provider]
 
     @staticmethod

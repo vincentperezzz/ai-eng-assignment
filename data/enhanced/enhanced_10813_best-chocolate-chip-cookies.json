@@ -4,12 +4,13 @@
   "title": "Best Chocolate Chip Cookies (Community Enhanced)",
   "ingredients": [
     "1 cup butter, softened",
-    "1 cup white sugar",
-    "1 cup packed brown sugar",
-    "2 eggs plus 1 egg yolk",
+    "0.5 cup white sugar",
+    "1.5 cups packed brown sugar",
+    "2 eggs",
+    "1 egg yolk",
     "2 teaspoons vanilla extract",
     "1 teaspoon baking soda",
-    "2 teaspoons hot water",
+    "1 teaspoon cream of tartar",
     "0.5 teaspoon salt",
     "3 cups all-purpose flour",
     "2 cups semisweet chocolate chips",
@@ -18,10 +19,10 @@
   "instructions": [
     "Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.",
     "Preheat the oven to 350 degrees F (175 degrees C). Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.",
-    "Beat in eggs and egg yolk, one at a time, then stir in vanilla.",
-    "Dissolve baking soda in hot water. Add to batter along with salt.",
+    "Beat in eggs, one at a time, then beat in the additional egg yolk, then stir in vanilla.",
     "Stir in flour, chocolate chips, and walnuts.",
-    "Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.",
+    "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
+    "Refrigerate the batter for at least 1 hour before scooping and baking.",
     "Bake in the preheated oven until edges are nicely browned, about 10 minutes.",
     "Cool on the baking sheets briefly before removing to a wire rack to cool completely.",
     "Store in an airtight container or serve immediately and enjoy!"
@@ -33,36 +34,326 @@
         "reviewer": null,
         "rating": 5
       },
+      "modification_type": "technique_change",
+      "reasoning": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier",
+      "evidence": "tested",
+      "changes_made": [
+        {
+          "type": "instruction",
+          "from_text": "Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.",
+          "to_text": "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
+          "operation": "replace"
+        },
+        {
+          "type": "servings",
+          "from_text": "48",
+          "to_text": "16",
+          "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null
+    },
+    {
+      "source_review": {
+        "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
+        "reviewer": null,
+        "rating": 5
+      },
       "modification_type": "addition",
-      "reasoning": "Adding an additional egg yolk helps keep the cookies chewy.",
+      "reasoning": "Adding an extra egg yolk helps keep the cookies chewy",
+      "evidence": "tested",
       "changes_made": [
         {
           "type": "ingredient",
-          "from_text": "2 eggs",
-          "to_text": "2 eggs plus 1 egg yolk",
-          "operation": "replace"
+          "from_text": "",
+          "to_text": "1 egg yolk",
+          "operation": "add"
         },
         {
           "type": "instruction",
           "from_text": "Beat in eggs, one at a time, then stir in vanilla.",
-          "to_text": "Beat in eggs and egg yolk, one at a time, then stir in vanilla.",
+          "to_text": "Beat in eggs, one at a time, then beat in the additional egg yolk, then stir in vanilla.",
           "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null
+    },
+    {
+      "source_review": {
+        "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and texture",
+      "evidence": "tested",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "1 cup white sugar",
+          "to_text": "0.5 cup white sugar",
+          "operation": "replace"
+        },
+        {
+          "type": "ingredient",
+          "from_text": "1 cup packed brown sugar",
+          "to_text": "1.5 cups packed brown sugar",
+          "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null
+    },
+    {
+      "source_review": {
+        "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "removal",
+      "reasoning": "Omitting the hot water to change the cookie texture and prevent spreading",
+      "evidence": "tested",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "2 teaspoons hot water",
+          "to_text": "",
+          "operation": "remove"
+        },
+        {
+          "type": "instruction",
+          "from_text": "Dissolve baking soda in hot water. Add to batter along with salt.",
+          "to_text": "",
+          "operation": "remove"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null
+    },
+    {
+      "source_review": {
+        "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "addition",
+      "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent them from becoming too cakey",
+      "evidence": "tested",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "",
+          "to_text": "1 teaspoon cream of tartar",
+          "operation": "add"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null
+    },
+    {
+      "source_review": {
+        "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "technique_change",
+      "reasoning": "Refrigerating the batter before baking helps cookies retain their shape and prevents spreading",
+      "evidence": "tested",
+      "changes_made": [
+        {
+          "type": "instruction",
+          "from_text": "",
+          "to_text": "Refrigerate the batter for at least 1 hour before scooping and baking.",
+          "operation": "add"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null
+    }
+  ],
+  "modifications_by_review": [
+    {
+      "source_review": {
+        "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "source_review": {
+            "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "technique_change",
+          "reasoning": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier",
+          "evidence": "tested",
+          "changes_made": [
+            {
+              "type": "instruction",
+              "from_text": "Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.",
+              "to_text": "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
+              "operation": "replace"
+            },
+            {
+              "type": "servings",
+              "from_text": "48",
+              "to_text": "16",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null
+        },
+        {
+          "source_review": {
+            "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "addition",
+          "reasoning": "Adding an extra egg yolk helps keep the cookies chewy",
+          "evidence": "tested",
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "",
+              "to_text": "1 egg yolk",
+              "operation": "add"
+            },
+            {
+              "type": "instruction",
+              "from_text": "Beat in eggs, one at a time, then stir in vanilla.",
+              "to_text": "Beat in eggs, one at a time, then beat in the additional egg yolk, then stir in vanilla.",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "source_review": {
+            "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and texture",
+          "evidence": "tested",
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "1 cup white sugar",
+              "to_text": "0.5 cup white sugar",
+              "operation": "replace"
+            },
+            {
+              "type": "ingredient",
+              "from_text": "1 cup packed brown sugar",
+              "to_text": "1.5 cups packed brown sugar",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null
+        },
+        {
+          "source_review": {
+            "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "removal",
+          "reasoning": "Omitting the hot water to change the cookie texture and prevent spreading",
+          "evidence": "tested",
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "2 teaspoons hot water",
+              "to_text": "",
+              "operation": "remove"
+            },
+            {
+              "type": "instruction",
+              "from_text": "Dissolve baking soda in hot water. Add to batter along with salt.",
+              "to_text": "",
+              "operation": "remove"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null
+        },
+        {
+          "source_review": {
+            "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "addition",
+          "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent them from becoming too cakey",
+          "evidence": "tested",
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "",
+              "to_text": "1 teaspoon cream of tartar",
+              "operation": "add"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null
+        },
+        {
+          "source_review": {
+            "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "technique_change",
+          "reasoning": "Refrigerating the batter before baking helps cookies retain their shape and prevents spreading",
+          "evidence": "tested",
+          "changes_made": [
+            {
+              "type": "instruction",
+              "from_text": "",
+              "to_text": "Refrigerate the batter for at least 1 hour before scooping and baking.",
+              "operation": "add"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null
         }
       ]
     }
   ],
   "enhancement_summary": {
-    "total_changes": 2,
+    "total_changes": 10,
     "change_types": [
+      "removal",
+      "technique_change",
+      "quantity_adjustment",
       "addition"
     ],
-    "expected_impact": "Adding an additional egg yolk helps keep the cookies chewy."
+    "expected_impact": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier; Adding an extra egg yolk helps keep the cookies chewy; Reducing white sugar and increasing brown sugar to adjust sweetness and texture (and 3 more improvements)"
   },
   "description": "This classic chocolate chip cookie recipe makes deliciously buttery cookies with crisp edges, chewy middles, and gooey chocolate chips in every bite.",
-  "servings": "48",
+  "servings": "16",
   "prep_time": null,
   "cook_time": null,
   "total_time": null,
-  "created_at": "2026-05-25T17:49:09.998516",
-  "pipeline_version": "1.0.0"
+  "created_at": "2026-07-28T00:27:27.367283",
+  "pipeline_version": "1.2.0",
+  "max_reviews": 2,
+  "candidates_considered": 4
 }

@@ -13,8 +13,8 @@ from pydantic import BaseModel, Field
 class ModificationEdit(BaseModel):
     """Individual atomic edit operation for a recipe modification."""
 
-    target: Literal["ingredients", "instructions"] = Field(
-        description="Whether this edit applies to ingredients or instructions"
+    target: Literal["ingredients", "instructions", "servings"] = Field(
+        description="Whether this edit applies to ingredients, instructions, or servings/yield"
     )
     operation: Literal["replace", "add_after", "remove"] = Field(
         default="replace",
@@ -72,7 +72,7 @@ class SourceReview(BaseModel):
 class ChangeRecord(BaseModel):
     """Record of a specific change made to the recipe."""
 
-    type: Literal["ingredient", "instruction"] = Field(
+    type: Literal["ingredient", "instruction", "servings"] = Field(
         description="Type of element that was changed"
     )
     from_text: str = Field(description="Original text before modification")

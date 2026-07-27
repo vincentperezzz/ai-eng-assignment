@@ -193,6 +193,40 @@ class RecipeModifier:
 
         return modified_content, change_records
 
+    def apply_servings_edit(
+        self, edit: ModificationEdit, recipe: Recipe
+    ) -> List[ChangeRecord]:
+        """Update recipe servings/yield when a tip changes batch size."""
+        if edit.operation != "replace" or not edit.replace:
+            logger.warning("Servings edits only support replace with a new value")
+            return []
+
+        current = recipe.servings or ""
+        find_text = (edit.find or "").strip()
+        if find_text and current:
+            current_norm = current.lower().strip()
+            find_norm = find_text.lower().strip()
+            if find_norm not in current_norm and current_norm not in find_norm:
+                # Still allow update when LLM uses the numeric yield from the tip
+                # rather than the exact servings string.
+                if not any(ch.isdigit() for ch in find_text):
+                    logger.warning(
+                        f"Servings find '{edit.find}' did not match current '{current}'"
+                    )
+                    return []
+
+        previous = current
+        recipe.servings = edit.replace
+        logger.info(f"Updated servings from '{previous}' to '{edit.replace}'")
+        return [
+            ChangeRecord(
+                type="servings",
+                from_text=previous,
+                to_text=edit.replace,
+                operation="replace",
+            )
+        ]
+
     def apply_modification(
         self,
         recipe: Recipe,
@@ -233,6 +267,8 @@ class RecipeModifier:
                 modified_recipe.instructions, change_records = self.apply_edit(
                     edit, modified_recipe.instructions
                 )
+            elif edit.target == "servings":
+                change_records = self.apply_servings_edit(edit, modified_recipe)
             else:
                 logger.warning(f"Unknown edit target: {edit.target}")
                 continue

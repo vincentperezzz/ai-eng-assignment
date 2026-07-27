@@ -6,10 +6,36 @@ from llm_pipeline.tweak_extractor import TweakExtractor
 
 
 class TweakExtractorConfigTests(unittest.TestCase):
-    def test_prefers_gemini_when_gemini_key_is_present(self):
+    def test_prefers_dashscope_when_dashscope_key_is_present(self):
         with patch.dict(
             os.environ,
-            {"GEMINI_API_KEY": "gemini-test-key"},
+            {"DASHSCOPE_API_KEY": "dashscope-test-key"},
+            clear=True,
+        ), patch("llm_pipeline.tweak_extractor.load_project_env"):
+            extractor = TweakExtractor()
+
+        self.assertEqual(extractor.provider, "dashscope")
+        self.assertEqual(extractor.model, "qwen3.7-plus")
+        self.assertEqual(
+            extractor.base_url,
+            "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+        )
+
+    def test_accepts_qwan_api_key_alias(self):
+        with patch.dict(
+            os.environ,
+            {"QWAN_API_KEY": "typo-key", "LLM_PROVIDER": "dashscope"},
+            clear=True,
+        ), patch("llm_pipeline.tweak_extractor.load_project_env"):
+            extractor = TweakExtractor()
+
+        self.assertEqual(extractor.provider, "dashscope")
+        self.assertEqual(extractor.api_key, "typo-key")
+
+    def test_uses_gemini_when_provider_is_explicit(self):
+        with patch.dict(
+            os.environ,
+            {"GEMINI_API_KEY": "gemini-test-key", "LLM_PROVIDER": "gemini"},
             clear=True,
         ), patch("llm_pipeline.tweak_extractor.load_project_env"):
             extractor = TweakExtractor()

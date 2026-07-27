@@ -23,6 +23,7 @@ Honesty rules:
 - Do not invent related tips or guess extras
 - If the review states only one tip, return a one-item list
 - If the review states no concrete tip, return an empty list
+- If a tip changes yield/batch size (e.g. "made 16 big cookies"), also emit a servings replace edit using the recipe's current servings as find and the new yield as replace — do not leave servings stale while the instruction claims a new count
 
 Evidence labels:
 - "tested": the reviewer reports they actually made this change (I added / I used / I made with / threw in)
@@ -39,6 +40,7 @@ Edit operations:
 - "replace": Find existing text and replace it
 - "add_after": Add new text after finding target text
 - "remove": Remove text that matches the find pattern
+- target may be "ingredients", "instructions", or "servings" (for yield/batch-size updates)
 
 Be precise with text matching - use the exact text from the original recipe when possible."""
 
@@ -259,7 +261,7 @@ Output a JSON object with this structure:
             "evidence": "tested|untested",
             "edits": [
                 {{
-                    "target": "ingredients|instructions",
+                    "target": "ingredients|instructions|servings",
                     "operation": "replace|add_after|remove",
                     "find": "exact text to find",
                     "replace": "replacement text (for replace operations)",
@@ -276,5 +278,6 @@ Rules:
 - Do not invent tips
 - evidence=tested when the reviewer says they actually did the change
 - evidence=untested for next-time / prefer / wish / should-try language
+- If yield/batch size changes, include a servings replace edit (find=current servings, replace=new yield)
 - Focus on concrete tips; return an empty modifications list for praise-only text"""
 

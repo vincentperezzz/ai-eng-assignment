@@ -26,7 +26,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 def has_llm_api_key() -> bool:
     """Check whether any supported LLM provider has credentials configured."""
-    return bool(os.getenv("OPENAI_API_KEY") or os.getenv("GEMINI_API_KEY"))
+    return bool(
+        os.getenv("OPENAI_API_KEY")
+        or os.getenv("GEMINI_API_KEY")
+        or os.getenv("ALIBABA_API_KEY")
+    )
 
 
 def test_single_recipe():
