@@ -16,7 +16,7 @@ from openai import OpenAI
 from pydantic import ValidationError
 
 from .env_loader import load_project_env
-from .models import ModificationObject, Recipe, Review
+from .models import ModificationObject, ModificationSet, Recipe, Review
 from .prompts import build_simple_prompt
 
 
@@ -97,57 +97,58 @@ class TweakExtractor:
         return os.getenv("LLM_BASE_URL") or DEFAULT_BASE_URLS[provider]
 
     @staticmethod
-    def _parse_modification_payload(raw_output: str) -> ModificationObject:
+    def _parse_modification_set_payload(raw_output: str) -> list[ModificationObject]:
         modification_data = json.loads(raw_output)
-        if isinstance(modification_data, list):
-            modification_data = modification_data[0]
-        return ModificationObject(**modification_data)
 
-    def _extract_with_raw_completion(self, prompt: str) -> Optional[ModificationObject]:
+        if isinstance(modification_data, list):
+            return [ModificationObject(**item) for item in modification_data]
+
+        if isinstance(modification_data, dict):
+            if "modifications" in modification_data:
+                return ModificationSet(**modification_data).modifications
+            # Backward-compatible single-object payloads from older prompts/models.
+            return [ModificationObject(**modification_data)]
+
+        raise ValueError(
+            f"Unexpected modification payload type: {type(modification_data)!r}"
+        )
+
+    def _extract_with_raw_completion(self, prompt: str) -> list[ModificationObject]:
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"},
             temperature=0.1,
-            max_tokens=1000,
+            max_tokens=2000,
         )
 
         raw_output = response.choices[0].message.content
         logger.debug(f"LLM raw output: {raw_output}")
 
         if not raw_output:
-            return None
+            return []
 
-        return self._parse_modification_payload(raw_output)
+        return self._parse_modification_set_payload(raw_output)
 
-    def extract_modification(
+    def extract_modifications_from_review(
         self,
         review: Review,
         recipe: Recipe,
         max_retries: int = 2,
-    ) -> Optional[ModificationObject]:
+    ) -> list[ModificationObject]:
         """
-        Extract a structured modification from a review.
-
-        Args:
-            review: Review object containing modification text
-            recipe: Original recipe being modified
-            max_retries: Number of retry attempts if parsing fails
-
-        Returns:
-            ModificationObject if extraction successful, None otherwise
+        Extract all discrete modifications clearly stated in one review.
         """
         if not review.has_modification:
             logger.warning("Review has no modification flag set")
-            return None
+            return []
 
-        # Build the prompt - use simple prompt to avoid format string issues
         prompt = build_simple_prompt(
             review.text, recipe.title, recipe.ingredients, recipe.instructions
         )
 
         logger.debug(
-            "Extracting modification from review: {}...".format(review.text[:100])
+            "Extracting modifications from review: {}...".format(review.text[:100])
         )
 
         for attempt in range(max_retries + 1):
@@ -156,14 +157,14 @@ class TweakExtractor:
                 parsed_message = self.client.beta.chat.completions.parse(
                     model=self.model,
                     messages=[{"role": "user", "content": prompt}],
-                    response_format=ModificationObject,
+                    response_format=ModificationSet,
                     temperature=0.1,
-                    max_tokens=1000,
+                    max_tokens=2000,
                 )
 
-                parsed_modification = parsed_message.choices[0].message.parsed
-                if parsed_modification:
-                    modification = parsed_modification
+                parsed_set = parsed_message.choices[0].message.parsed
+                if parsed_set is not None:
+                    modifications = parsed_set.modifications
                 else:
                     raw_output = parsed_message.choices[0].message.content
                     logger.debug(f"LLM raw output: {raw_output}")
@@ -172,13 +173,13 @@ class TweakExtractor:
                         logger.warning(f"Attempt {attempt + 1}: Empty response from LLM")
                         continue
 
-                    modification = self._parse_modification_payload(raw_output)
+                    modifications = self._parse_modification_set_payload(raw_output)
 
                 logger.info(
-                    f"Successfully extracted {modification.modification_type} "
-                    f"modification with {len(modification.edits)} edits"
+                    f"Successfully extracted {len(modifications)} discrete "
+                    f"modification(s) from one review"
                 )
-                return modification
+                return modifications
 
             except json.JSONDecodeError as e:
                 logger.warning(f"Attempt {attempt + 1}: Failed to parse JSON: {e}")
@@ -196,18 +197,13 @@ class TweakExtractor:
                 )
 
                 try:
-                    modification = self._extract_with_raw_completion(prompt)
-                    if modification:
-                        logger.info(
-                            f"Successfully extracted {modification.modification_type} "
-                            f"modification with {len(modification.edits)} edits via raw fallback"
-                        )
-                        return modification
-
-                    logger.warning(
-                        f"Attempt {attempt + 1}: Raw fallback returned no content"
+                    modifications = self._extract_with_raw_completion(prompt)
+                    logger.info(
+                        f"Successfully extracted {len(modifications)} discrete "
+                        f"modification(s) via raw fallback"
                     )
-                except (json.JSONDecodeError, ValidationError) as fallback_error:
+                    return modifications
+                except (json.JSONDecodeError, ValidationError, ValueError) as fallback_error:
                     logger.warning(
                         f"Attempt {attempt + 1}: Raw fallback parse failed: {fallback_error}"
                     )
@@ -217,9 +213,25 @@ class TweakExtractor:
                     )
 
                 if attempt == max_retries:
-                    return None
+                    return []
 
-        return None
+        return []
+
+    def extract_modification(
+        self,
+        review: Review,
+        recipe: Recipe,
+        max_retries: int = 2,
+    ) -> Optional[ModificationObject]:
+        """
+        Extract the first discrete modification from a review.
+
+        Prefer extract_modifications_from_review when multiple tips may exist.
+        """
+        modifications = self.extract_modifications_from_review(
+            review, recipe, max_retries=max_retries
+        )
+        return modifications[0] if modifications else None
 
     def extract_single_modification(
         self, reviews: list[Review], recipe: Recipe
@@ -236,24 +248,22 @@ class TweakExtractor:
         """
         import random
 
-        # Filter to reviews with modifications
         modification_reviews = [r for r in reviews if r.has_modification]
 
         if not modification_reviews:
             logger.warning("No reviews with modifications found")
             return None, None
 
-        # Select one random review
         selected_review = random.choice(modification_reviews)
         logger.info(f"Selected review: {selected_review.text[:100]}...")
 
-        modification = self.extract_modification(selected_review, recipe)
-        if modification:
+        modifications = self.extract_modifications_from_review(selected_review, recipe)
+        if modifications:
             logger.info("Successfully extracted modification from selected review")
-            return modification, selected_review
-        else:
-            logger.warning("Failed to extract modification from selected review")
-            return None, None
+            return modifications[0], selected_review
+
+        logger.warning("Failed to extract modification from selected review")
+        return None, None
 
     def extract_modifications(
         self,
@@ -264,13 +274,7 @@ class TweakExtractor:
         """
         Extract structured modifications from multiple reviews.
 
-        Args:
-            reviews: Ordered iterable of candidate reviews
-            recipe: Original recipe being modified
-            max_reviews: Optional maximum number of reviews to process
-
-        Returns:
-            List of successful (modification, source_review) tuples
+        Each review may contribute multiple discrete modifications.
         """
         extracted_modifications: list[tuple[ModificationObject, Review]] = []
 
@@ -278,9 +282,10 @@ class TweakExtractor:
             if max_reviews is not None and index >= max_reviews:
                 break
 
-            modification = self.extract_modification(review, recipe)
-            if modification:
-                extracted_modifications.append((modification, review))
+            modifications = self.extract_modifications_from_review(review, recipe)
+            if modifications:
+                for modification in modifications:
+                    extracted_modifications.append((modification, review))
             else:
                 logger.warning(
                     "Skipping review after failed extraction: {}...".format(

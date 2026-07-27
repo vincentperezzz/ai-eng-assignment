@@ -8,11 +8,20 @@ modifications from user review text.
 SYSTEM_PROMPT = """You are an expert recipe analyst. Your job is to extract structured recipe modifications from user reviews.
 
 When a user shares their experience modifying a recipe, you need to:
-1. Identify exactly what changes they made
-2. Understand why they made those changes
-3. Convert their modifications into structured edit operations
+1. Identify every discrete change they clearly stated
+2. Treat multiple tips in one review as separate modifications
+   Example: "I added an egg and halved the sugar" -> two modifications (addition + quantity_adjustment)
+3. Understand why they made each change
+4. Convert each modification into structured edit operations
 
-You must output valid JSON that matches the ModificationObject schema.
+You must output valid JSON that matches the ModificationSet schema:
+a top-level object with a "modifications" array. Each array item is one discrete tip.
+
+Honesty rules:
+- Only extract tips the review clearly states
+- Do not invent related tips or guess extras
+- If the review states only one tip, return a one-item list
+- If the review states no concrete tip, return an empty list
 
 Categories:
 - "ingredient_substitution": Replacing one ingredient with another
@@ -27,6 +36,7 @@ Edit operations:
 - "remove": Remove text that matches the find pattern
 
 Be precise with text matching - use the exact text from the original recipe when possible."""
+
 
 EXTRACTION_PROMPT = """Original Recipe:
 Title: {title}
@@ -205,21 +215,30 @@ Instructions: {instructions}
 
 User Review: "{review_text}"
 
-Extract the recipe modifications from this review. The user has made changes to improve the recipe.
+Extract ALL discrete recipe modifications clearly stated in this review.
 
 Output a JSON object with this structure:
 {{
-    "modification_type": "quantity_adjustment|ingredient_substitution|technique_change|addition|removal",
-    "reasoning": "Brief explanation of why this modification improves the recipe",
-    "edits": [
+    "modifications": [
         {{
-            "target": "ingredients|instructions",
-            "operation": "replace|add_after|remove",
-            "find": "exact text to find",
-            "replace": "replacement text (for replace operations)",
-            "add": "text to add (for add_after operations)"
+            "modification_type": "quantity_adjustment|ingredient_substitution|technique_change|addition|removal",
+            "reasoning": "Brief explanation of why this one tip improves the recipe",
+            "edits": [
+                {{
+                    "target": "ingredients|instructions",
+                    "operation": "replace|add_after|remove",
+                    "find": "exact text to find",
+                    "replace": "replacement text (for replace operations)",
+                    "add": "text to add (for add_after operations)"
+                }}
+            ]
         }}
     ]
 }}
 
-Focus on concrete changes the user actually made, not general suggestions."""
+Rules:
+- One array item per discrete tip (do not merge unrelated tips into one object)
+- Only include tips clearly stated in the review text
+- Do not invent tips
+- Focus on concrete changes the user actually made, not general suggestions"""
+

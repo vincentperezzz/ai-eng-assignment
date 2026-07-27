@@ -30,7 +30,7 @@ class ModificationEdit(BaseModel):
 
 
 class ModificationObject(BaseModel):
-    """Structured modification parsed from a review."""
+    """One discrete tip extracted from a review."""
 
     modification_type: Literal[
         "ingredient_substitution",
@@ -43,6 +43,14 @@ class ModificationObject(BaseModel):
     reasoning: str = Field(description="Why this modification improves the recipe")
 
     edits: List[ModificationEdit] = Field(description="List of atomic edits to apply")
+
+
+class ModificationSet(BaseModel):
+    """All discrete modifications clearly stated in a single review."""
+
+    modifications: List[ModificationObject] = Field(
+        description="One entry per discrete tip in the review; empty if none"
+    )
 
 
 class SourceReview(BaseModel):
@@ -67,15 +75,35 @@ class ChangeRecord(BaseModel):
 
 
 class ModificationApplied(BaseModel):
-    """Full record of a modification that was applied to a recipe."""
+    """Full record of a modification extracted from a review, applied or not."""
 
     source_review: SourceReview = Field(
         description="Review that suggested this modification"
     )
     modification_type: str = Field(description="Category of modification")
-    reasoning: str = Field(description="Why this modification was applied")
+    reasoning: str = Field(description="Why this modification was suggested")
     changes_made: List[ChangeRecord] = Field(
-        description="Detailed list of changes made"
+        default_factory=list,
+        description="Detailed list of changes made when status is applied",
+    )
+    status: Literal["applied", "unapplied"] = Field(
+        default="applied",
+        description="Whether this modification changed the recipe",
+    )
+    unapplied_reason: Optional[str] = Field(
+        default=None,
+        description="Why the modification was not applied, when status is unapplied",
+    )
+
+
+class ReviewModificationGroup(BaseModel):
+    """Modifications grouped under one source review for clear attribution."""
+
+    source_review: SourceReview = Field(
+        description="The single review these tips came from"
+    )
+    modifications: List[ModificationApplied] = Field(
+        description="Discrete tips extracted from this review"
     )
 
 
@@ -102,7 +130,11 @@ class EnhancedRecipe(BaseModel):
 
     # Attribution and tracking
     modifications_applied: List[ModificationApplied] = Field(
-        description="Full record of all modifications applied"
+        description="Flat list of all modifications (applied and unapplied), each with source_review"
+    )
+    modifications_by_review: List[ReviewModificationGroup] = Field(
+        default_factory=list,
+        description="Same modifications grouped under each source review",
     )
     enhancement_summary: EnhancementSummary = Field(
         description="Summary of all enhancements"
