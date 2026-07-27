@@ -6,8 +6,9 @@ It combines modified recipes with attribution information to create
 comprehensive enhanced recipe objects.
 """
 
+from collections import OrderedDict
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from loguru import logger
 
@@ -19,6 +20,7 @@ from .models import (
     ModificationObject,
     Recipe,
     Review,
+    ReviewModificationGroup,
     SourceReview,
 )
 
@@ -26,28 +28,30 @@ from .models import (
 class EnhancedRecipeGenerator:
     """Generates enhanced recipes with full citation tracking and attribution."""
 
-    def __init__(self, pipeline_version: str = "1.0.0"):
-        """
-        Initialize the Enhanced Recipe Generator.
-
-        Args:
-            pipeline_version: Version identifier for the pipeline
-        """
+    def __init__(self, pipeline_version: str = "1.1.0"):
         self.pipeline_version = pipeline_version
         logger.info(f"Initialized EnhancedRecipeGenerator v{pipeline_version}")
 
     def create_source_review(self, review: Review) -> SourceReview:
-        """
-        Convert a Review object to a SourceReview for attribution.
-
-        Args:
-            review: Original review object
-
-        Returns:
-            SourceReview with attribution information
-        """
         return SourceReview(
             text=review.text, reviewer=review.username, rating=review.rating
+        )
+
+    def create_modification_record(
+        self,
+        modification: ModificationObject,
+        source_review: Review,
+        change_records: Optional[List[ChangeRecord]] = None,
+        status: str = "applied",
+        unapplied_reason: Optional[str] = None,
+    ) -> ModificationApplied:
+        return ModificationApplied(
+            source_review=self.create_source_review(source_review),
+            modification_type=modification.modification_type,
+            reasoning=modification.reasoning,
+            changes_made=change_records or [],
+            status=status,  # type: ignore[arg-type]
+            unapplied_reason=unapplied_reason,
         )
 
     def create_modification_applied(
@@ -56,56 +60,39 @@ class EnhancedRecipeGenerator:
         source_review: Review,
         change_records: List[ChangeRecord],
     ) -> ModificationApplied:
-        """
-        Create a ModificationApplied record for attribution.
-
-        Args:
-            modification: Original modification object
-            source_review: Review that suggested this modification
-            change_records: List of changes that were actually made
-
-        Returns:
-            ModificationApplied with full attribution
-        """
-        return ModificationApplied(
-            source_review=self.create_source_review(source_review),
-            modification_type=modification.modification_type,
-            reasoning=modification.reasoning,
-            changes_made=change_records,
+        """Backward-compatible helper for applied modifications."""
+        return self.create_modification_record(
+            modification,
+            source_review,
+            change_records=change_records,
+            status="applied",
         )
 
-    def create_modifications_applied(
-        self,
-        modifications_with_reviews: List[tuple[ModificationObject, Review, List[ChangeRecord]]],
-    ) -> List[ModificationApplied]:
-        """Convert successful modifications into attribution records."""
-        return [
-            self.create_modification_applied(modification, source_review, change_records)
-            for modification, source_review, change_records in modifications_with_reviews
-        ]
+    def group_modifications_by_review(
+        self, modifications: List[ModificationApplied]
+    ) -> List[ReviewModificationGroup]:
+        grouped: OrderedDict[str, ReviewModificationGroup] = OrderedDict()
+
+        for record in modifications:
+            key = " ".join(record.source_review.text.split()).strip().lower()
+            if key not in grouped:
+                grouped[key] = ReviewModificationGroup(
+                    source_review=record.source_review,
+                    modifications=[],
+                )
+            grouped[key].modifications.append(record)
+
+        return list(grouped.values())
 
     def calculate_enhancement_summary(
         self, modifications_applied: List[ModificationApplied]
     ) -> EnhancementSummary:
-        """
-        Calculate summary statistics for all applied modifications.
+        applied = [mod for mod in modifications_applied if mod.status == "applied"]
+        total_changes = sum(len(mod.changes_made) for mod in applied)
+        change_types = list(set(mod.modification_type for mod in applied))
 
-        Args:
-            modifications_applied: List of all modifications applied
-
-        Returns:
-            EnhancementSummary with aggregate statistics
-        """
-        total_changes = sum(len(mod.changes_made) for mod in modifications_applied)
-        change_types = list(set(mod.modification_type for mod in modifications_applied))
-
-        # Generate expected impact summary
-        impact_descriptions = []
-        for mod in modifications_applied:
-            if mod.reasoning:
-                impact_descriptions.append(mod.reasoning)
-
-        expected_impact = "; ".join(impact_descriptions[:3])  # Limit to top 3
+        impact_descriptions = [mod.reasoning for mod in applied if mod.reasoning]
+        expected_impact = "; ".join(impact_descriptions[:3])
         if len(impact_descriptions) > 3:
             expected_impact += (
                 f" (and {len(impact_descriptions) - 3} more improvements)"
@@ -126,58 +113,12 @@ class EnhancedRecipeGenerator:
         source_review: Review,
         change_records: List[ChangeRecord],
     ) -> EnhancedRecipe:
-        """
-        Generate a complete enhanced recipe with attribution.
-
-        Args:
-            original_recipe: Original unmodified recipe
-            modified_recipe: Recipe with modifications applied
-            modification: Single modification that was applied
-            source_review: Review that suggested the modification
-            change_records: Changes made for the modification
-
-        Returns:
-            Complete EnhancedRecipe with attribution
-        """
-        logger.info(f"Generating enhanced recipe for: {original_recipe.title}")
-
-        # Create modification applied record
         modification_applied = self.create_modification_applied(
             modification, source_review, change_records
         )
-        modifications_applied = [modification_applied]
-
-        # Calculate enhancement summary
-        enhancement_summary = self.calculate_enhancement_summary(modifications_applied)
-
-        # Generate enhanced recipe ID and title
-        enhanced_recipe_id = f"{original_recipe.recipe_id}_enhanced"
-        enhanced_title = f"{original_recipe.title} (Community Enhanced)"
-
-        # Create the enhanced recipe
-        enhanced_recipe = EnhancedRecipe(
-            recipe_id=enhanced_recipe_id,
-            original_recipe_id=original_recipe.recipe_id,
-            title=enhanced_title,
-            ingredients=modified_recipe.ingredients,
-            instructions=modified_recipe.instructions,
-            modifications_applied=modifications_applied,
-            enhancement_summary=enhancement_summary,
-            description=original_recipe.description,
-            servings=original_recipe.servings,
-            prep_time=getattr(original_recipe, "prep_time", None),
-            cook_time=getattr(original_recipe, "cook_time", None),
-            total_time=getattr(original_recipe, "total_time", None),
-            created_at=datetime.now().isoformat(),
-            pipeline_version=self.pipeline_version,
+        return self.generate_enhanced_recipe_from_records(
+            original_recipe, modified_recipe, [modification_applied]
         )
-
-        logger.info(
-            f"Generated enhanced recipe with {enhancement_summary.total_changes} changes "
-            f"from {len(modifications_applied)} modifications"
-        )
-
-        return enhanced_recipe
 
     def generate_enhanced_recipe_from_modifications(
         self,
@@ -187,23 +128,27 @@ class EnhancedRecipeGenerator:
             tuple[ModificationObject, Review, List[ChangeRecord]]
         ],
     ) -> EnhancedRecipe:
-        """
-        Generate an enhanced recipe from multiple successful modifications.
-
-        Args:
-            original_recipe: Original unmodified recipe
-            modified_recipe: Recipe after sequential modifications
-            modifications_with_reviews: Successful modification tuples with attribution
-
-        Returns:
-            Complete EnhancedRecipe with attribution
-        """
-        logger.info(
-            f"Generating enhanced recipe for: {original_recipe.title} from {len(modifications_with_reviews)} applied modifications"
+        records = [
+            self.create_modification_applied(modification, source_review, change_records)
+            for modification, source_review, change_records in modifications_with_reviews
+        ]
+        return self.generate_enhanced_recipe_from_records(
+            original_recipe, modified_recipe, records
         )
 
-        modifications_applied = self.create_modifications_applied(modifications_with_reviews)
-        enhancement_summary = self.calculate_enhancement_summary(modifications_applied)
+    def generate_enhanced_recipe_from_records(
+        self,
+        original_recipe: Recipe,
+        modified_recipe: Recipe,
+        modification_records: List[ModificationApplied],
+    ) -> EnhancedRecipe:
+        logger.info(
+            f"Generating enhanced recipe for: {original_recipe.title} "
+            f"from {len(modification_records)} modification record(s)"
+        )
+
+        enhancement_summary = self.calculate_enhancement_summary(modification_records)
+        modifications_by_review = self.group_modifications_by_review(modification_records)
 
         enhanced_recipe = EnhancedRecipe(
             recipe_id=f"{original_recipe.recipe_id}_enhanced",
@@ -211,7 +156,8 @@ class EnhancedRecipeGenerator:
             title=f"{original_recipe.title} (Community Enhanced)",
             ingredients=modified_recipe.ingredients,
             instructions=modified_recipe.instructions,
-            modifications_applied=modifications_applied,
+            modifications_applied=modification_records,
+            modifications_by_review=modifications_by_review,
             enhancement_summary=enhancement_summary,
             description=original_recipe.description,
             servings=original_recipe.servings,
@@ -222,9 +168,11 @@ class EnhancedRecipeGenerator:
             pipeline_version=self.pipeline_version,
         )
 
+        applied_count = sum(1 for mod in modification_records if mod.status == "applied")
         logger.info(
             f"Generated enhanced recipe with {enhancement_summary.total_changes} changes "
-            f"from {len(modifications_applied)} modifications"
+            f"from {applied_count} applied / {len(modification_records)} total modifications "
+            f"across {len(modifications_by_review)} review group(s)"
         )
 
         return enhanced_recipe
@@ -232,17 +180,10 @@ class EnhancedRecipeGenerator:
     def generate_comparison_data(
         self, original_recipe: Recipe, enhanced_recipe: EnhancedRecipe
     ) -> Dict[str, Any]:
-        """
-        Generate side-by-side comparison data for UI display.
-
-        Args:
-            original_recipe: Original recipe
-            enhanced_recipe: Enhanced recipe
-
-        Returns:
-            Dictionary with comparison data
-        """
-        comparison = {
+        applied = [
+            mod for mod in enhanced_recipe.modifications_applied if mod.status == "applied"
+        ]
+        return {
             "original": {
                 "title": original_recipe.title,
                 "ingredients": original_recipe.ingredients,
@@ -256,7 +197,7 @@ class EnhancedRecipeGenerator:
                 "servings": enhanced_recipe.servings,
             },
             "changes": {
-                "total_modifications": len(enhanced_recipe.modifications_applied),
+                "total_modifications": len(applied),
                 "total_changes": enhanced_recipe.enhancement_summary.total_changes,
                 "change_types": enhanced_recipe.enhancement_summary.change_types,
                 "expected_impact": enhanced_recipe.enhancement_summary.expected_impact,
@@ -267,6 +208,8 @@ class EnhancedRecipeGenerator:
                     "rating": mod.source_review.rating,
                     "modification_type": mod.modification_type,
                     "reasoning": mod.reasoning,
+                    "status": mod.status,
+                    "unapplied_reason": mod.unapplied_reason,
                     "changes": [
                         {
                             "type": change.type,
@@ -279,30 +222,24 @@ class EnhancedRecipeGenerator:
                 }
                 for mod in enhanced_recipe.modifications_applied
             ],
+            "by_review": [
+                {
+                    "review_text": group.source_review.text,
+                    "modification_count": len(group.modifications),
+                    "statuses": [mod.status for mod in group.modifications],
+                }
+                for group in enhanced_recipe.modifications_by_review
+            ],
         }
-
-        return comparison
 
     def save_enhanced_recipe(
         self, enhanced_recipe: EnhancedRecipe, output_path: str
     ) -> str:
-        """
-        Save enhanced recipe to JSON file.
-
-        Args:
-            enhanced_recipe: Enhanced recipe to save
-            output_path: Path to save the file
-
-        Returns:
-            Path to the saved file
-        """
         import json
         import os
 
-        # Ensure output directory exists
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-        # Convert to dict and save
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(enhanced_recipe.model_dump(), f, indent=2, ensure_ascii=False)
 

@@ -17,7 +17,8 @@ from loguru import logger
 
 from .env_loader import load_project_env
 from .enhanced_recipe_generator import EnhancedRecipeGenerator
-from .models import EnhancedRecipe, Recipe, Review
+from .models import EnhancedRecipe, ModificationObject, Recipe, Review
+from .modification_conflicts import conflicting_modification_indices
 from .recipe_modifier import RecipeModifier
 from .tweak_extractor import TweakExtractor
 
@@ -29,7 +30,7 @@ class LLMAnalysisPipeline:
         self,
         openai_api_key: Optional[str] = None,
         output_dir: str = "data/enhanced",
-        pipeline_version: str = "1.0.0",
+        pipeline_version: str = "1.1.0",
         tweak_extractor: Optional[TweakExtractor] = None,
         recipe_modifier: Optional[RecipeModifier] = None,
         enhanced_generator: Optional[EnhancedRecipeGenerator] = None,
@@ -203,38 +204,93 @@ class LLMAnalysisPipeline:
             )
 
             # Step 2: Apply successful modifications sequentially.
+            # Conflicts within the same review are kept visible but not auto-applied.
             logger.info("Step 2: Applying extracted modifications to recipe...")
             modified_recipe = recipe
-            successful_modifications: list[
-                tuple[Any, Review, List[Any]]
-            ] = []
+            modification_records = []
 
+            review_batches: dict[str, list[tuple[ModificationObject, Review]]] = {}
+            review_order: list[str] = []
             for modification, source_review in extracted_modifications:
-                modified_recipe, change_records = self.recipe_modifier.apply_modification(
-                    modified_recipe, modification
-                )
+                key = " ".join(source_review.text.split()).strip().lower()
+                if key not in review_batches:
+                    review_batches[key] = []
+                    review_order.append(key)
+                review_batches[key].append((modification, source_review))
 
-                if change_records:
-                    successful_modifications.append(
-                        (modification, source_review, change_records)
-                    )
-                    logger.info(
-                        f"Applied {modification.modification_type}: {len(change_records)} changes made"
-                    )
-                else:
-                    logger.warning(
-                        f"Skipped attribution for {modification.modification_type}: no concrete changes were applied"
+            for key in review_order:
+                batch = review_batches[key]
+                mods_only = [modification for modification, _ in batch]
+                conflicting = conflicting_modification_indices(mods_only)
+
+                for index, (modification, source_review) in enumerate(batch):
+                    if index in conflicting:
+                        modification_records.append(
+                            self.enhanced_generator.create_modification_record(
+                                modification,
+                                source_review,
+                                change_records=[],
+                                status="unapplied",
+                                unapplied_reason=(
+                                    "Conflicts with another discrete tip from the same "
+                                    "review that targets the same recipe text; left visible "
+                                    "but not auto-applied"
+                                ),
+                            )
+                        )
+                        logger.warning(
+                            f"Left {modification.modification_type} unapplied due to "
+                            "within-review conflict"
+                        )
+                        continue
+
+                    modified_recipe, change_records = self.recipe_modifier.apply_modification(
+                        modified_recipe, modification
                     )
 
-            if not successful_modifications:
+                    if change_records:
+                        modification_records.append(
+                            self.enhanced_generator.create_modification_record(
+                                modification,
+                                source_review,
+                                change_records=change_records,
+                                status="applied",
+                            )
+                        )
+                        logger.info(
+                            f"Applied {modification.modification_type}: "
+                            f"{len(change_records)} changes made"
+                        )
+                    else:
+                        modification_records.append(
+                            self.enhanced_generator.create_modification_record(
+                                modification,
+                                source_review,
+                                change_records=[],
+                                status="unapplied",
+                                unapplied_reason=(
+                                    "Extracted from the review but no matching recipe "
+                                    "lines could be updated"
+                                ),
+                            )
+                        )
+                        logger.warning(
+                            f"Recorded unapplied {modification.modification_type}: "
+                            "no concrete changes were applied"
+                        )
+
+            applied_count = sum(
+                1 for record in modification_records if record.status == "applied"
+            )
+            if applied_count == 0:
                 logger.warning("No extracted modifications produced concrete recipe changes")
                 return None
 
             # Step 3: Generate enhanced recipe with attribution
             logger.info("Step 3: Generating enhanced recipe with attribution...")
 
-            enhanced_recipe = self.enhanced_generator.generate_enhanced_recipe_from_modifications(
-                recipe, modified_recipe, successful_modifications
+            enhanced_recipe = self.enhanced_generator.generate_enhanced_recipe_from_records(
+                recipe, modified_recipe, modification_records
             )
 
             logger.info(f"Generated enhanced recipe: {enhanced_recipe.title}")
@@ -318,7 +374,12 @@ class LLMAnalysisPipeline:
             return {"status": "no_recipes_processed"}
 
         total_modifications = sum(
-            len(recipe.modifications_applied) for recipe in enhanced_recipes
+            sum(1 for mod in recipe.modifications_applied if mod.status == "applied")
+            for recipe in enhanced_recipes
+        )
+        total_unapplied = sum(
+            sum(1 for mod in recipe.modifications_applied if mod.status == "unapplied")
+            for recipe in enhanced_recipes
         )
         total_changes = sum(
             recipe.enhancement_summary.total_changes for recipe in enhanced_recipes
@@ -335,6 +396,7 @@ class LLMAnalysisPipeline:
             "pipeline_summary": {
                 "recipes_processed": len(enhanced_recipes),
                 "total_modifications_applied": total_modifications,
+                "total_modifications_unapplied": total_unapplied,
                 "total_changes_made": total_changes,
                 "change_type_distribution": change_type_counts,
             },
@@ -342,7 +404,13 @@ class LLMAnalysisPipeline:
                 {
                     "recipe_id": recipe.recipe_id,
                     "title": recipe.title,
-                    "modifications_count": len(recipe.modifications_applied),
+                    "modifications_count": sum(
+                        1 for mod in recipe.modifications_applied if mod.status == "applied"
+                    ),
+                    "unapplied_count": sum(
+                        1 for mod in recipe.modifications_applied if mod.status == "unapplied"
+                    ),
+                    "review_groups": len(recipe.modifications_by_review),
                     "changes_count": recipe.enhancement_summary.total_changes,
                     "change_types": recipe.enhancement_summary.change_types,
                 }
