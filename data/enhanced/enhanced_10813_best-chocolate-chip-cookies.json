@@ -21,8 +21,8 @@
     "Preheat the oven to 350 degrees F (175 degrees C). Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.",
     "Beat in eggs, one at a time, then beat in the additional egg yolk, then stir in vanilla.",
     "Stir in flour, chocolate chips, and walnuts.",
-    "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
     "Refrigerate the batter for at least 1 hour before scooping and baking.",
+    "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
     "Bake in the preheated oven until edges are nicely browned, about 10 minutes.",
     "Cool on the baking sheets briefly before removing to a wire rack to cool completely.",
     "Store in an airtight container or serve immediately and enjoy!"
@@ -87,7 +87,7 @@
         "rating": 5
       },
       "modification_type": "quantity_adjustment",
-      "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and texture",
+      "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and possibly improve texture/moisture",
       "evidence": "tested",
       "changes_made": [
         {
@@ -113,7 +113,7 @@
         "rating": 5
       },
       "modification_type": "removal",
-      "reasoning": "Omitting the hot water to change the cookie texture and prevent spreading",
+      "reasoning": "Omitting the hot water to possibly reduce spreading and change batter consistency",
       "evidence": "tested",
       "changes_made": [
         {
@@ -139,7 +139,7 @@
         "rating": 5
       },
       "modification_type": "addition",
-      "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent them from becoming too cakey",
+      "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent spreading, and to avoid a cakey texture",
       "evidence": "tested",
       "changes_made": [
         {
@@ -249,7 +249,7 @@
             "rating": 5
           },
           "modification_type": "quantity_adjustment",
-          "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and texture",
+          "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and possibly improve texture/moisture",
           "evidence": "tested",
           "changes_made": [
             {
@@ -275,7 +275,7 @@
             "rating": 5
           },
           "modification_type": "removal",
-          "reasoning": "Omitting the hot water to change the cookie texture and prevent spreading",
+          "reasoning": "Omitting the hot water to possibly reduce spreading and change batter consistency",
           "evidence": "tested",
           "changes_made": [
             {
@@ -301,7 +301,7 @@
             "rating": 5
           },
           "modification_type": "addition",
-          "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent them from becoming too cakey",
+          "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent spreading, and to avoid a cakey texture",
           "evidence": "tested",
           "changes_made": [
             {
@@ -341,18 +341,18 @@
     "total_changes": 10,
     "change_types": [
       "removal",
-      "technique_change",
       "quantity_adjustment",
+      "technique_change",
       "addition"
     ],
-    "expected_impact": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier; Adding an extra egg yolk helps keep the cookies chewy; Reducing white sugar and increasing brown sugar to adjust sweetness and texture (and 3 more improvements)"
+    "expected_impact": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier; Adding an extra egg yolk helps keep the cookies chewy; Reducing white sugar and increasing brown sugar to adjust sweetness and possibly improve texture/moisture (and 3 more improvements)"
   },
   "description": "This classic chocolate chip cookie recipe makes deliciously buttery cookies with crisp edges, chewy middles, and gooey chocolate chips in every bite.",
   "servings": "16",
   "prep_time": null,
   "cook_time": null,
   "total_time": null,
-  "created_at": "2026-07-28T00:27:27.367283",
+  "created_at": "2026-07-28T00:48:23.614687",
   "pipeline_version": "1.2.0",
   "max_reviews": 2,
   "candidates_considered": 4

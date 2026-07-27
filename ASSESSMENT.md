@@ -2,292 +2,243 @@
 
 ## Comprehensive Document
 
-## 1. Assignment Understanding
+### Deliverables covered by this repo
 
-The assignment was not to build a new product from scratch. The real task was to inherit an in-progress AI workflow, evaluate whether it actually works, and then improve the most important reliability failures under realistic time constraints.
+| Brief requirement | Where it lives |
+| --- | --- |
+| Private source clone (not a PR to Casper) | This repository |
+| Comprehensive write-up | This file (`ASSESSMENT.md`) |
+| Agent trajectory | `AGENT_TRAJECTORY.md` |
+| Video (5–7 min) | Submitted separately by email |
+| Enhanced sample output | `data/enhanced/` |
 
-The core product idea is straightforward:
+---
 
-- ingest recipe data and user reviews
-- identify community-provided modifications
-- convert those suggestions into structured edits
-- apply them to the recipe
-- produce an enhanced recipe with attribution and line-level reasoning
+## 1. What the assignment asked for
 
-The brief strongly suggested that the right question was: does this system work beyond a couple of superficial examples?
+I inherited an in-progress recipe pipeline that should:
 
-That framing drove the solution. I chose not to spend time on UI, deployment, or cosmetic cleanup. The highest-value work was making the pipeline more trustworthy.
+1. take an AllRecipes-style recipe and community reviews
+2. find the strongest community-tested tips (especially Featured Tweaks)
+3. turn those tips into structured edits
+4. apply the edits
+5. produce an enhanced recipe people can inspect, with line-level credit for each change
+
+The brief’s real question was not “can you build a UI?” It was: **does this pipeline actually work beyond a couple of superficial examples?**
+
+I treated that as a product-reliability problem under time pressure, not a greenfield build.
+
+---
 
 ## 2. Assumptions
 
-The following assumptions guided the work:
+- Featured Tweaks are stronger signal than ordinary reviews and should be tried first.
+- One review can contain several discrete tips (brief cue #1).
+- Only tips the reviewer clearly states should be extracted; invented extras are worse than misses.
+- Only **tested** tips should rewrite the recipe; next-time preferences can stay visible but unapplied.
+- Scraper `has_modification` is a useful hint, not ground truth.
+- No UI/deployment in this take-home; JSON attribution is the inspection surface.
+- It is better to fix the highest-risk failures and document tradeoffs than to polish every edge case.
 
-- `featured_tweaks` represent stronger community signal than ordinary reviews and should be prioritized.
-- Extraction quality and edit application are the primary product risks; scraper heuristics are a secondary but real scaling risk (especially the `has_modification` gate).
-- A deterministic and testable pipeline is more valuable than a wider but less reliable set of features.
-- It is acceptable to improve environment compatibility if that materially helps demonstrate the system.
-- The deliverable does not require solving every edge case; it requires good engineering judgment about what matters most, and honesty about what was deferred.
+---
 
-## 3. Problem Analysis
+## 3. Problem analysis
 
-After tracing the control flow, I identified three primary issues.
+After reading the pipeline end-to-end, three failures mattered most.
 
-### Issue A: The pipeline selected one random review
+### Problem A — Wrong orchestration
 
-The original orchestrator chose a single random review with `has_modification=true`, extracted one modification, and generated one enhanced recipe from that single path.
+The original code picked **one random** review with `has_modification=true`, extracted **one** modification blob, and stopped.
 
-That created several problems:
+That meant:
 
-- the output changed between runs
-- useful community tweaks were ignored
-- featured feedback already present in the dataset was underused
-- the behavior did not match the brief’s emphasis on highest-voted or strongest community-tested modifications
+- results changed between runs
+- Featured Tweaks were ignored as a priority signal
+- multi-tip reviews were collapsed or under-used
+- the product story (“best community-tested changes”) was not what the code did
 
-### Issue B: Valid edits often failed to apply
+### Problem B — Edits often did not apply
 
-Even when extraction succeeded, the modifier logic often failed because it assumed the target text would closely match a full ingredient line or instruction line.
+Even when the LLM extracted a tip, `RecipeModifier` often failed because it assumed the find-text would match a whole ingredient/instruction line.
 
-That broke common real-world cases such as:
+Common failures:
 
-- changes that referred to only part of a longer instruction
-- near-match ingredient wording
-- case differences or small formatting differences
+- tip text that is only a phrase inside a longer instruction
+- small wording / case differences
+- “success” with zero real recipe changes
 
-This was especially important because the pipeline could appear to succeed while making no actual recipe change.
+### Problem C — Brief cue #1 was not modeled
 
-### Issue C: The repo was harder to validate than necessary
+“I added an egg and halved the sugar” is two tips. The original schema treated a review as one modification object, so users could not inspect discrete tips cleanly.
 
-The original setup was effectively OpenAI-oriented. In practice, the available environment did not include an OpenAI key, which blocked live validation.
+A related scaling issue (cue #2): trusting scraper regex alone dropped real tips (for example “You need at least 1 lb…”), and next-time preferences could be treated like proven changes.
 
-This was not the core product issue, but it was a practical engineering blocker. A working solution should be demonstrable under available conditions.
+---
 
-## 4. Solution Approach
+## 4. Plan and solution
 
-I prioritized the work in this order:
+I ordered the work by product risk:
 
-1. make recipe changes apply correctly
-2. make review selection more product-correct
-3. make the result testable and attributable
-4. make the repo runnable in the current environment
+1. Make edits actually land on the recipe
+2. Prefer Featured Tweaks, then stronger ratings
+3. Split discrete tips inside one review
+4. Soften tip eligibility and apply only tested tips
+5. Keep attribution inspectable in the enhanced JSON
+6. Make live demos runnable with available LLM providers
 
-This sequence was deliberate. If modifier application is broken, then better extraction does not matter. If selection logic is random, then the result is still untrustworthy even when some individual edits succeed.
+### Solution map
 
-## 5. Technical Decisions And Rationale
+| Risk | Solution |
+| --- | --- |
+| Random single-review path | Merge featured + reviews, dedupe, featured-first then by stars, process up to `max_reviews` |
+| One tip blob per review | Extract a `ModificationSet` (list of tips) per review |
+| Silent edit failures | Stronger `replace` matching (substring, then fuzzy) + record applied/unapplied |
+| Scraper hard gate | Soft candidate pool: featured + scraper hint + small recall cues |
+| Wish vs tested tip | `evidence: tested \| untested`; apply only tested |
+| Yield inconsistency | `servings` edit target + write modified servings into enhanced output |
+| Provider lock-in | OpenAI-compatible providers: Gemini and Alibaba DashScope (Qwen) |
 
-### Decision 1: Merge `featured_tweaks` and `reviews`
+I did **not** build ranking beyond featured + stars, a second LLM eligibility call, or a UI. Those were lower leverage for this brief.
 
-Reason:
+---
 
-- the dataset already contains stronger signal in `featured_tweaks`
-- the product goal is to apply the best community-tested changes, not a random subset
+## 5. Technical decisions and rationale
 
-Implementation result:
+### Decision 1 — Featured-first multi-review flow
 
-- reviews are deduplicated by normalized text
-- featured items are preserved and prioritized
-- ordinary reviews still remain available as lower-priority candidates
+**Why:** Matches the product intent and the data we already had.
 
-### Decision 2: Split discrete tips within a review, then apply across reviews
+**What changed:** `pipeline.py` merges `featured_tweaks` and `reviews`, dedupes by normalized text, sorts featured first then higher stars, then extracts/applies across a review budget.
 
-Reason:
+### Decision 2 — One review → many Modifications
 
-- the brief’s first cue treats “I added an egg and halved the sugar” as two discrete modifications
-- users inspecting diffs need a clear type/reason per tip, with credit back to the same source review
-- multi-review aggregation alone was not enough
+**Why:** Direct answer to cue #1.
 
-Implementation result:
+**What changed:** Extraction returns `ModificationSet`. Enhanced JSON has:
 
-- extraction returns a `ModificationSet` (list) per review
-- enhanced recipes include flat `modifications_applied` and grouped `modifications_by_review`
-- each tip has `status: applied|unapplied` so failed applies stay visible instead of disappearing
-- tips that conflict on the same recipe find-target are kept visible but not auto-applied
+- `modifications_applied` — flat list, each tip has its own `source_review`, `status`, `evidence`, and `changes_made`
+- `modifications_by_review` — same tips grouped under one review for easier inspection
 
-### Decision 3: Repair modifier matching instead of masking it
+Unapplied tips stay visible with a reason (no match, conflict, or untested).
 
-Reason:
+### Decision 3 — Soft tip eligibility + tested-only apply
 
-- edit application is the point where extraction becomes real product behavior
-- exact-match assumptions were too brittle for natural-language review content
+**Why:** Cue #2 / scaling: scraper regex misses real tips; preferences should not silently rewrite recipes.
 
-Implementation result:
+**What changed:**
 
-- substring-aware matching for `replace`
-- case-insensitive replacement
-- fuzzy fallback when a near match is strong enough (with a residual whole-line overwrite risk documented in Known Limitations)
+- candidate pool in `tip_eligibility.py`
+- `evidence` on each tip
+- apply tested tips only; untested tips remain `unapplied`
+- metadata: `max_reviews`, `candidates_considered`
 
-### Decision 4: Add focused tests, not broad synthetic coverage
+### Decision 4 — Fix modifier matching where it hurts most
 
-Reason:
+**Why:** Without reliable apply, extraction is theater.
 
-- the key risk was specific logic failure, not general test absence everywhere
-- targeted tests give fast signal on the highest-risk slices
+**What changed:** substring-aware `replace`, case-insensitive replace, fuzzy fallback for strong near-matches. Residual risk of whole-line overwrite is documented below.
 
-Implementation result:
+### Decision 5 — Provider flexibility for real demos
 
-- tests for modifier reliability
-- tests for review prioritization and multi-review orchestration
-- config tests for provider selection behavior
+**Why:** The assignment requires proving the system works; provider lock-in blocked that.
 
-### Decision 5: Support Gemini through the OpenAI-compatible interface
+**What changed:** OpenAI-compatible clients for Gemini and DashScope (`qwen3.7-plus` used successfully for multi-review live validation). Env loading supports `.env` / `.venv/.env`.
 
-Reason:
+---
 
-- it solved the environment block with minimal architectural disruption
-- it preserved the existing client abstraction
-- it made live validation possible without a larger refactor
+## 6. Implementation details
 
-Implementation result:
+### Pipeline (`src/llm_pipeline/`)
 
-- provider selection for Gemini or OpenAI
-- base URL support
-- environment loading from `.env` and `.venv/.env`
-- quota-aware validation controls for bounded smoke tests
+- `pipeline.py` — orchestration, eligibility, apply policy, conflict handling among tested tips
+- `tweak_extractor.py` — LLM extraction of `ModificationSet`
+- `recipe_modifier.py` — edit application, including `servings`
+- `enhanced_recipe_generator.py` — attribution + enhanced artifact
+- `tip_eligibility.py` — soft candidate pool
+- `models.py` / `prompts.py` — schemas and extraction rules
 
-## 6. Implementation Details
+### Tests
 
-### Pipeline changes
+Focused unit tests cover:
 
-- merged featured and ordinary review sources
-- deduplicated reviews by normalized text
-- prioritized featured reviews, then higher-rated reviews
-- extracted and applied multiple modifications instead of one random modification
-
-### Modifier changes
-
-- handled partial matches inside longer instruction lines
-- improved near-match ingredient replacement behavior
-- preserved concrete change records for attribution
-
-### Enhanced recipe generation changes
-
-- supported multi-modification output
-- aggregated summary statistics across successful changes
-- preserved per-review attribution in the final artifact
-
-### Runtime and environment changes
-
-- added Gemini support
-- added fallback env loading from `.venv/.env`
-- fixed CLI path handling from repo root
-- added raw JSON extraction fallback when structured parsing fails
-- added bounded all-run controls for free-tier validation
-
-## 7. Validation And Results
-
-### Automated validation
+- instruction substring replace / fuzzy ingredient replace
+- featured prioritization and multi-mod apply
+- within-review tip split and unapplied retention
+- tip eligibility (Nikujaga-style recall, praise-only exclusion, untested not applied)
+- provider config (OpenAI / Gemini / DashScope)
 
 ```bash
-uv run python -m unittest discover -s tests -v
+# from repo root, with PYTHONPATH=src or via uv
+python -m unittest discover -s tests -v
 ```
 
-Result:
-
-- 7 tests passed
-
-### Live single-recipe validation
+### Live validation
 
 ```bash
-uv run python src/test_pipeline.py single
+python src/test_pipeline.py single
 ```
 
-Result:
+Successful live run with Alibaba DashScope (`qwen3.7-plus`, `SINGLE_RECIPE_MAX_REVIEWS=2`) on Best Chocolate Chip Cookies:
 
-- successful Gemini-backed end-to-end run
-- generated enhanced chocolate chip cookie output
+- 2 featured reviews processed
+- 6 discrete tips extracted and applied
+- line-level diffs + per-tip attribution written to `data/enhanced/enhanced_10813_best-chocolate-chip-cookies.json`
+- servings updated when a tip changed yield (48 → 16)
 
-### Controlled batch smoke test
+Gemini also works for smoke tests, but free-tier 503s made multi-review demos less reliable than DashScope in our environment.
 
-```powershell
-$env:ALL_RECIPES_MAX_FILES='2'
-$env:ALL_RECIPES_MAX_REVIEWS='1'
-uv run python src/test_pipeline.py all
-```
+---
 
-Result:
+## 7. Challenges
 
-- 1 of 2 recipes enhanced successfully in a bounded live test
-- summary report generated
+1. **Featured signal was already in the data** but unused — product fix, not a scrape rewrite.
+2. **Silent apply failures** looked like success until we inspected diffs.
+3. **Within-review splitting** required schema + prompt + output shape changes, not just “process more reviews.”
+4. **Provider/quota friction** forced pragmatic multi-provider support so validation was honest.
+5. **Yield vs servings** — LLM correctly suggested 16 cookies while metadata stayed 48 until we added an explicit servings edit path.
 
-### What this means
+---
 
-The project is materially stronger than the original baseline in three important ways:
+## 8. Tradeoffs
 
-- the recipe changes are more likely to apply correctly
-- the review selection logic is more aligned with the intended product behavior
-- the system is now easier to test and demonstrate in practice
+- No UI: the brief asked whether the pipeline works; JSON attribution is enough to inspect.
+- No second LLM eligibility call: cost/latency without enough proven gain.
+- No new ranking model: featured + stars is enough signal for this dataset.
+- Coarse conflict detection only (shared find-target among tested tips).
+- Default demo `max_reviews` can stay low for quota; the capability exists and was shown with `max_reviews=2`.
 
-## 8. Challenges Encountered
+---
 
-### Challenge 1: Hidden product signal in the data
+## 9. Known limitations and future improvements
 
-The strongest product clue was already present in `featured_tweaks`, but the pipeline was not using that signal effectively.
+Still open (honest leftovers):
 
-### Challenge 2: Silent failures in edit application
+1. Fuzzy whole-line overwrite can still choose a wrong line on paraphrased finds.
+2. `add_after` / `remove` matching is weaker than `replace`.
+3. Conflict detection is coarse.
+4. Soft recall cues still miss some tip phrasings.
+5. Inherited few-shot prompt path remains broken; live path uses the simple list-aware prompt.
 
-The pipeline could produce the appearance of success without actual recipe edits. This required fixing the mutation layer, not just the extraction layer.
+Worth doing next, if this were a real team handoff:
 
-### Challenge 3: Environment mismatch
+1. Safer fuzzy replace guards (entity / token overlap).
+2. Substring parity for `add_after` and `remove`.
+3. Offline fixture suite that does not depend on live LLM calls.
+4. Record skipped/failed extraction attempts in enhanced metadata.
+5. Richer conflict resolution when tips partially overlap.
 
-The absence of an OpenAI key would have blocked live validation. Supporting Gemini through the compatible endpoint solved that without unnecessary architectural churn.
+---
 
-### Challenge 4: Gemini free-tier behavior
+## 10. Final summary
 
-Longer responses and bounded quotas introduced runtime noise. The final repo handles this more gracefully and exposes settings for smaller validation runs.
+The inherited pipeline looked complete but was not trustworthy: random single-review selection, brittle edits, and no clean model for multiple tips in one review.
 
-## 9. Tradeoffs
+The solution makes the system behave like the product described in the brief:
 
-- I did not build a UI because it would not answer the brief’s main question.
-- I did not attempt full conflict resolution across overlapping modifications because that is a second-order problem after getting the core pipeline reliable.
-- I did not optimize for unrestricted batch throughput because free-tier runtime constraints made correctness and bounded validation the more defensible target.
+- prioritize Featured Tweaks
+- split and attribute discrete community tips
+- apply only tested changes that actually match the recipe
+- leave failures and preferences visible
+- prove it with tests and a live enhanced artifact
 
-## 10. Known Limitations And Future Improvements
-
-### Addressed in this revision (v1.1–v1.2)
-
-Within-review discrete modifications (v1.1):
-
-- extraction returns a `ModificationSet` (list of tips) per review
-- enhanced output keeps a flat list **and** `modifications_by_review` grouping
-- each tip carries `source_review` plus `status` (`applied` / `unapplied`)
-- conflicting tips that target the same recipe text are left visible but not auto-applied
-
-Tip eligibility (v1.2):
-
-- soft candidate pool = featured + scraper hints + small recall cues (`need`, `threw in`, quantity-ish patterns)
-- scraper `has_modification` is a hint, not a hard refusal for all reviews
-- each tip carries `evidence` (`tested` | `untested`); only tested tips are auto-applied
-- untested suggestions stay visible as `unapplied` with a clear reason
-- enhanced output records `max_reviews` and `candidates_considered`
-
-Known limitations still open:
-
-1. **Demo `max_reviews` defaults to 1** — multi-review aggregation is implemented and unit-tested, but default live smoke runs usually show one review’s tips for quota reasons.
-2. **Fuzzy `replace` whole-line fallback** — when a surgical substring edit fails but similarity ≥ 0.6, the matched line can be overwritten entirely; wrong-line matches are possible on paraphrased finds.
-3. **`add_after` / `remove` matching** — substring-aware rescue was focused on `replace`; the other operations remain fuzzier.
-4. **Dead few-shot prompt path** — inherited brace bug leaves `build_few_shot_prompt` unusable; live extraction uses the simple prompt (now list-aware).
-5. **Conflict detection is coarse** — only same `(target, find)` pairs within one review; richer conflict resolution is deferred.
-6. **Candidate recall is still heuristic** — soft cues recover some scraper misses (e.g. Nikujaga-style “need 1 lb”), but not every tip phrasing; no second LLM eligibility call.
-
-Future improvements:
-
-1. Guard fuzzy replaces (same-entity / token overlap checks) before whole-line overwrite.
-2. Wire substring matching into `add_after` and `remove`, and revive few-shot examples after fixing the format-string brace.
-3. Build a stable offline fixture suite that covers representative recipes and reviews without requiring live LLM calls.
-4. Raise default demo `max_reviews` (or ship a second artifact) so multi-review aggregation is visible in committed outputs.
-5. Richer conflict resolution beyond shared find-target detection.
-6. Optional ranking beyond featured + stars if helpfulness signals become available.
-
-
-## 11. Final Summary
-
-The most important improvement was not simply adding more code. It was changing the system from a brittle demonstration into a more credible product pipeline.
-
-The finished work focuses on:
-
-- better product alignment
-- more reliable edit application
-- stronger attribution
-- better validation coverage
-- more practical runtime flexibility
-
-That is the reason this solution matches the spirit of the assignment: it treats the work like a real engineering handoff problem, not a toy implementation exercise.
+That matches the spirit of the assignment: budget attention on what most improves trust in an in-progress AI workflow.
