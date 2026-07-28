@@ -11,37 +11,72 @@
     "2 teaspoons vanilla extract",
     "1 teaspoon baking soda",
     "1 teaspoon cream of tartar",
-    "0.5 teaspoon salt",
-    "3 cups all-purpose flour",
-    "2 cups semisweet chocolate chips",
-    "1 cup chopped walnuts"
+    "1 teaspoon salt",
+    "a tiny dash of cinnamon",
+    "2.5 cups all-purpose flour",
+    "2 cups semisweet chocolate chips"
   ],
   "instructions": [
     "Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.",
     "Preheat the oven to 350 degrees F (175 degrees C). Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.",
-    "Beat in eggs, one at a time, then beat in the additional egg yolk, then stir in vanilla.",
-    "Stir in flour, chocolate chips, and walnuts.",
+    "Beat in eggs and egg yolk, one at a time, then stir in vanilla.",
+    "Stir in flour and chocolate chips.",
+    "Drop dough using an ice cream scoop 2 inches apart onto ungreased baking sheets.",
+    "Press dough down slightly before baking.",
     "Refrigerate the batter for at least 1 hour before scooping and baking.",
-    "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
     "Bake in the preheated oven until edges are nicely browned, about 10 minutes.",
     "Cool on the baking sheets briefly before removing to a wire rack to cool completely.",
     "Store in an airtight container or serve immediately and enjoy!"
   ],
   "modifications_applied": [
     {
+      "modification_id": "rev:75f9efbd#0",
       "source_review": {
         "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
         "reviewer": null,
         "rating": 5
       },
       "modification_type": "technique_change",
-      "reasoning": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier",
+      "reasoning": "Using an ice cream scoop to portion the dough ensures uniform, large cookies",
       "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 3,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+          }
+        ]
+      },
       "changes_made": [
         {
           "type": "instruction",
           "from_text": "Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.",
-          "to_text": "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
+          "to_text": "Drop dough using an ice cream scoop 2 inches apart onto ungreased baking sheets.",
           "operation": "replace"
         },
         {
@@ -52,9 +87,11 @@
         }
       ],
       "status": "applied",
-      "unapplied_reason": null
+      "unapplied_reason": null,
+      "rejected_edits": []
     },
     {
+      "modification_id": "rev:75f9efbd#1",
       "source_review": {
         "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
         "reviewer": null,
@@ -63,6 +100,39 @@
       "modification_type": "addition",
       "reasoning": "Adding an extra egg yolk helps keep the cookies chewy",
       "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 3,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+          }
+        ]
+      },
       "changes_made": [
         {
           "type": "ingredient",
@@ -73,14 +143,16 @@
         {
           "type": "instruction",
           "from_text": "Beat in eggs, one at a time, then stir in vanilla.",
-          "to_text": "Beat in eggs, one at a time, then beat in the additional egg yolk, then stir in vanilla.",
+          "to_text": "Beat in eggs and egg yolk, one at a time, then stir in vanilla.",
           "operation": "replace"
         }
       ],
       "status": "applied",
-      "unapplied_reason": null
+      "unapplied_reason": null,
+      "rejected_edits": []
     },
     {
+      "modification_id": "rev:7c177579#0",
       "source_review": {
         "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
         "reviewer": null,
@@ -89,6 +161,27 @@
       "modification_type": "quantity_adjustment",
       "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and possibly improve texture/moisture",
       "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour aft…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          }
+        ]
+      },
       "changes_made": [
         {
           "type": "ingredient",
@@ -104,17 +197,46 @@
         }
       ],
       "status": "applied",
-      "unapplied_reason": null
+      "unapplied_reason": null,
+      "rejected_edits": []
     },
     {
+      "modification_id": "rev:7c177579#1",
       "source_review": {
         "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
         "reviewer": null,
         "rating": 5
       },
       "modification_type": "removal",
-      "reasoning": "Omitting the hot water to possibly reduce spreading and change batter consistency",
+      "reasoning": "Omitting the hot water to possibly reduce spreading and improve cookie structure",
       "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 2,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 2 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+          }
+        ]
+      },
       "changes_made": [
         {
           "type": "ingredient",
@@ -130,9 +252,11 @@
         }
       ],
       "status": "applied",
-      "unapplied_reason": null
+      "unapplied_reason": null,
+      "rejected_edits": []
     },
     {
+      "modification_id": "rev:7c177579#2",
       "source_review": {
         "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
         "reviewer": null,
@@ -141,6 +265,39 @@
       "modification_type": "addition",
       "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent spreading, and to avoid a cakey texture",
       "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 3,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+          }
+        ]
+      },
       "changes_made": [
         {
           "type": "ingredient",
@@ -150,17 +307,52 @@
         }
       ],
       "status": "applied",
-      "unapplied_reason": null
+      "unapplied_reason": null,
+      "rejected_edits": []
     },
     {
+      "modification_id": "rev:7c177579#3",
       "source_review": {
         "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
         "reviewer": null,
         "rating": 5
       },
       "modification_type": "technique_change",
-      "reasoning": "Refrigerating the batter before baking helps cookies retain their shape and prevents spreading",
+      "reasoning": "Refrigerating the batter before baking helps cookies retain their shape and prevents spreading during baking",
       "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 3,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+          }
+        ]
+      },
       "changes_made": [
         {
           "type": "instruction",
@@ -170,7 +362,342 @@
         }
       ],
       "status": "applied",
-      "unapplied_reason": null
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:2625a5a8#0",
+      "source_review": {
+        "text": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour after reading some other reviews, and added a tiny dash of cinnamon. They are phenomenal! Crispy edges and gooey center. My husband works from home and he can't stop coming out of his office and trying them!!!! HUGE hit and will be my go to. Thank you!!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "Increased white sugar and decreased brown sugar to use what was on hand, altering the sweetness and texture balance",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Find and replace text are equivalent ('1 cup white sugar'); recording this as an applied change would be a false claim",
+      "rejected_edits": [
+        {
+          "modification_id": "rev:2625a5a8#0",
+          "review_id": "rev:2625a5a8",
+          "section": "ingredients",
+          "operation": "replace",
+          "find": "1 cup white sugar",
+          "payload": "1 cup white sugar",
+          "reason": "no_op",
+          "detail": "Find and replace text are equivalent ('1 cup white sugar'); recording this as an applied change would be a false claim",
+          "superseded_by": null
+        },
+        {
+          "modification_id": "rev:2625a5a8#0",
+          "review_id": "rev:2625a5a8",
+          "section": "ingredients",
+          "operation": "replace",
+          "find": "1 cup packed brown sugar",
+          "payload": "0.5 cup packed brown sugar",
+          "reason": "superseded",
+          "detail": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:7c177579#0); refusing to overwrite it with a conflicting edit",
+          "superseded_by": "rev:7c177579#0"
+        }
+      ]
+    },
+    {
+      "modification_id": "rev:2625a5a8#1",
+      "source_review": {
+        "text": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour after reading some other reviews, and added a tiny dash of cinnamon. They are phenomenal! Crispy edges and gooey center. My husband works from home and he can't stop coming out of his office and trying them!!!! HUGE hit and will be my go to. Thank you!!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "Reduced flour by half a cup based on other reviews to improve cookie texture",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 3,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "3 cups all-purpose flour",
+          "to_text": "2.5 cups all-purpose flour",
+          "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:2625a5a8#2",
+      "source_review": {
+        "text": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour after reading some other reviews, and added a tiny dash of cinnamon. They are phenomenal! Crispy edges and gooey center. My husband works from home and he can't stop coming out of his office and trying them!!!! HUGE hit and will be my go to. Thank you!!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "addition",
+      "reasoning": "Added a dash of cinnamon for extra warmth and flavor complexity",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 3,
+            "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "",
+          "to_text": "a tiny dash of cinnamon",
+          "operation": "add"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:14abf704#0",
+      "source_review": {
+        "text": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I used 1 tsp. of salt instead of 1/2 tsp. and omitted the nuts. This was better, but still not quite as flavorful at the traditional Tollhouse cookie recipe. I found that if I pressed them down slightly before baking that worked the best.If I were to rate this recipe on look and texture, it would be a 5. But the flavor falls a bit flat for me. I may keep trying to see how I can make it taste better, but maintain the aesthetic.",
+        "reviewer": null,
+        "rating": 3
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "Increasing salt from 1/2 tsp to 1 tsp improved the flavor of the cookies, which the reviewer found bland in the first batch.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 5,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 5 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour aft…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "0.5 teaspoon salt",
+          "to_text": "1 teaspoon salt",
+          "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:14abf704#1",
+      "source_review": {
+        "text": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I used 1 tsp. of salt instead of 1/2 tsp. and omitted the nuts. This was better, but still not quite as flavorful at the traditional Tollhouse cookie recipe. I found that if I pressed them down slightly before baking that worked the best.If I were to rate this recipe on look and texture, it would be a 5. But the flavor falls a bit flat for me. I may keep trying to see how I can make it taste better, but maintain the aesthetic.",
+        "reviewer": null,
+        "rating": 3
+      },
+      "modification_type": "removal",
+      "reasoning": "The reviewer omitted the walnuts, likely to simplify the cookie or because they preferred the texture/flavor without nuts.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 5,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 5 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour aft…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "1 cup chopped walnuts",
+          "to_text": "",
+          "operation": "remove"
+        },
+        {
+          "type": "instruction",
+          "from_text": "Stir in flour, chocolate chips, and walnuts.",
+          "to_text": "Stir in flour and chocolate chips.",
+          "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:14abf704#2",
+      "source_review": {
+        "text": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I used 1 tsp. of salt instead of 1/2 tsp. and omitted the nuts. This was better, but still not quite as flavorful at the traditional Tollhouse cookie recipe. I found that if I pressed them down slightly before baking that worked the best.If I were to rate this recipe on look and texture, it would be a 5. But the flavor falls a bit flat for me. I may keep trying to see how I can make it taste better, but maintain the aesthetic.",
+        "reviewer": null,
+        "rating": 3
+      },
+      "modification_type": "technique_change",
+      "reasoning": "Pressing the dough down slightly before baking produced the best results for the reviewer, improving the cookie's shape and texture.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 3,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 3 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "instruction",
+          "from_text": "",
+          "to_text": "Press dough down slightly before baking.",
+          "operation": "add"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
     }
   ],
   "modifications_by_review": [
@@ -182,19 +709,53 @@
       },
       "modifications": [
         {
+          "modification_id": "rev:75f9efbd#0",
           "source_review": {
             "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
             "reviewer": null,
             "rating": 5
           },
           "modification_type": "technique_change",
-          "reasoning": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier",
+          "reasoning": "Using an ice cream scoop to portion the dough ensures uniform, large cookies",
           "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 3,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+              }
+            ]
+          },
           "changes_made": [
             {
               "type": "instruction",
               "from_text": "Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.",
-              "to_text": "Drop ice cream scoop-sized balls of dough 2 inches apart onto ungreased baking sheets.",
+              "to_text": "Drop dough using an ice cream scoop 2 inches apart onto ungreased baking sheets.",
               "operation": "replace"
             },
             {
@@ -205,9 +766,11 @@
             }
           ],
           "status": "applied",
-          "unapplied_reason": null
+          "unapplied_reason": null,
+          "rejected_edits": []
         },
         {
+          "modification_id": "rev:75f9efbd#1",
           "source_review": {
             "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
             "reviewer": null,
@@ -216,6 +779,39 @@
           "modification_type": "addition",
           "reasoning": "Adding an extra egg yolk helps keep the cookies chewy",
           "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 3,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+              }
+            ]
+          },
           "changes_made": [
             {
               "type": "ingredient",
@@ -226,12 +822,13 @@
             {
               "type": "instruction",
               "from_text": "Beat in eggs, one at a time, then stir in vanilla.",
-              "to_text": "Beat in eggs, one at a time, then beat in the additional egg yolk, then stir in vanilla.",
+              "to_text": "Beat in eggs and egg yolk, one at a time, then stir in vanilla.",
               "operation": "replace"
             }
           ],
           "status": "applied",
-          "unapplied_reason": null
+          "unapplied_reason": null,
+          "rejected_edits": []
         }
       ]
     },
@@ -243,6 +840,7 @@
       },
       "modifications": [
         {
+          "modification_id": "rev:7c177579#0",
           "source_review": {
             "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
             "reviewer": null,
@@ -251,6 +849,27 @@
           "modification_type": "quantity_adjustment",
           "reasoning": "Reducing white sugar and increasing brown sugar to adjust sweetness and possibly improve texture/moisture",
           "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour aft…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              }
+            ]
+          },
           "changes_made": [
             {
               "type": "ingredient",
@@ -266,17 +885,46 @@
             }
           ],
           "status": "applied",
-          "unapplied_reason": null
+          "unapplied_reason": null,
+          "rejected_edits": []
         },
         {
+          "modification_id": "rev:7c177579#1",
           "source_review": {
             "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
             "reviewer": null,
             "rating": 5
           },
           "modification_type": "removal",
-          "reasoning": "Omitting the hot water to possibly reduce spreading and change batter consistency",
+          "reasoning": "Omitting the hot water to possibly reduce spreading and improve cookie structure",
           "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 2,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 2 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+              }
+            ]
+          },
           "changes_made": [
             {
               "type": "ingredient",
@@ -292,9 +940,11 @@
             }
           ],
           "status": "applied",
-          "unapplied_reason": null
+          "unapplied_reason": null,
+          "rejected_edits": []
         },
         {
+          "modification_id": "rev:7c177579#2",
           "source_review": {
             "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
             "reviewer": null,
@@ -303,6 +953,39 @@
           "modification_type": "addition",
           "reasoning": "Adding cream of tartar to help cookies retain their shape and prevent spreading, and to avoid a cakey texture",
           "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 3,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+              }
+            ]
+          },
           "changes_made": [
             {
               "type": "ingredient",
@@ -312,17 +995,52 @@
             }
           ],
           "status": "applied",
-          "unapplied_reason": null
+          "unapplied_reason": null,
+          "rejected_edits": []
         },
         {
+          "modification_id": "rev:7c177579#3",
           "source_review": {
             "text": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-half cups of brown sugar; (2) I omitted the water; (3) I added a teaspoon of cream of tartar to the batter; (4) I refrigerated the batter for at least an hour before scooping and baking. The cookies retained their shape and didn't spread when baked. I think the cream of tartar made a difference, and the cookies did not come out too cakey either! This recipe is going in my \"favorites\" cookbook.",
             "reviewer": null,
             "rating": 5
           },
           "modification_type": "technique_change",
-          "reasoning": "Refrigerating the batter before baking helps cookies retain their shape and prevents spreading",
+          "reasoning": "Refrigerating the batter before baking helps cookies retain their shape and prevents spreading during baking",
           "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 3,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+              }
+            ]
+          },
           "changes_made": [
             {
               "type": "instruction",
@@ -332,28 +1050,859 @@
             }
           ],
           "status": "applied",
-          "unapplied_reason": null
+          "unapplied_reason": null,
+          "rejected_edits": []
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour after reading some other reviews, and added a tiny dash of cinnamon. They are phenomenal! Crispy edges and gooey center. My husband works from home and he can't stop coming out of his office and trying them!!!! HUGE hit and will be my go to. Thank you!!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:2625a5a8#0",
+          "source_review": {
+            "text": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour after reading some other reviews, and added a tiny dash of cinnamon. They are phenomenal! Crispy edges and gooey center. My husband works from home and he can't stop coming out of his office and trying them!!!! HUGE hit and will be my go to. Thank you!!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "Increased white sugar and decreased brown sugar to use what was on hand, altering the sweetness and texture balance",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Find and replace text are equivalent ('1 cup white sugar'); recording this as an applied change would be a false claim",
+          "rejected_edits": [
+            {
+              "modification_id": "rev:2625a5a8#0",
+              "review_id": "rev:2625a5a8",
+              "section": "ingredients",
+              "operation": "replace",
+              "find": "1 cup white sugar",
+              "payload": "1 cup white sugar",
+              "reason": "no_op",
+              "detail": "Find and replace text are equivalent ('1 cup white sugar'); recording this as an applied change would be a false claim",
+              "superseded_by": null
+            },
+            {
+              "modification_id": "rev:2625a5a8#0",
+              "review_id": "rev:2625a5a8",
+              "section": "ingredients",
+              "operation": "replace",
+              "find": "1 cup packed brown sugar",
+              "payload": "0.5 cup packed brown sugar",
+              "reason": "superseded",
+              "detail": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:7c177579#0); refusing to overwrite it with a conflicting edit",
+              "superseded_by": "rev:7c177579#0"
+            }
+          ]
+        },
+        {
+          "modification_id": "rev:2625a5a8#1",
+          "source_review": {
+            "text": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour after reading some other reviews, and added a tiny dash of cinnamon. They are phenomenal! Crispy edges and gooey center. My husband works from home and he can't stop coming out of his office and trying them!!!! HUGE hit and will be my go to. Thank you!!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "Reduced flour by half a cup based on other reviews to improve cookie texture",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 3,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 3 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "3 cups all-purpose flour",
+              "to_text": "2.5 cups all-purpose flour",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:2625a5a8#2",
+          "source_review": {
+            "text": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour after reading some other reviews, and added a tiny dash of cinnamon. They are phenomenal! Crispy edges and gooey center. My husband works from home and he can't stop coming out of his office and trying them!!!! HUGE hit and will be my go to. Thank you!!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "addition",
+          "reasoning": "Added a dash of cinnamon for extra warmth and flavor complexity",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 3,
+                "excerpt": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I…"
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "",
+              "to_text": "a tiny dash of cinnamon",
+              "operation": "add"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I used 1 tsp. of salt instead of 1/2 tsp. and omitted the nuts. This was better, but still not quite as flavorful at the traditional Tollhouse cookie recipe. I found that if I pressed them down slightly before baking that worked the best.If I were to rate this recipe on look and texture, it would be a 5. But the flavor falls a bit flat for me. I may keep trying to see how I can make it taste better, but maintain the aesthetic.",
+        "reviewer": null,
+        "rating": 3
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:14abf704#0",
+          "source_review": {
+            "text": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I used 1 tsp. of salt instead of 1/2 tsp. and omitted the nuts. This was better, but still not quite as flavorful at the traditional Tollhouse cookie recipe. I found that if I pressed them down slightly before baking that worked the best.If I were to rate this recipe on look and texture, it would be a 5. But the flavor falls a bit flat for me. I may keep trying to see how I can make it taste better, but maintain the aesthetic.",
+            "reviewer": null,
+            "rating": 3
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "Increasing salt from 1/2 tsp to 1 tsp improved the flavor of the cookies, which the reviewer found bland in the first batch.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 5,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 5 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour aft…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Well I am not a Baker by any means but these cookies were very easily prepared. The whole family enjoys these. Thanks so much"
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "0.5 teaspoon salt",
+              "to_text": "1 teaspoon salt",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:14abf704#1",
+          "source_review": {
+            "text": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I used 1 tsp. of salt instead of 1/2 tsp. and omitted the nuts. This was better, but still not quite as flavorful at the traditional Tollhouse cookie recipe. I found that if I pressed them down slightly before baking that worked the best.If I were to rate this recipe on look and texture, it would be a 5. But the flavor falls a bit flat for me. I may keep trying to see how I can make it taste better, but maintain the aesthetic.",
+            "reviewer": null,
+            "rating": 3
+          },
+          "modification_type": "removal",
+          "reasoning": "The reviewer omitted the walnuts, likely to simplify the cookie or because they preferred the texture/flavor without nuts.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 5,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 5 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I just made these and 😍😋!!!! Changes- used a whole cup of white sugar and 1/2 c of brown (because it's what I had) and 1/2 c less flour aft…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "They taste good and were so soft. I had my grandmother try it (she’s the cook of the family) and she said they were good. That made me happ…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "1 cup chopped walnuts",
+              "to_text": "",
+              "operation": "remove"
+            },
+            {
+              "type": "instruction",
+              "from_text": "Stir in flour, chocolate chips, and walnuts.",
+              "to_text": "Stir in flour and chocolate chips.",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:14abf704#2",
+          "source_review": {
+            "text": "The first batch that I made was a bit bland. But I did love that they weren't flat! They are a nice thick, chewy cookie. The second batch I used 1 tsp. of salt instead of 1/2 tsp. and omitted the nuts. This was better, but still not quite as flavorful at the traditional Tollhouse cookie recipe. I found that if I pressed them down slightly before baking that worked the best.If I were to rate this recipe on look and texture, it would be a 5. But the flavor falls a bit flat for me. I may keep trying to see how I can make it taste better, but maintain the aesthetic.",
+            "reviewer": null,
+            "rating": 3
+          },
+          "modification_type": "technique_change",
+          "reasoning": "Pressing the dough down slightly before baking produced the best results for the reviewer, improving the cookie's shape and texture.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 3,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 3 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantast…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "These are awesome cookies. I followed the advice of others by making the following tweaks: (1) I used a half cup of sugar and one-and-a-hal…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "This is my favorite cookie recipe, been making it for 15 years."
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "instruction",
+              "from_text": "",
+              "to_text": "Press dough down slightly before baking.",
+              "operation": "add"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
         }
       ]
     }
   ],
   "enhancement_summary": {
-    "total_changes": 10,
+    "total_changes": 16,
     "change_types": [
-      "removal",
       "quantity_adjustment",
+      "removal",
       "technique_change",
       "addition"
     ],
-    "expected_impact": "Using an ice cream scoop ensures uniform cookie size and makes handling the dough easier; Adding an extra egg yolk helps keep the cookies chewy; Reducing white sugar and increasing brown sugar to adjust sweetness and possibly improve texture/moisture (and 3 more improvements)"
+    "expected_impact": "Using an ice cream scoop to portion the dough ensures uniform, large cookies; Adding an extra egg yolk helps keep the cookies chewy; Reducing white sugar and increasing brown sugar to adjust sweetness and possibly improve texture/moisture (and 8 more improvements)"
   },
   "description": "This classic chocolate chip cookie recipe makes deliciously buttery cookies with crisp edges, chewy middles, and gooey chocolate chips in every bite.",
   "servings": "16",
   "prep_time": null,
   "cook_time": null,
   "total_time": null,
-  "created_at": "2026-07-28T00:48:23.614687",
+  "created_at": "2026-07-28T17:41:02.037523",
   "pipeline_version": "1.2.0",
-  "max_reviews": 2,
-  "candidates_considered": 4
+  "max_reviews": 4,
+  "candidates_considered": 4,
+  "status": "enhanced",
+  "provenance": {
+    "original_fingerprint": "47a5a911e51b",
+    "enhanced_fingerprint": "73fd1786f6f4",
+    "ledger": [
+      {
+        "entry_id": "e001:rev:75f9efbd#0",
+        "modification_id": "rev:75f9efbd#0",
+        "review_id": "rev:75f9efbd",
+        "section": "instructions",
+        "operation": "replace",
+        "line_id": "ins:5",
+        "before_text": "Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.",
+        "after_text": "Drop dough using an ice cream scoop 2 inches apart onto ungreased baking sheets.",
+        "before_hash": "8df66b9c8be3",
+        "after_hash": "c730df3b1b5b",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e002:rev:75f9efbd#0",
+        "modification_id": "rev:75f9efbd#0",
+        "review_id": "rev:75f9efbd",
+        "section": "servings",
+        "operation": "replace",
+        "line_id": "servings",
+        "before_text": "48",
+        "after_text": "16",
+        "before_hash": "98010bd9270f",
+        "after_hash": "b17ef6d19c7a",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e003:rev:75f9efbd#1",
+        "modification_id": "rev:75f9efbd#1",
+        "review_id": "rev:75f9efbd",
+        "section": "ingredients",
+        "operation": "add",
+        "line_id": "ing:+1",
+        "before_text": "",
+        "after_text": "1 egg yolk",
+        "before_hash": "e3b0c44298fc",
+        "after_hash": "f1586fe56a75",
+        "anchor_line_id": "ing:3",
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e004:rev:75f9efbd#1",
+        "modification_id": "rev:75f9efbd#1",
+        "review_id": "rev:75f9efbd",
+        "section": "instructions",
+        "operation": "replace",
+        "line_id": "ins:2",
+        "before_text": "Beat in eggs, one at a time, then stir in vanilla.",
+        "after_text": "Beat in eggs and egg yolk, one at a time, then stir in vanilla.",
+        "before_hash": "444d7fcf3485",
+        "after_hash": "4b2e88d48398",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e005:rev:7c177579#0",
+        "modification_id": "rev:7c177579#0",
+        "review_id": "rev:7c177579",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:1",
+        "before_text": "1 cup white sugar",
+        "after_text": "0.5 cup white sugar",
+        "before_hash": "7f13532fe453",
+        "after_hash": "ee9bddcf9763",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e006:rev:7c177579#0",
+        "modification_id": "rev:7c177579#0",
+        "review_id": "rev:7c177579",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:2",
+        "before_text": "1 cup packed brown sugar",
+        "after_text": "1.5 cups packed brown sugar",
+        "before_hash": "ce04e794aee9",
+        "after_hash": "e0ac02b2afcd",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e007:rev:7c177579#1",
+        "modification_id": "rev:7c177579#1",
+        "review_id": "rev:7c177579",
+        "section": "ingredients",
+        "operation": "remove",
+        "line_id": "ing:6",
+        "before_text": "2 teaspoons hot water",
+        "after_text": "",
+        "before_hash": "35276a8d172b",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e008:rev:7c177579#1",
+        "modification_id": "rev:7c177579#1",
+        "review_id": "rev:7c177579",
+        "section": "instructions",
+        "operation": "remove",
+        "line_id": "ins:3",
+        "before_text": "Dissolve baking soda in hot water. Add to batter along with salt.",
+        "after_text": "",
+        "before_hash": "85463cf11438",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e009:rev:7c177579#2",
+        "modification_id": "rev:7c177579#2",
+        "review_id": "rev:7c177579",
+        "section": "ingredients",
+        "operation": "add",
+        "line_id": "ing:+2",
+        "before_text": "",
+        "after_text": "1 teaspoon cream of tartar",
+        "before_hash": "e3b0c44298fc",
+        "after_hash": "5cc067f7033f",
+        "anchor_line_id": "ing:5",
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e010:rev:7c177579#3",
+        "modification_id": "rev:7c177579#3",
+        "review_id": "rev:7c177579",
+        "section": "instructions",
+        "operation": "add",
+        "line_id": "ins:+3",
+        "before_text": "",
+        "after_text": "Refrigerate the batter for at least 1 hour before scooping and baking.",
+        "before_hash": "e3b0c44298fc",
+        "after_hash": "ee0d4ca9db06",
+        "anchor_line_id": "ins:5",
+        "anchor_superseded": true,
+        "match": "line_identity"
+      },
+      {
+        "entry_id": "e011:rev:2625a5a8#1",
+        "modification_id": "rev:2625a5a8#1",
+        "review_id": "rev:2625a5a8",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:8",
+        "before_text": "3 cups all-purpose flour",
+        "after_text": "2.5 cups all-purpose flour",
+        "before_hash": "58d70d7ea061",
+        "after_hash": "eda037e34707",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e012:rev:2625a5a8#2",
+        "modification_id": "rev:2625a5a8#2",
+        "review_id": "rev:2625a5a8",
+        "section": "ingredients",
+        "operation": "add",
+        "line_id": "ing:+4",
+        "before_text": "",
+        "after_text": "a tiny dash of cinnamon",
+        "before_hash": "e3b0c44298fc",
+        "after_hash": "bb76cc3e3661",
+        "anchor_line_id": "ing:7",
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e013:rev:14abf704#0",
+        "modification_id": "rev:14abf704#0",
+        "review_id": "rev:14abf704",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:7",
+        "before_text": "0.5 teaspoon salt",
+        "after_text": "1 teaspoon salt",
+        "before_hash": "6c839db24db9",
+        "after_hash": "844b7cf77aa3",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e014:rev:14abf704#1",
+        "modification_id": "rev:14abf704#1",
+        "review_id": "rev:14abf704",
+        "section": "ingredients",
+        "operation": "remove",
+        "line_id": "ing:10",
+        "before_text": "1 cup chopped walnuts",
+        "after_text": "",
+        "before_hash": "f185f69cb75f",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e015:rev:14abf704#1",
+        "modification_id": "rev:14abf704#1",
+        "review_id": "rev:14abf704",
+        "section": "instructions",
+        "operation": "replace",
+        "line_id": "ins:4",
+        "before_text": "Stir in flour, chocolate chips, and walnuts.",
+        "after_text": "Stir in flour and chocolate chips.",
+        "before_hash": "7d1771ff973a",
+        "after_hash": "e5e1dc3a9bb4",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e016:rev:14abf704#2",
+        "modification_id": "rev:14abf704#2",
+        "review_id": "rev:14abf704",
+        "section": "instructions",
+        "operation": "add",
+        "line_id": "ins:+5",
+        "before_text": "",
+        "after_text": "Press dough down slightly before baking.",
+        "before_hash": "e3b0c44298fc",
+        "after_hash": "8d3d8376da27",
+        "anchor_line_id": "ins:5",
+        "anchor_superseded": true,
+        "match": "line_identity"
+      }
+    ],
+    "rejected_edits": [
+      {
+        "modification_id": "rev:2625a5a8#0",
+        "review_id": "rev:2625a5a8",
+        "section": "ingredients",
+        "operation": "replace",
+        "find": "1 cup white sugar",
+        "payload": "1 cup white sugar",
+        "reason": "no_op",
+        "detail": "Find and replace text are equivalent ('1 cup white sugar'); recording this as an applied change would be a false claim",
+        "superseded_by": null
+      },
+      {
+        "modification_id": "rev:2625a5a8#0",
+        "review_id": "rev:2625a5a8",
+        "section": "ingredients",
+        "operation": "replace",
+        "find": "1 cup packed brown sugar",
+        "payload": "0.5 cup packed brown sugar",
+        "reason": "superseded",
+        "detail": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:7c177579#0); refusing to overwrite it with a conflicting edit",
+        "superseded_by": "rev:7c177579#0"
+      }
+    ],
+    "blame": [
+      {
+        "line_id": "ing:0",
+        "section": "ingredients",
+        "text": "1 cup butter, softened",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:1",
+        "section": "ingredients",
+        "text": "0.5 cup white sugar",
+        "origin": "community",
+        "modification_ids": [
+          "rev:7c177579#0"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:2",
+        "section": "ingredients",
+        "text": "1.5 cups packed brown sugar",
+        "origin": "community",
+        "modification_ids": [
+          "rev:7c177579#0"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:3",
+        "section": "ingredients",
+        "text": "2 eggs",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:+1",
+        "section": "ingredients",
+        "text": "1 egg yolk",
+        "origin": "community",
+        "modification_ids": [
+          "rev:75f9efbd#1"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:4",
+        "section": "ingredients",
+        "text": "2 teaspoons vanilla extract",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:5",
+        "section": "ingredients",
+        "text": "1 teaspoon baking soda",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:+2",
+        "section": "ingredients",
+        "text": "1 teaspoon cream of tartar",
+        "origin": "community",
+        "modification_ids": [
+          "rev:7c177579#2"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:7",
+        "section": "ingredients",
+        "text": "1 teaspoon salt",
+        "origin": "community",
+        "modification_ids": [
+          "rev:14abf704#0"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:+4",
+        "section": "ingredients",
+        "text": "a tiny dash of cinnamon",
+        "origin": "community",
+        "modification_ids": [
+          "rev:2625a5a8#2"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:8",
+        "section": "ingredients",
+        "text": "2.5 cups all-purpose flour",
+        "origin": "community",
+        "modification_ids": [
+          "rev:2625a5a8#1"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:9",
+        "section": "ingredients",
+        "text": "2 cups semisweet chocolate chips",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:0",
+        "section": "instructions",
+        "text": "Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:1",
+        "section": "instructions",
+        "text": "Preheat the oven to 350 degrees F (175 degrees C). Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:2",
+        "section": "instructions",
+        "text": "Beat in eggs and egg yolk, one at a time, then stir in vanilla.",
+        "origin": "community",
+        "modification_ids": [
+          "rev:75f9efbd#1"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:4",
+        "section": "instructions",
+        "text": "Stir in flour and chocolate chips.",
+        "origin": "community",
+        "modification_ids": [
+          "rev:14abf704#1"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:5",
+        "section": "instructions",
+        "text": "Drop dough using an ice cream scoop 2 inches apart onto ungreased baking sheets.",
+        "origin": "community",
+        "modification_ids": [
+          "rev:75f9efbd#0"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:+5",
+        "section": "instructions",
+        "text": "Press dough down slightly before baking.",
+        "origin": "community",
+        "modification_ids": [
+          "rev:14abf704#2"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:+3",
+        "section": "instructions",
+        "text": "Refrigerate the batter for at least 1 hour before scooping and baking.",
+        "origin": "community",
+        "modification_ids": [
+          "rev:7c177579#3"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:6",
+        "section": "instructions",
+        "text": "Bake in the preheated oven until edges are nicely browned, about 10 minutes.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:7",
+        "section": "instructions",
+        "text": "Cool on the baking sheets briefly before removing to a wire rack to cool completely.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:8",
+        "section": "instructions",
+        "text": "Store in an airtight container or serve immediately and enjoy!",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      }
+    ],
+    "verification": {
+      "deterministic": true,
+      "entries_replayed": 16,
+      "mismatches": []
+    }
+  }
 }

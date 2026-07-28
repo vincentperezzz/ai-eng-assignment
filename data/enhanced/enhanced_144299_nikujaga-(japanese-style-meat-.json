@@ -5,9 +5,10 @@
   "ingredients": [
     "8 snow peas",
     "1 tablespoon vegetable oil",
-    "1.25 pounds sirloin steak, thinly sliced",
+    "1 pound sirloin steak, thinly sliced",
     "4 potatoes, cut into bite sized pieces",
-    "2 cups dashi soup",
+    "carrots, cut into bite sized pieces",
+    "2 cups beef broth",
     "0.25 cup soy sauce",
     "0.25 cup sake",
     "1 tablespoon white sugar",
@@ -16,39 +17,666 @@
   "instructions": [
     "Put the snow peas in a small saucepan with enough water to cover; bring to a boil and immediately remove from heat. Drain and set aside.",
     "Heat the oil in a large skillet over medium heat; cook the beef in the oil until browned. Add the potatoes; cook and stir until soft, 5 to 7 minutes. Stir the dashi soup, soy sauce, sake, and sugar into the mixture; simmer for 10 minutes.",
-    "Reduce heat to low and scatter the chopped onion over the mixture; allow to simmer until the liquid is nearly completely evaporated, about 15 minutes more. Top the mixture with the snow peas to serve."
+    "Reduce heat to low and scatter the chopped onion over the mixture; allow to simmer until the liquid is nearly completely evaporated, about 15 minutes more. Top the mixture with the snow peas to serve.",
+    "Add extra soy sauce and sugar to taste before serving."
   ],
   "modifications_applied": [
     {
+      "modification_id": "rev:fa5985a5#0",
       "source_review": {
         "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
         "reviewer": null,
         "rating": 4
       },
       "modification_type": "quantity_adjustment",
-      "reasoning": "The original recipe's meat quantity (0.25 pound) is far too small for four servings. Increasing the sirloin steak to 1.25 pounds provides a more appropriate meat-to-vegetable ratio.",
+      "reasoning": "The reviewer felt 1/4 lb of meat was far too little to serve 4 and increased it to just over 1 lb for a more satisfying portion.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 0,
+        "decision": "insufficient_signal",
+        "summary": "No related agree/disagree comments found beyond the tip author",
+        "related_comments": []
+      },
       "changes_made": [
         {
           "type": "ingredient",
           "from_text": "0.25 pound sirloin steak, thinly sliced",
-          "to_text": "1.25 pounds sirloin steak, thinly sliced",
+          "to_text": "1 pound sirloin steak, thinly sliced",
           "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:fa5985a5#1",
+      "source_review": {
+        "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "The broth was too dominant relative to the increased meat, so the reviewer suggests reducing the dashi to better balance the dish.",
+      "evidence": "untested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 0,
+        "decision": "insufficient_signal",
+        "summary": "No related agree/disagree comments found beyond the tip author",
+        "related_comments": []
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:fa5985a5#2",
+      "source_review": {
+        "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modification_type": "addition",
+      "reasoning": "The reviewer found the flavor a little on the light side and added extra soy sauce and sugar after cooking to boost seasoning.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 0,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 0 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the mea…"
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "instruction",
+          "from_text": "",
+          "to_text": "Add extra soy sauce and sugar to taste before serving.",
+          "operation": "add"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:fa5985a5#3",
+      "source_review": {
+        "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "Dashi can be hard to find; the reviewer confirms that beef broth or stock works as a substitute.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 0,
+        "neutral_count": 0,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 1 support, 0 oppose, 0 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the mea…"
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "2 cups dashi soup",
+          "to_text": "2 cups beef broth",
+          "operation": "replace"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:c0466b64#0",
+      "source_review": {
+        "text": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the measurements. You need at least a 1lb of beef for this. Also, I threw in carrots since i had them around.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "The reviewer felt the original amount of beef (0.25 pound) was insufficient and recommends using at least 1 pound for a more satisfying dish.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it ev…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:fa5985a5#0); refusing to overwrite it with a conflicting edit",
+      "rejected_edits": [
+        {
+          "modification_id": "rev:c0466b64#0",
+          "review_id": "rev:c0466b64",
+          "section": "ingredients",
+          "operation": "replace",
+          "find": "0.25 pound sirloin steak, thinly sliced",
+          "payload": "1 pound sirloin steak, thinly sliced",
+          "reason": "superseded",
+          "detail": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:fa5985a5#0); refusing to overwrite it with a conflicting edit",
+          "superseded_by": "rev:fa5985a5#0"
+        }
+      ]
+    },
+    {
+      "modification_id": "rev:c0466b64#1",
+      "source_review": {
+        "text": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the measurements. You need at least a 1lb of beef for this. Also, I threw in carrots since i had them around.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "addition",
+      "reasoning": "The reviewer added carrots to the recipe, likely to add more vegetables and flavor to the dish.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it ev…"
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "",
+          "to_text": "carrots, cut into bite sized pieces",
+          "operation": "add"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    }
+  ],
+  "modifications_by_review": [
+    {
+      "source_review": {
+        "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:fa5985a5#0",
+          "source_review": {
+            "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+            "reviewer": null,
+            "rating": 4
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "The reviewer felt 1/4 lb of meat was far too little to serve 4 and increased it to just over 1 lb for a more satisfying portion.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 0,
+            "decision": "insufficient_signal",
+            "summary": "No related agree/disagree comments found beyond the tip author",
+            "related_comments": []
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "0.25 pound sirloin steak, thinly sliced",
+              "to_text": "1 pound sirloin steak, thinly sliced",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:fa5985a5#1",
+          "source_review": {
+            "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+            "reviewer": null,
+            "rating": 4
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "The broth was too dominant relative to the increased meat, so the reviewer suggests reducing the dashi to better balance the dish.",
+          "evidence": "untested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 0,
+            "decision": "insufficient_signal",
+            "summary": "No related agree/disagree comments found beyond the tip author",
+            "related_comments": []
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:fa5985a5#2",
+          "source_review": {
+            "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+            "reviewer": null,
+            "rating": 4
+          },
+          "modification_type": "addition",
+          "reasoning": "The reviewer found the flavor a little on the light side and added extra soy sauce and sugar after cooking to boost seasoning.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 0,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 0 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the mea…"
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "instruction",
+              "from_text": "",
+              "to_text": "Add extra soy sauce and sugar to taste before serving.",
+              "operation": "add"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:fa5985a5#3",
+          "source_review": {
+            "text": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it even then it was swimming in the broth. After following the recipe, i added extra soy and sugar only because i thought the flavor was a little on the lite side. Overall good.** If you cant find dashi, beef broth/stock works just fine. My japanese mom happen to have some so i was able to get some from her.",
+            "reviewer": null,
+            "rating": 4
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "Dashi can be hard to find; the reviewer confirms that beef broth or stock works as a substitute.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 0,
+            "neutral_count": 0,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 1 support, 0 oppose, 0 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the mea…"
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "2 cups dashi soup",
+              "to_text": "2 cups beef broth",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the measurements. You need at least a 1lb of beef for this. Also, I threw in carrots since i had them around.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:c0466b64#0",
+          "source_review": {
+            "text": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the measurements. You need at least a 1lb of beef for this. Also, I threw in carrots since i had them around.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "The reviewer felt the original amount of beef (0.25 pound) was insufficient and recommends using at least 1 pound for a more satisfying dish.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it ev…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:fa5985a5#0); refusing to overwrite it with a conflicting edit",
+          "rejected_edits": [
+            {
+              "modification_id": "rev:c0466b64#0",
+              "review_id": "rev:c0466b64",
+              "section": "ingredients",
+              "operation": "replace",
+              "find": "0.25 pound sirloin steak, thinly sliced",
+              "payload": "1 pound sirloin steak, thinly sliced",
+              "reason": "superseded",
+              "detail": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:fa5985a5#0); refusing to overwrite it with a conflicting edit",
+              "superseded_by": "rev:fa5985a5#0"
+            }
+          ]
+        },
+        {
+          "modification_id": "rev:c0466b64#1",
+          "source_review": {
+            "text": "Great recipe and not hard, even for someone like me who never cooks. The taste is really good, but i agree with everyone else about the measurements. You need at least a 1lb of beef for this. Also, I threw in carrots since i had them around.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "addition",
+          "reasoning": "The reviewer added carrots to the recipe, likely to add more vegetables and flavor to the dish.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Overall it was pretty good but the measurements were way off. HAS to be a typo. 1/4lb of meat to serve 4??? I used a lil over 1lb and it ev…"
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "",
+              "to_text": "carrots, cut into bite sized pieces",
+              "operation": "add"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
         }
       ]
     }
   ],
   "enhancement_summary": {
-    "total_changes": 1,
+    "total_changes": 4,
     "change_types": [
-      "quantity_adjustment"
+      "quantity_adjustment",
+      "ingredient_substitution",
+      "addition"
     ],
-    "expected_impact": "The original recipe's meat quantity (0.25 pound) is far too small for four servings. Increasing the sirloin steak to 1.25 pounds provides a more appropriate meat-to-vegetable ratio."
+    "expected_impact": "The reviewer felt 1/4 lb of meat was far too little to serve 4 and increased it to just over 1 lb for a more satisfying portion.; The reviewer found the flavor a little on the light side and added extra soy sauce and sugar after cooking to boost seasoning.; Dashi can be hard to find; the reviewer confirms that beef broth or stock works as a substitute. (and 1 more improvements)"
   },
   "description": "This main dish recipe features sliced beef sirloin cooked with potatoes, and onion in a sauce made with prepared dashi soup, sake, and soy sauce.",
   "servings": "4",
   "prep_time": null,
   "cook_time": null,
   "total_time": null,
-  "created_at": "2026-05-25T17:54:01.918764",
-  "pipeline_version": "1.0.0"
+  "created_at": "2026-07-28T17:41:52.258710",
+  "pipeline_version": "1.2.0",
+  "max_reviews": 4,
+  "candidates_considered": 2,
+  "status": "enhanced",
+  "provenance": {
+    "original_fingerprint": "5a7f8cf142a0",
+    "enhanced_fingerprint": "faba95f19ab1",
+    "ledger": [
+      {
+        "entry_id": "e001:rev:fa5985a5#0",
+        "modification_id": "rev:fa5985a5#0",
+        "review_id": "rev:fa5985a5",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:2",
+        "before_text": "0.25 pound sirloin steak, thinly sliced",
+        "after_text": "1 pound sirloin steak, thinly sliced",
+        "before_hash": "f1ac5f4fd6cc",
+        "after_hash": "477944bc96c3",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e002:rev:fa5985a5#2",
+        "modification_id": "rev:fa5985a5#2",
+        "review_id": "rev:fa5985a5",
+        "section": "instructions",
+        "operation": "add",
+        "line_id": "ins:+1",
+        "before_text": "",
+        "after_text": "Add extra soy sauce and sugar to taste before serving.",
+        "before_hash": "e3b0c44298fc",
+        "after_hash": "3b500163962c",
+        "anchor_line_id": "ins:2",
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e003:rev:fa5985a5#3",
+        "modification_id": "rev:fa5985a5#3",
+        "review_id": "rev:fa5985a5",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:4",
+        "before_text": "2 cups dashi soup",
+        "after_text": "2 cups beef broth",
+        "before_hash": "14e8c88e1f65",
+        "after_hash": "698303520576",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e004:rev:c0466b64#1",
+        "modification_id": "rev:c0466b64#1",
+        "review_id": "rev:c0466b64",
+        "section": "ingredients",
+        "operation": "add",
+        "line_id": "ing:+2",
+        "before_text": "",
+        "after_text": "carrots, cut into bite sized pieces",
+        "before_hash": "e3b0c44298fc",
+        "after_hash": "903abff2013d",
+        "anchor_line_id": "ing:3",
+        "anchor_superseded": false,
+        "match": "exact"
+      }
+    ],
+    "rejected_edits": [
+      {
+        "modification_id": "rev:c0466b64#0",
+        "review_id": "rev:c0466b64",
+        "section": "ingredients",
+        "operation": "replace",
+        "find": "0.25 pound sirloin steak, thinly sliced",
+        "payload": "1 pound sirloin steak, thinly sliced",
+        "reason": "superseded",
+        "detail": "Line ing:2 is already locked by an earlier higher-ranked tip (rev:fa5985a5#0); refusing to overwrite it with a conflicting edit",
+        "superseded_by": "rev:fa5985a5#0"
+      }
+    ],
+    "blame": [
+      {
+        "line_id": "ing:0",
+        "section": "ingredients",
+        "text": "8 snow peas",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:1",
+        "section": "ingredients",
+        "text": "1 tablespoon vegetable oil",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:2",
+        "section": "ingredients",
+        "text": "1 pound sirloin steak, thinly sliced",
+        "origin": "community",
+        "modification_ids": [
+          "rev:fa5985a5#0"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:3",
+        "section": "ingredients",
+        "text": "4 potatoes, cut into bite sized pieces",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:+2",
+        "section": "ingredients",
+        "text": "carrots, cut into bite sized pieces",
+        "origin": "community",
+        "modification_ids": [
+          "rev:c0466b64#1"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:4",
+        "section": "ingredients",
+        "text": "2 cups beef broth",
+        "origin": "community",
+        "modification_ids": [
+          "rev:fa5985a5#3"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:5",
+        "section": "ingredients",
+        "text": "0.25 cup soy sauce",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:6",
+        "section": "ingredients",
+        "text": "0.25 cup sake",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:7",
+        "section": "ingredients",
+        "text": "1 tablespoon white sugar",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:8",
+        "section": "ingredients",
+        "text": "1 onion, chopped",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:0",
+        "section": "instructions",
+        "text": "Put the snow peas in a small saucepan with enough water to cover; bring to a boil and immediately remove from heat. Drain and set aside.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:1",
+        "section": "instructions",
+        "text": "Heat the oil in a large skillet over medium heat; cook the beef in the oil until browned. Add the potatoes; cook and stir until soft, 5 to 7 minutes. Stir the dashi soup, soy sauce, sake, and sugar into the mixture; simmer for 10 minutes.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:2",
+        "section": "instructions",
+        "text": "Reduce heat to low and scatter the chopped onion over the mixture; allow to simmer until the liquid is nearly completely evaporated, about 15 minutes more. Top the mixture with the snow peas to serve.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:+1",
+        "section": "instructions",
+        "text": "Add extra soy sauce and sugar to taste before serving.",
+        "origin": "community",
+        "modification_ids": [
+          "rev:fa5985a5#2"
+        ],
+        "reviewers": []
+      }
+    ],
+    "verification": {
+      "deterministic": true,
+      "entries_replayed": 4,
+      "mismatches": []
+    }
+  }
 }

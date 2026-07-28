@@ -8,7 +8,7 @@ comprehensive enhanced recipe objects.
 
 from collections import OrderedDict
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from loguru import logger
 
@@ -18,10 +18,13 @@ from .models import (
     EnhancementSummary,
     ModificationApplied,
     ModificationObject,
+    Provenance,
     Recipe,
+    RejectedEdit,
     Review,
     ReviewModificationGroup,
     SourceReview,
+    TipConsensus,
 )
 
 
@@ -44,15 +47,21 @@ class EnhancedRecipeGenerator:
         change_records: Optional[List[ChangeRecord]] = None,
         status: str = "applied",
         unapplied_reason: Optional[str] = None,
+        modification_id: Optional[str] = None,
+        rejected_edits: Optional[List[RejectedEdit]] = None,
+        consensus: Optional[TipConsensus] = None,
     ) -> ModificationApplied:
         return ModificationApplied(
+            modification_id=modification_id,
             source_review=self.create_source_review(source_review),
             modification_type=modification.modification_type,
             reasoning=modification.reasoning,
             evidence=modification.evidence,
+            consensus=consensus,
             changes_made=change_records or [],
             status=status,  # type: ignore[arg-type]
             unapplied_reason=unapplied_reason,
+            rejected_edits=rejected_edits or [],
         )
 
     def create_modification_applied(
@@ -86,9 +95,15 @@ class EnhancedRecipeGenerator:
         return list(grouped.values())
 
     def calculate_enhancement_summary(
-        self, modifications_applied: List[ModificationApplied]
+        self,
+        modifications_applied: List[ModificationApplied],
+        status: str = "enhanced",
     ) -> EnhancementSummary:
-        applied = [mod for mod in modifications_applied if mod.status == "applied"]
+        # "partial" modifications still landed real, committed edits (that's
+        # what distinguishes them from "unapplied") so they count here too.
+        applied = [
+            mod for mod in modifications_applied if mod.status in ("applied", "partial")
+        ]
         total_changes = sum(len(mod.changes_made) for mod in applied)
         change_types = list(set(mod.modification_type for mod in applied))
 
@@ -99,11 +114,17 @@ class EnhancedRecipeGenerator:
                 f" (and {len(impact_descriptions) - 3} more improvements)"
             )
 
+        if not expected_impact:
+            expected_impact = (
+                "No community tip could be safely applied to this recipe."
+                if status == "no_changes"
+                else "Community-validated recipe improvements"
+            )
+
         return EnhancementSummary(
             total_changes=total_changes,
             change_types=change_types,
-            expected_impact=expected_impact
-            or "Community-validated recipe improvements",
+            expected_impact=expected_impact,
         )
 
     def generate_enhanced_recipe(
@@ -144,13 +165,17 @@ class EnhancedRecipeGenerator:
         modification_records: List[ModificationApplied],
         max_reviews: Optional[int] = None,
         candidates_considered: Optional[int] = None,
+        provenance: Optional[Provenance] = None,
+        status: Literal["enhanced", "no_changes"] = "enhanced",
     ) -> EnhancedRecipe:
         logger.info(
             f"Generating enhanced recipe for: {original_recipe.title} "
             f"from {len(modification_records)} modification record(s)"
         )
 
-        enhancement_summary = self.calculate_enhancement_summary(modification_records)
+        enhancement_summary = self.calculate_enhancement_summary(
+            modification_records, status=status
+        )
         modifications_by_review = self.group_modifications_by_review(modification_records)
 
         enhanced_recipe = EnhancedRecipe(
@@ -171,6 +196,8 @@ class EnhancedRecipeGenerator:
             pipeline_version=self.pipeline_version,
             max_reviews=max_reviews,
             candidates_considered=candidates_considered,
+            status=status,
+            provenance=provenance,
         )
 
         applied_count = sum(1 for mod in modification_records if mod.status == "applied")

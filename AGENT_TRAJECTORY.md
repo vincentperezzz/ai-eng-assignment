@@ -74,6 +74,21 @@ This is the agent-trajectory deliverable from the take-home brief: a clear log o
 36. Fixed servings/yield inconsistency: tips that change batch size can emit a `servings` edit, and enhanced output uses the modified servings value.
 37. Updated comprehensive document and this trajectory to match the final system.
 
+### Phase 7 — Ledger integration (handoff from lead diagnosis)
+
+A separate diagnosis pass (live sweep across all 6 sample recipes, real DashScope calls) found two further defects and shipped a built-and-smoke-tested core (`src/llm_pipeline/ledger.py`, additive changes to `src/llm_pipeline/models.py`). This phase is the integration work on top of that.
+
+38. Confirmed what was already built (`RecipeLedger`, `RecipeDocument`, `Line`, new Pydantic models `LedgerEntry`/`RejectedEdit`/`BlameLine`/`ReplayVerification`/`Provenance`) versus what was still wiring (everything downstream of extraction).
+39. Read `pipeline.py`, `enhanced_recipe_generator.py`, `models.py`, `ledger.py`, `recipe_modifier.py`, `tests/test_pipeline.py` end to end before editing.
+40. **Task 1 — Rewired `pipeline.py`.** `process_single_recipe` now instantiates one `RecipeLedger` per recipe run and calls `ledger.apply_modification(modification, modification_id, review_id)` for every tested tip instead of `RecipeModifier.apply_modification`. Deleted the within-review `conflicting_modification_indices` call (the ledger's compare-and-swap supersedes it); left `modification_conflicts.py` and its tests in place, unused by the pipeline. `Provenance` (fingerprints, ledger entries, rejections, blame, replay verification) is built and attached to every run, including zero-edit runs — `ledger.verify()` always executes, per the handoff's "this is the proof mechanism, it doesn't get to be optional."
+41. **Task 2 — No-op recipes stopped hard-failing.** The three `return None` paths (`candidate_reviews` empty, `extracted_modifications` empty, zero committed edits) were replaced with a single honest code path: build an (empty) ledger, still verify it, and produce a real `EnhancedRecipe` with `status="no_changes"`, untouched original content, every extracted tip still listed with its true unapplied reason, and an honest `expected_impact` string instead of the generic "Community-validated" copy. `generate_summary_report` now reports `recipes_enhanced` and `recipes_no_changes` separately so a no-op pass can't inflate the "successfully enhanced" count.
+42. **Task 3 — Wired `EnhancedRecipeGenerator`.** `create_modification_record` gained `modification_id` and `rejected_edits` params (both passed straight through, both optional/defaulted so no existing call site broke). `generate_enhanced_recipe_from_records` gained `provenance` and `status` params. `calculate_enhancement_summary` now counts `"partial"` modifications alongside `"applied"` ones (a partial modification still has real committed edits reflected in the recipe) and picks an honest default `expected_impact` string when the run is a no-op.
+43. **Task 4 — Tests.** Added `tests/test_ledger.py` (7 tests): the exact clobber-bug regression (two tips targeting the same original line, the second rejected `superseded`/`no_op`, first tip's edit present in final ingredients, `verify().deterministic is True`), replay determinism across a mixed replace/add/remove/servings sequence, tamper detection (an out-of-band mutation of `ledger.document` makes `verify()` report `deterministic=False` with non-empty mismatches), blame correctness (two reviewers, two different lines, correct attribution + untouched lines stay `origin="original"`), the guarded fuzzy match directly (white sugar vs. brown sugar), and an `add_after` anchor surviving a prior rewrite of its anchor line. Updated `tests/test_pipeline.py` with a new zero-reviews no-op test, and fixed one now-incorrect assertion in `tests/test_tip_eligibility.py` (`test_untested_suggestion_is_visible_but_not_applied` asserted the *old* hard-failure behavior returning `None`; updated it to assert the new `status="no_changes"` behavior, which is exactly the Defect-B fix this phase implements — not a loosened assertion). No other existing test needed changes; the three multi-modification pipeline tests in `test_pipeline.py` all passed unmodified against the ledger.
+44. **Task 5 — Trust report.** Added `src/tools/trust_report.py` (+ `src/tools/__init__.py`): reads `data/enhanced/enhanced_*.json` with no network/LLM calls and prints per-recipe replay-verification status, applied/partial/unapplied/rejected-silently counts, per-line blame, and the full rejected-edits list with reasons.
+45. **Saved-and-replay AI answers for offline demos — skipped** on purpose (demo convenience only; half-implementing a cache that secretly calls the live API on miss is worse than none). Flagged in `ASSESSMENT.md` §10.
+46. Ran the full unit test suite (`PYTHONPATH=src ./.scratch_venv/Scripts/python.exe -m unittest discover -s tests -v`) and the live sweep (`ALL_RECIPES_MAX_REVIEWS=4 ... src/test_pipeline.py all`) against real DashScope calls, and inspected the regenerated `enhanced_10813_best-chocolate-chip-cookies.json` directly (not just logs) to confirm the specific clobbered-sugar contradiction no longer appears: the conflicting later edit is now recorded as a rejected, no-op edit inside a `"partial"` modification, and the sugar values in the final `ingredients` list match every `"applied"`/`"partial"` change's `to_text` exactly. See the Validation section below for exact counts.
+47. At the end of Phase 7, one residual gap remained (same-line amount overwrite under fuzzy match). **Closed in Phase 8** with rank-then-lock — see below.
+
 ## Key decisions (short)
 
 | Decision | Why |
@@ -83,7 +98,8 @@ This is the agent-trajectory deliverable from the take-home brief: a clear log o
 | ModificationSet per review | Direct answer to “egg + halved sugar” |
 | Soft eligibility + tested-only apply | Avoid scraper ground-truth and preference-as-fact |
 | Multi-provider LLM support | Needed honest live validation |
-| Skip ranking / second eligibility LLM / UI | Lower leverage for this take-home |
+| Rank-then-lock + tip consensus | Higher-ranked tip wins a line; related warnings can hold apply |
+| Skip ranking ML / second eligibility LLM / UI | Lower leverage for this take-home |
 
 ## Validation performed
 
@@ -106,15 +122,45 @@ Outcomes:
 - Gemini: end-to-end success on cookies; multi-review less reliable under free-tier 503s
 - DashScope (`qwen3.7-plus`, `SINGLE_RECIPE_MAX_REVIEWS=2`): 6 tips across 2 reviews applied; enhanced JSON written with attribution and servings sync
 
+### Phase 7 validation (ledger integration)
+
+```bash
+PYTHONPATH=src ./.scratch_venv/Scripts/python.exe -m unittest discover -s tests -v
+ALL_RECIPES_MAX_REVIEWS=4 PYTHONPATH=src ./.scratch_venv/Scripts/python.exe src/test_pipeline.py all
+```
+
+- Unit tests: 33/33 passing (25 pre-existing + 8 new/updated: 7 in new `tests/test_ledger.py`, plus pipeline/tip-eligibility test updates for the new `no_changes` status)
+- Live sweep (all 6 sample recipes, real DashScope calls, `ALL_RECIPES_MAX_REVIEWS=4`): 6/6 recipes produced output (4 `status=enhanced`, 2 `status=no_changes`), versus 3/6 hard failures before this phase (see `ASSESSMENT.md` §7 for the before/after evidence). Every recipe's `provenance.verification.deterministic` is `True`.
+- Independently re-verified (not just by the implementing agent): confirmed via `docs/evidence/live_sweep_before.log` (pre-fix) vs. a fresh post-fix sweep that the specific cookies-file contradiction is gone, and additionally found a *real* `superseded` rejection (not a contrived one) in the regenerated `enhanced_77935_creamy-sweet-potato-with-ginge.json` — proof the stale-read guard fires on real LLM output, not only on hand-built fixtures.
+- Directly inspected the regenerated `enhanced_10813_best-chocolate-chip-cookies.json`: the previously-fabricated "applied" quantity-adjustment modification is now recorded as `status="partial"`, with its conflicting edit present in `rejected_edits` (`reason: "no_op"`), and every remaining `to_text` in `changes_made` matches the final `ingredients` list exactly.
+- `PYTHONPATH=src ./.scratch_venv/Scripts/python.exe src/tools/trust_report.py data/enhanced/enhanced_*.json` ran with no LLM key configured for the tool itself and printed per-recipe replay verification, apply/partial/unapplied counts, and per-line blame for all 6 regenerated files.
+
+### Phase 8 — Rank-then-lock + tip consensus
+
+48. Product decision: when two tips fight over the same line, keep the higher-ranked tip (Featured → stars) and lock the line; related agree/disagree comments are a confidence layer, not a silent override of ranking.
+49. Implemented **line lock** in `ledger.py`: once a `line_id` has a writer, later replace/remove/servings edits on that line are rejected as `superseded` — closes the same-ingredient amount overwrite residual.
+50. Added `tip_consensus.py` + `TipConsensus` / `ConsensusComment` models: topic-token overlap + English support/oppose cues; strong opposition → hold auto-apply; attach consensus to every tip record in enhanced JSON.
+51. Wired consensus into `pipeline.py` before ledger apply; extended `trust_report.py` to print consensus summaries; tests in `tests/test_tip_consensus.py` (same-line amount lock + opposition hold + support allowed).
+52. Unit tests: **37/37 passing**.
+
 ## Remaining known limitations
 
-1. Fuzzy whole-line overwrite can still pick a wrong line on paraphrased finds.
-2. `add_after` / `remove` matching is weaker than `replace`.
-3. Conflict detection is coarse (shared find-target among tested tips).
-4. Soft recall cues still miss some tip phrasings.
-5. Demo defaults may keep `max_reviews` low for quota; capability is proven with higher caps.
-6. Failed extractions are logged but not yet fully recorded in enhanced JSON metadata.
+Fixed by Phases 7–8 (see `ASSESSMENT.md` §10):
+
+- ~~Fuzzy whole-line overwrite across different ingredients~~
+- ~~Same-line amount overwrite under fuzzy match~~ — rank-then-lock
+- ~~Coarse conflict detection~~
+- ~~Hard-fail when nothing to apply~~
+- ~~Agree/disagree comments ignored~~ — tip consensus confidence layer
+
+Still open:
+
+1. `add_after` / `remove` matching is weaker than `replace`.
+2. Soft recall cues still miss some tip phrasings.
+3. Consensus cue lists are English heuristics — sarcasm / negation edge cases can mis-score.
+4. Demo defaults may keep `max_reviews` low for quota; capability is proven with higher caps.
+5. No saved-and-replay AI answers (optional; not needed if demo uses finished JSON + trust report).
 
 ## Final outcome
 
-The agent work did not try to rebuild the product. It diagnosed the inherited pipeline, fixed the failures that most hurt trust, proved the brief’s cues with tests and live artifacts, and documented what was intentionally deferred.
+The agent work did not try to rebuild the product. It diagnosed the inherited pipeline, fixed the failures that most hurt trust — including provable attribution, line lock, and community opposition as a hold — proved the brief’s cues with tests and live artifacts, and documented what was intentionally deferred.

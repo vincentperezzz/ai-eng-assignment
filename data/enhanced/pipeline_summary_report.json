@@ -1,20 +1,91 @@
 {
   "pipeline_summary": {
-    "recipes_processed": 1,
-    "total_modifications_applied": 1,
-    "total_changes_made": 1,
+    "recipes_processed": 6,
+    "recipes_enhanced": 4,
+    "recipes_no_changes": 2,
+    "total_modifications_applied": 17,
+    "total_modifications_unapplied": 14,
+    "total_changes_made": 27,
     "change_type_distribution": {
-      "quantity_adjustment": 1
+      "quantity_adjustment": 2,
+      "removal": 1,
+      "technique_change": 1,
+      "addition": 2,
+      "ingredient_substitution": 3
     }
   },
   "enhanced_recipes": [
     {
+      "recipe_id": "10813_enhanced",
+      "title": "Best Chocolate Chip Cookies (Community Enhanced)",
+      "status": "enhanced",
+      "modifications_count": 11,
+      "unapplied_count": 1,
+      "review_groups": 4,
+      "changes_count": 16,
+      "change_types": [
+        "quantity_adjustment",
+        "removal",
+        "technique_change",
+        "addition"
+      ]
+    },
+    {
       "recipe_id": "144299_enhanced",
       "title": "Nikujaga (Japanese-Style Meat and Potatoes) (Community Enhanced)",
+      "status": "enhanced",
+      "modifications_count": 4,
+      "unapplied_count": 2,
+      "review_groups": 2,
+      "changes_count": 4,
+      "change_types": [
+        "quantity_adjustment",
+        "ingredient_substitution",
+        "addition"
+      ]
+    },
+    {
+      "recipe_id": "19117_enhanced",
+      "title": "Spicy Apple Cake (Community Enhanced)",
+      "status": "enhanced",
       "modifications_count": 1,
+      "unapplied_count": 2,
+      "review_groups": 2,
+      "changes_count": 6,
+      "change_types": [
+        "ingredient_substitution"
+      ]
+    },
+    {
+      "recipe_id": "284494_enhanced",
+      "title": "Spiced Purple Plum Jam (Community Enhanced)",
+      "status": "no_changes",
+      "modifications_count": 0,
+      "unapplied_count": 0,
+      "review_groups": 0,
+      "changes_count": 0,
+      "change_types": []
+    },
+    {
+      "recipe_id": "45613_enhanced",
+      "title": "Mango Teriyaki Marinade (Community Enhanced)",
+      "status": "no_changes",
+      "modifications_count": 0,
+      "unapplied_count": 0,
+      "review_groups": 0,
+      "changes_count": 0,
+      "change_types": []
+    },
+    {
+      "recipe_id": "77935_enhanced",
+      "title": "Creamy Sweet Potato With Ginger Soup (Community Enhanced)",
+      "status": "enhanced",
+      "modifications_count": 1,
+      "unapplied_count": 9,
+      "review_groups": 4,
       "changes_count": 1,
       "change_types": [
-        "quantity_adjustment"
+        "ingredient_substitution"
       ]
     }
   ]

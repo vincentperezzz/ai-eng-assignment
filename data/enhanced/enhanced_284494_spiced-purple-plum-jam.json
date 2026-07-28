@@ -1,0 +1,156 @@
+{
+  "recipe_id": "284494_enhanced",
+  "original_recipe_id": "284494",
+  "title": "Spiced Purple Plum Jam (Community Enhanced)",
+  "ingredients": [
+    "3 pounds plums, pitted and chopped",
+    "1 lemon, zested and juiced",
+    "4 cups white sugar",
+    "3 tablespoons fruit pectin (such as Sure-Jell®)",
+    "2 teaspoons ground cinnamon",
+    "1 teaspoon ground nutmeg",
+    "0.25 teaspoon ground cloves"
+  ],
+  "instructions": [
+    "Inspect 6 half-pint Mason jars for cracks and rings for rust, discarding any defective ones. Immerse in simmering water until filling is ready. Wash new, unused lids and rings in warm, soapy water. Place a few small plates in the freezer.",
+    "Add plums, lemon zest, and lemon juice into a wide, non-reactive 8-quart pot. Whisk sugar, pectin, cinnamon, nutmeg, and cloves together in a small bowl. Stir into the pot until combined.",
+    "Bring to a boil over high heat. Reduce heat to medium-high; cook, stirring frequently and adjusting heat as needed to maintain a gentle boil until thickened and reduced by at least one-third, 20 to 25 minutes. Check doneness by dropping a small spoonful of jam onto a frozen plate. Let sit for 1 to 2 minutes; if jam appears to gel, it is ready. Continue cooking if jam appears thin and runny.",
+    "Pack jam into hot, sterilized jars, filling to within 1/2-inch of the top. Run a clean knife or thin spatula around the insides of the jars to remove any air bubbles. Wipe rims with a moist paper towel to remove any residue. Top with lids and screw rings on tightly.",
+    "Place a rack in the bottom of a large stockpot and fill halfway with water. Bring to a boil and lower jars 2 inches apart into the boiling water using a holder. Pour in more boiling water to cover jars by at least 1 inch. Bring to a rolling boil, cover, and process for 10 minutes.",
+    "Remove the jars from the stockpot and let rest, several inches apart, for 12 to 24 hours. Press the center of each lid with a finger to ensure the lid does not move up or down. Any unsealed jars should be refrigerated and eaten promptly. Remove the rings for storage and store in a cool, dark area. They are shelf-stable at least 1 year."
+  ],
+  "modifications_applied": [],
+  "modifications_by_review": [],
+  "enhancement_summary": {
+    "total_changes": 0,
+    "change_types": [],
+    "expected_impact": "No community tip could be safely applied to this recipe."
+  },
+  "description": "This spiced purple plum jam recipe is the result of combining plums, fresh lemon, and warm, comforting spices for an easy, deliciously giftable jam.",
+  "servings": "6 half-pint Mason jars",
+  "prep_time": null,
+  "cook_time": null,
+  "total_time": null,
+  "created_at": "2026-07-28T17:42:46.028129",
+  "pipeline_version": "1.2.0",
+  "max_reviews": 4,
+  "candidates_considered": 0,
+  "status": "no_changes",
+  "provenance": {
+    "original_fingerprint": "8a40bfcd8605",
+    "enhanced_fingerprint": "8a40bfcd8605",
+    "ledger": [],
+    "rejected_edits": [],
+    "blame": [
+      {
+        "line_id": "ing:0",
+        "section": "ingredients",
+        "text": "3 pounds plums, pitted and chopped",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:1",
+        "section": "ingredients",
+        "text": "1 lemon, zested and juiced",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:2",
+        "section": "ingredients",
+        "text": "4 cups white sugar",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:3",
+        "section": "ingredients",
+        "text": "3 tablespoons fruit pectin (such as Sure-Jell®)",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:4",
+        "section": "ingredients",
+        "text": "2 teaspoons ground cinnamon",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:5",
+        "section": "ingredients",
+        "text": "1 teaspoon ground nutmeg",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:6",
+        "section": "ingredients",
+        "text": "0.25 teaspoon ground cloves",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:0",
+        "section": "instructions",
+        "text": "Inspect 6 half-pint Mason jars for cracks and rings for rust, discarding any defective ones. Immerse in simmering water until filling is ready. Wash new, unused lids and rings in warm, soapy water. Place a few small plates in the freezer.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:1",
+        "section": "instructions",
+        "text": "Add plums, lemon zest, and lemon juice into a wide, non-reactive 8-quart pot. Whisk sugar, pectin, cinnamon, nutmeg, and cloves together in a small bowl. Stir into the pot until combined.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:2",
+        "section": "instructions",
+        "text": "Bring to a boil over high heat. Reduce heat to medium-high; cook, stirring frequently and adjusting heat as needed to maintain a gentle boil until thickened and reduced by at least one-third, 20 to 25 minutes. Check doneness by dropping a small spoonful of jam onto a frozen plate. Let sit for 1 to 2 minutes; if jam appears to gel, it is ready. Continue cooking if jam appears thin and runny.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:3",
+        "section": "instructions",
+        "text": "Pack jam into hot, sterilized jars, filling to within 1/2-inch of the top. Run a clean knife or thin spatula around the insides of the jars to remove any air bubbles. Wipe rims with a moist paper towel to remove any residue. Top with lids and screw rings on tightly.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:4",
+        "section": "instructions",
+        "text": "Place a rack in the bottom of a large stockpot and fill halfway with water. Bring to a boil and lower jars 2 inches apart into the boiling water using a holder. Pour in more boiling water to cover jars by at least 1 inch. Bring to a rolling boil, cover, and process for 10 minutes.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:5",
+        "section": "instructions",
+        "text": "Remove the jars from the stockpot and let rest, several inches apart, for 12 to 24 hours. Press the center of each lid with a finger to ensure the lid does not move up or down. Any unsealed jars should be refrigerated and eaten promptly. Remove the rings for storage and store in a cool, dark area. They are shelf-stable at least 1 year.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      }
+    ],
+    "verification": {
+      "deterministic": true,
+      "entries_replayed": 0,
+      "mismatches": []
+    }
+  }
+}

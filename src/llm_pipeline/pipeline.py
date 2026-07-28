@@ -17,11 +17,27 @@ from loguru import logger
 
 from .env_loader import load_project_env
 from .enhanced_recipe_generator import EnhancedRecipeGenerator
-from .models import EnhancedRecipe, ModificationObject, Recipe, Review
-from .modification_conflicts import conflicting_modification_indices
+from .ledger import RecipeDocument, RecipeLedger, modification_id_for, review_id_for
+from .models import (
+    ChangeRecord,
+    EnhancedRecipe,
+    ModificationApplied,
+    ModificationObject,
+    Provenance,
+    Recipe,
+    Review,
+)
 from .recipe_modifier import RecipeModifier
+from .tip_consensus import annotate_extractions_with_consensus
 from .tip_eligibility import select_candidate_reviews
 from .tweak_extractor import TweakExtractor
+
+# LedgerEntry.section -> ChangeRecord.type
+_SECTION_TO_CHANGE_TYPE = {
+    "ingredients": "ingredient",
+    "instructions": "instruction",
+    "servings": "servings",
+}
 
 
 class LLMAnalysisPipeline:
@@ -184,139 +200,168 @@ class LLMAnalysisPipeline:
             )
 
             candidate_reviews = select_candidate_reviews(reviews)
+
+            extracted_modifications: List[tuple[ModificationObject, Review]] = []
             if not candidate_reviews:
-                logger.warning("No extraction-candidate reviews found")
-                return None
-
-            # Step 1: Extract modifications from soft-eligibility candidates.
-            logger.info(
-                f"Step 1: Extracting modifications from {len(candidate_reviews)} "
-                "candidate reviews..."
-            )
-            extracted_modifications = self.tweak_extractor.extract_modifications(
-                candidate_reviews, recipe, max_reviews=max_reviews
-            )
-
-            if not extracted_modifications:
-                logger.warning("No modifications could be extracted")
-                return None
-
-            logger.info(
-                f"Successfully extracted {len(extracted_modifications)} candidate modifications"
-            )
-
-            # Step 2: Apply successful modifications sequentially.
-            # Conflicts within the same review are kept visible but not auto-applied.
-            logger.info("Step 2: Applying extracted modifications to recipe...")
-            modified_recipe = recipe
-            modification_records = []
-
-            review_batches: dict[str, list[tuple[ModificationObject, Review]]] = {}
-            review_order: list[str] = []
-            for modification, source_review in extracted_modifications:
-                key = " ".join(source_review.text.split()).strip().lower()
-                if key not in review_batches:
-                    review_batches[key] = []
-                    review_order.append(key)
-                review_batches[key].append((modification, source_review))
-
-            for key in review_order:
-                batch = review_batches[key]
-                # Untested tips are never applied; exclude them from conflict checks
-                # so they do not block tested tips that share a find-target.
-                tested_indexed = [
-                    (index, modification)
-                    for index, (modification, _) in enumerate(batch)
-                    if modification.evidence != "untested"
-                ]
-                relative_conflicts = conflicting_modification_indices(
-                    [modification for _, modification in tested_indexed]
+                logger.warning(
+                    "No extraction-candidate reviews found; recording a "
+                    "no-op enhancement instead of failing"
                 )
-                conflicting = {
-                    tested_indexed[relative_index][0]
-                    for relative_index in relative_conflicts
-                }
+            else:
+                # Step 1: Extract modifications from soft-eligibility candidates.
+                logger.info(
+                    f"Step 1: Extracting modifications from {len(candidate_reviews)} "
+                    "candidate reviews..."
+                )
+                extracted_modifications = self.tweak_extractor.extract_modifications(
+                    candidate_reviews, recipe, max_reviews=max_reviews
+                )
 
-                for index, (modification, source_review) in enumerate(batch):
-                    if modification.evidence == "untested":
-                        modification_records.append(
-                            self.enhanced_generator.create_modification_record(
-                                modification,
-                                source_review,
-                                change_records=[],
-                                status="unapplied",
-                                unapplied_reason=(
-                                    "Untested suggestion (next-time / preference language); "
-                                    "kept visible but not auto-applied"
-                                ),
-                            )
-                        )
-                        logger.info(
-                            f"Left {modification.modification_type} unapplied: untested evidence"
-                        )
-                        continue
-
-                    if index in conflicting:
-                        modification_records.append(
-                            self.enhanced_generator.create_modification_record(
-                                modification,
-                                source_review,
-                                change_records=[],
-                                status="unapplied",
-                                unapplied_reason=(
-                                    "Conflicts with another discrete tip from the same "
-                                    "review that targets the same recipe text; left visible "
-                                    "but not auto-applied"
-                                ),
-                            )
-                        )
-                        logger.warning(
-                            f"Left {modification.modification_type} unapplied due to "
-                            "within-review conflict"
-                        )
-                        continue
-
-                    modified_recipe, change_records = self.recipe_modifier.apply_modification(
-                        modified_recipe, modification
+                if not extracted_modifications:
+                    logger.warning(
+                        "No modifications could be extracted; recording a "
+                        "no-op enhancement instead of failing"
+                    )
+                else:
+                    logger.info(
+                        f"Successfully extracted {len(extracted_modifications)} "
+                        "candidate modifications"
                     )
 
-                    if change_records:
-                        modification_records.append(
-                            self.enhanced_generator.create_modification_record(
-                                modification,
-                                source_review,
-                                change_records=change_records,
-                                status="applied",
-                            )
-                        )
-                        logger.info(
-                            f"Applied {modification.modification_type}: "
-                            f"{len(change_records)} changes made"
-                        )
-                    else:
-                        modification_records.append(
-                            self.enhanced_generator.create_modification_record(
-                                modification,
-                                source_review,
-                                change_records=[],
-                                status="unapplied",
-                                unapplied_reason=(
-                                    "Extracted from the review but no matching recipe "
-                                    "lines could be updated"
-                                ),
-                            )
-                        )
-                        logger.warning(
-                            f"Recorded unapplied {modification.modification_type}: "
-                            "no concrete changes were applied"
-                        )
+            # Step 2: Apply modifications transactionally through one shared
+            # RecipeLedger for the whole recipe run. The ledger is what makes
+            # cross-tip stale-read detection possible: every tip's edits are
+            # compare-and-swapped against the *current* document, so a later
+            # tip authored against the original recipe cannot silently clobber
+            # an earlier tip's already-landed change (see ASSESSMENT.md §7).
+            # Rank-then-lock + community consensus: Featured/stars decide order;
+            # related agree/disagree comments can hold a tip back; a locked line
+            # is never overwritten by a weaker tip.
+            logger.info("Step 2: Applying extracted modifications via RecipeLedger...")
+            ledger = RecipeLedger(recipe)
+            modification_records: List[ModificationApplied] = []
+            reviewer_by_modification: Dict[str, Optional[str]] = {}
+            review_id_by_key: Dict[str, str] = {}
+            modification_index_by_key: Dict[str, int] = {}
 
-            applied_count = sum(
-                1 for record in modification_records if record.status == "applied"
+            scored_modifications = annotate_extractions_with_consensus(
+                extracted_modifications, reviews
             )
-            if applied_count == 0:
-                logger.warning("No extracted modifications produced concrete recipe changes")
-                return None
+
+            for modification, source_review, consensus in scored_modifications:
+                key = " ".join(source_review.text.split()).strip().lower()
+                review_id = review_id_by_key.setdefault(key, review_id_for(source_review))
+                index = modification_index_by_key.get(key, 0)
+                modification_index_by_key[key] = index + 1
+                modification_id = modification_id_for(source_review, index)
+                reviewer_by_modification[modification_id] = source_review.username
+
+                if modification.evidence == "untested":
+                    modification_records.append(
+                        self.enhanced_generator.create_modification_record(
+                            modification,
+                            source_review,
+                            change_records=[],
+                            status="unapplied",
+                            unapplied_reason=(
+                                "Untested suggestion (next-time / preference language); "
+                                "kept visible but not auto-applied"
+                            ),
+                            modification_id=modification_id,
+                            consensus=consensus,
+                        )
+                    )
+                    logger.info(
+                        f"Left {modification.modification_type} unapplied: untested evidence"
+                    )
+                    continue
+
+                if consensus.decision == "held_for_opposition":
+                    modification_records.append(
+                        self.enhanced_generator.create_modification_record(
+                            modification,
+                            source_review,
+                            change_records=[],
+                            status="unapplied",
+                            unapplied_reason=consensus.summary,
+                            modification_id=modification_id,
+                            consensus=consensus,
+                        )
+                    )
+                    logger.info(
+                        f"Left {modification.modification_type} unapplied: "
+                        f"community opposition ({consensus.summary})"
+                    )
+                    continue
+
+                committed_entries, rejected_edits = ledger.apply_modification(
+                    modification, modification_id, review_id
+                )
+
+                change_records = [
+                    ChangeRecord(
+                        type=_SECTION_TO_CHANGE_TYPE[entry.section],
+                        from_text=entry.before_text,
+                        to_text=entry.after_text,
+                        operation=entry.operation,
+                    )
+                    for entry in committed_entries
+                ]
+
+                if committed_entries and not rejected_edits:
+                    status, unapplied_reason = "applied", None
+                    logger.info(
+                        f"Applied {modification.modification_type}: "
+                        f"{len(change_records)} changes made"
+                    )
+                elif committed_entries and rejected_edits:
+                    status, unapplied_reason = "partial", None
+                    logger.warning(
+                        f"Partially applied {modification.modification_type}: "
+                        f"{len(committed_entries)} committed, {len(rejected_edits)} rejected"
+                    )
+                else:
+                    status = "unapplied"
+                    unapplied_reason = (
+                        rejected_edits[0].detail
+                        if rejected_edits
+                        else "Extracted modification carried no edits that could be attempted"
+                    )
+                    logger.warning(
+                        f"Recorded unapplied {modification.modification_type}: {unapplied_reason}"
+                    )
+
+                modification_records.append(
+                    self.enhanced_generator.create_modification_record(
+                        modification,
+                        source_review,
+                        change_records=change_records,
+                        status=status,
+                        unapplied_reason=unapplied_reason,
+                        modification_id=modification_id,
+                        rejected_edits=rejected_edits,
+                        consensus=consensus,
+                    )
+                )
+
+            # Replay verification runs unconditionally -- including when zero
+            # edits committed -- because it is the proof mechanism, not an
+            # optional extra. An empty ledger trivially replays.
+            verification = ledger.verify()
+            provenance = Provenance(
+                original_fingerprint=RecipeDocument.from_recipe(recipe).fingerprint(),
+                enhanced_fingerprint=ledger.document.fingerprint(),
+                ledger=ledger.entries,
+                rejected_edits=ledger.rejections,
+                blame=ledger.blame(reviewer_by_modification),
+                verification=verification,
+            )
+
+            modified_recipe = ledger.document.to_recipe(
+                recipe, recipe_id=f"{recipe.recipe_id}_modified"
+            )
+
+            status = "enhanced" if ledger.entries else "no_changes"
 
             # Step 3: Generate enhanced recipe with attribution
             logger.info("Step 3: Generating enhanced recipe with attribution...")
@@ -327,9 +372,14 @@ class LLMAnalysisPipeline:
                 modification_records,
                 max_reviews=max_reviews,
                 candidates_considered=len(candidate_reviews),
+                provenance=provenance,
+                status=status,
             )
 
-            logger.info(f"Generated enhanced recipe: {enhanced_recipe.title}")
+            logger.info(
+                f"Generated enhanced recipe: {enhanced_recipe.title} (status={status}, "
+                f"replay deterministic={verification.deterministic})"
+            )
 
             # Save output
             if save_output:
@@ -409,6 +459,13 @@ class LLMAnalysisPipeline:
         if not enhanced_recipes:
             return {"status": "no_recipes_processed"}
 
+        recipes_enhanced = sum(
+            1 for recipe in enhanced_recipes if recipe.status == "enhanced"
+        )
+        recipes_no_changes = sum(
+            1 for recipe in enhanced_recipes if recipe.status == "no_changes"
+        )
+
         total_modifications = sum(
             sum(1 for mod in recipe.modifications_applied if mod.status == "applied")
             for recipe in enhanced_recipes
@@ -431,6 +488,10 @@ class LLMAnalysisPipeline:
         report = {
             "pipeline_summary": {
                 "recipes_processed": len(enhanced_recipes),
+                # "recipes_processed" includes honest no-op passes (status ==
+                # "no_changes"); don't let those inflate "successfully enhanced".
+                "recipes_enhanced": recipes_enhanced,
+                "recipes_no_changes": recipes_no_changes,
                 "total_modifications_applied": total_modifications,
                 "total_modifications_unapplied": total_unapplied,
                 "total_changes_made": total_changes,
@@ -440,6 +501,7 @@ class LLMAnalysisPipeline:
                 {
                     "recipe_id": recipe.recipe_id,
                     "title": recipe.title,
+                    "status": recipe.status,
                     "modifications_count": sum(
                         1 for mod in recipe.modifications_applied if mod.status == "applied"
                     ),

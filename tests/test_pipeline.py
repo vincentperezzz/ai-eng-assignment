@@ -255,6 +255,48 @@ class PipelineTests(unittest.TestCase):
             enhanced.modifications_applied[1].source_review.text,
         )
 
+    def test_zero_reviews_produces_no_changes_recipe_not_none(self):
+        """Task 2 regression: recipes with zero reviews at all (e.g. the sample
+        mango-teriyaki-marinade / spiced-purple-plum-jam recipes, which had no
+        reviews in the scraped data) used to hard-fail with `return None` before
+        extraction was ever attempted. They must now produce an honest
+        `status="no_changes"` EnhancedRecipe with the original content intact.
+        """
+        recipe_data = {
+            "recipe_id": "99999",
+            "title": "No Reviews Marinade",
+            "ingredients": ["1 cup soy sauce", "2 tbsp honey"],
+            "instructions": ["Combine and marinate for 1 hour."],
+            "servings": "4",
+            "featured_tweaks": [],
+            "reviews": [],
+        }
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            recipe_path = Path(temp_dir) / "recipe_no_reviews.json"
+            recipe_path.write_text(json.dumps(recipe_data), encoding="utf-8")
+
+            pipeline = LLMAnalysisPipeline(
+                output_dir=temp_dir,
+                tweak_extractor=StubTweakExtractor(),
+            )
+
+            enhanced = pipeline.process_single_recipe(str(recipe_path), save_output=False)
+
+        self.assertIsNotNone(enhanced)
+        self.assertEqual(enhanced.status, "no_changes")
+        self.assertEqual(enhanced.ingredients, recipe_data["ingredients"])
+        self.assertEqual(enhanced.instructions, recipe_data["instructions"])
+        self.assertEqual(enhanced.modifications_applied, [])
+        self.assertEqual(enhanced.candidates_considered, 0)
+        self.assertIsNotNone(enhanced.provenance)
+        self.assertTrue(enhanced.provenance.verification.deterministic)
+        self.assertEqual(enhanced.provenance.verification.entries_replayed, 0)
+        self.assertEqual(
+            enhanced.enhancement_summary.expected_impact,
+            "No community tip could be safely applied to this recipe.",
+        )
+
     def test_unapplied_modification_is_still_recorded(self):
         recipe_data = {
             "recipe_id": "10813",

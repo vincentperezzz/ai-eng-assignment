@@ -5,16 +5,15 @@
   "ingredients": [
     "2 tablespoons olive oil",
     "1.5 pounds peeled raw sweet potatoes, cut into 1-inch chunks",
-    "1 cup roasted Brussels Sprouts, halved; 1 cup roasted bell peppers, diced",
     "1 large onion, cut into large dice",
     "1 tablespoon butter",
     "1 pinch sugar",
     "3 large garlic cloves, thickly sliced",
-    "1.5 teaspoons fresh ginger",
+    "1.5 teaspoons ground ginger",
     "0.5 teaspoon ground nutmeg",
     "0.125 teaspoon cayenne pepper",
     "3 cups chicken broth, homemade or from a carton or can",
-    "1.5 cups half-and-half (or whole milk)",
+    "1.5 cups 2% milk",
     "Salt and freshly ground pepper, to taste",
     "Garnish: chopped honey-roasted peanuts"
   ],
@@ -29,22 +28,574 @@
   ],
   "modifications_applied": [
     {
+      "modification_id": "rev:24b0a3dc#0",
+      "source_review": {
+        "text": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the roasted greens to the sweet and spicy. Turned out amazing!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "The reviewer substituted canned yams for the raw sweet potatoes, likely for convenience or availability.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 1,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:24b0a3dc#1",
       "source_review": {
         "text": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the roasted greens to the sweet and spicy. Turned out amazing!",
         "reviewer": null,
         "rating": 5
       },
       "modification_type": "addition",
-      "reasoning": "Adding roasted Brussels Sprouts and peppers provides a contrast to the sweet and spicy flavors of the soup, enhancing the overall taste and texture.",
+      "reasoning": "The reviewer added roasted Brussels sprouts and peppers to the soup for contrast of roasted greens against the sweet and spicy flavors.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 1,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:24b0a3dc#2",
+      "source_review": {
+        "text": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the roasted greens to the sweet and spicy. Turned out amazing!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "addition",
+      "reasoning": "The reviewer drizzled heavy cream at the end, adding richness and a finishing touch to the soup.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 0,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:b9fd601a#0",
+      "source_review": {
+        "text": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it more of a ginger flavour.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "Using fresh ginger instead of ground ginger provides a more vibrant and pronounced ginger flavor.",
+      "evidence": "untested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 2,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:b9fd601a#1",
+      "source_review": {
+        "text": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it more of a ginger flavour.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "The reviewer notes the portion is only enough for 2-3 people, implying the recipe should be scaled up to serve more.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 2,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:26e7c1fa#0",
+      "source_review": {
+        "text": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk instead of half-and-half or whole milk. It turned out delicious! I highly recommend it. Thanks for sharing the recipe.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "The reviewer used one large sweet potato and 3 white potatoes instead of 1.5 pounds of sweet potatoes, substituting part of the sweet potatoes with white potatoes based on what they had available.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 1,
+        "neutral_count": 3,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 0 in support",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the ro…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 0 in support",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:26e7c1fa#1",
+      "source_review": {
+        "text": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk instead of half-and-half or whole milk. It turned out delicious! I highly recommend it. Thanks for sharing the recipe.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "The reviewer substituted 2% milk for the half-and-half or whole milk, likely for a lighter or more readily available option.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 2,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 2 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it mor…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+          }
+        ]
+      },
       "changes_made": [
         {
           "type": "ingredient",
-          "from_text": "",
-          "to_text": "1 cup roasted Brussels Sprouts, halved; 1 cup roasted bell peppers, diced",
-          "operation": "add"
+          "from_text": "1.5 cups half-and-half (or whole milk)",
+          "to_text": "1.5 cups 2% milk",
+          "operation": "replace"
         }
       ],
-      "confidence_score": 0.85
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:043991c9#0",
+      "source_review": {
+        "text": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "The reviewer used 2% milk instead of half-and-half (or whole milk) as called for in the recipe.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 1,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:043991c9#1",
+      "source_review": {
+        "text": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "The reviewer found the soup very thick and plans to use more broth next time to achieve a thinner consistency.",
+      "evidence": "untested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 1,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it mor…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:043991c9#2",
+      "source_review": {
+        "text": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "The reviewer substituted fresh grated ginger for the ground ginger called for in the recipe.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 1,
+        "oppose_count": 1,
+        "neutral_count": 2,
+        "decision": "held_for_opposition",
+        "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it mor…"
+          },
+          {
+            "stance": "support",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+          },
+          {
+            "stance": "oppose",
+            "reviewer": null,
+            "rating": 4,
+            "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+          },
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+      "rejected_edits": []
+    }
+  ],
+  "modifications_by_review": [
+    {
+      "source_review": {
+        "text": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the roasted greens to the sweet and spicy. Turned out amazing!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:24b0a3dc#0",
+          "source_review": {
+            "text": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the roasted greens to the sweet and spicy. Turned out amazing!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "The reviewer substituted canned yams for the raw sweet potatoes, likely for convenience or availability.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 1,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:24b0a3dc#1",
+          "source_review": {
+            "text": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the roasted greens to the sweet and spicy. Turned out amazing!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "addition",
+          "reasoning": "The reviewer added roasted Brussels sprouts and peppers to the soup for contrast of roasted greens against the sweet and spicy flavors.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 1,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:24b0a3dc#2",
+          "source_review": {
+            "text": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the roasted greens to the sweet and spicy. Turned out amazing!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "addition",
+          "reasoning": "The reviewer drizzled heavy cream at the end, adding richness and a finishing touch to the soup.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 0,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+          "rejected_edits": []
+        }
+      ]
     },
     {
       "source_review": {
@@ -52,33 +603,553 @@
         "reviewer": null,
         "rating": 5
       },
-      "modification_type": "ingredient_substitution",
-      "reasoning": "Using fresh ginger enhances the ginger flavor in the soup.",
-      "changes_made": [
+      "modifications": [
         {
-          "type": "ingredient",
-          "from_text": "1.5 teaspoons ground ginger",
-          "to_text": "1.5 teaspoons fresh ginger",
-          "operation": "replace"
+          "modification_id": "rev:b9fd601a#0",
+          "source_review": {
+            "text": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it more of a ginger flavour.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "Using fresh ginger instead of ground ginger provides a more vibrant and pronounced ginger flavor.",
+          "evidence": "untested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 2,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:b9fd601a#1",
+          "source_review": {
+            "text": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it more of a ginger flavour.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "The reviewer notes the portion is only enough for 2-3 people, implying the recipe should be scaled up to serve more.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 2,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+          "rejected_edits": []
         }
-      ],
-      "confidence_score": 0.85
+      ]
+    },
+    {
+      "source_review": {
+        "text": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk instead of half-and-half or whole milk. It turned out delicious! I highly recommend it. Thanks for sharing the recipe.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:26e7c1fa#0",
+          "source_review": {
+            "text": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk instead of half-and-half or whole milk. It turned out delicious! I highly recommend it. Thanks for sharing the recipe.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "The reviewer used one large sweet potato and 3 white potatoes instead of 1.5 pounds of sweet potatoes, substituting part of the sweet potatoes with white potatoes based on what they had available.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 1,
+            "neutral_count": 3,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 0 in support",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I made this with canned yams. I added roasted Brussels Sprouts and peppers. I drizzled heavy cream at the end. Loved the contrast of the ro…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 0 in support",
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:26e7c1fa#1",
+          "source_review": {
+            "text": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk instead of half-and-half or whole milk. It turned out delicious! I highly recommend it. Thanks for sharing the recipe.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "The reviewer substituted 2% milk for the half-and-half or whole milk, likely for a lighter or more readily available option.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 2,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 2 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it mor…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!"
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "1.5 cups half-and-half (or whole milk)",
+              "to_text": "1.5 cups 2% milk",
+              "operation": "replace"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!",
+        "reviewer": null,
+        "rating": 4
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:043991c9#0",
+          "source_review": {
+            "text": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!",
+            "reviewer": null,
+            "rating": 4
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "The reviewer used 2% milk instead of half-and-half (or whole milk) as called for in the recipe.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 1,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:043991c9#1",
+          "source_review": {
+            "text": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!",
+            "reviewer": null,
+            "rating": 4
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "The reviewer found the soup very thick and plans to use more broth next time to achieve a thinner consistency.",
+          "evidence": "untested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 1,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it mor…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:043991c9#2",
+          "source_review": {
+            "text": "Def has a kick! Very thick.. Even w 2% milk- will use more broth next time. Used fresh grated ginger. Hearty and yummy!",
+            "reviewer": null,
+            "rating": 4
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "The reviewer substituted fresh grated ginger for the ground ginger called for in the recipe.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 1,
+            "oppose_count": 1,
+            "neutral_count": 2,
+            "decision": "held_for_opposition",
+            "summary": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "It was amazing!! The portion is only enough for 2-3 people. Very good as is but when I make it again I will use fresh ginger to give it mor…"
+              },
+              {
+                "stance": "support",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I had one large sweet potato that needed to be used, and 3 white potatoes, so I used those to make this soup. I also substituted 2% milk in…"
+              },
+              {
+                "stance": "oppose",
+                "reviewer": null,
+                "rating": 4,
+                "excerpt": "Great soup! The vegetables caramelize beautifully with this method (though I think it would also work fine in the oven, which would take lo…"
+              },
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "I kinda followed this recipe, how much is 1.5lbs of sweet potato any ways, was pretty awesome!! However, I forgot to get ground ginger and…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Held back: 1 related comment(s) warn against this tip vs 1 in support",
+          "rejected_edits": []
+        }
+      ]
     }
   ],
   "enhancement_summary": {
-    "total_changes": 2,
+    "total_changes": 1,
     "change_types": [
-      "ingredient_substitution",
-      "addition"
+      "ingredient_substitution"
     ],
-    "confidence_score": 0.85,
-    "expected_impact": "Adding roasted Brussels Sprouts and peppers provides a contrast to the sweet and spicy flavors of the soup, enhancing the overall taste and texture.; Using fresh ginger enhances the ginger flavor in the soup."
+    "expected_impact": "The reviewer substituted 2% milk for the half-and-half or whole milk, likely for a lighter or more readily available option."
   },
   "description": "Made with sweet potatoes and seasoned with ginger, nutmeg, and cayenne pepper, this creamy soup is topped with honey-roasted peanuts.",
   "servings": "8",
   "prep_time": null,
   "cook_time": null,
   "total_time": null,
-  "created_at": "2025-09-25T01:21:03.314979",
-  "pipeline_version": "1.0.0"
+  "created_at": "2026-07-28T17:44:10.550630",
+  "pipeline_version": "1.2.0",
+  "max_reviews": 4,
+  "candidates_considered": 6,
+  "status": "enhanced",
+  "provenance": {
+    "original_fingerprint": "40eb1d822df5",
+    "enhanced_fingerprint": "827245db1a75",
+    "ledger": [
+      {
+        "entry_id": "e001:rev:26e7c1fa#1",
+        "modification_id": "rev:26e7c1fa#1",
+        "review_id": "rev:26e7c1fa",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:10",
+        "before_text": "1.5 cups half-and-half (or whole milk)",
+        "after_text": "1.5 cups 2% milk",
+        "before_hash": "71463074dce6",
+        "after_hash": "e8b55649fdb3",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      }
+    ],
+    "rejected_edits": [],
+    "blame": [
+      {
+        "line_id": "ing:0",
+        "section": "ingredients",
+        "text": "2 tablespoons olive oil",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:1",
+        "section": "ingredients",
+        "text": "1.5 pounds peeled raw sweet potatoes, cut into 1-inch chunks",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:2",
+        "section": "ingredients",
+        "text": "1 large onion, cut into large dice",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:3",
+        "section": "ingredients",
+        "text": "1 tablespoon butter",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:4",
+        "section": "ingredients",
+        "text": "1 pinch sugar",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:5",
+        "section": "ingredients",
+        "text": "3 large garlic cloves, thickly sliced",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:6",
+        "section": "ingredients",
+        "text": "1.5 teaspoons ground ginger",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:7",
+        "section": "ingredients",
+        "text": "0.5 teaspoon ground nutmeg",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:8",
+        "section": "ingredients",
+        "text": "0.125 teaspoon cayenne pepper",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:9",
+        "section": "ingredients",
+        "text": "3 cups chicken broth, homemade or from a carton or can",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:10",
+        "section": "ingredients",
+        "text": "1.5 cups 2% milk",
+        "origin": "community",
+        "modification_ids": [
+          "rev:26e7c1fa#1"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:11",
+        "section": "ingredients",
+        "text": "Salt and freshly ground pepper, to taste",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:12",
+        "section": "ingredients",
+        "text": "Garnish: chopped honey-roasted peanuts",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:0",
+        "section": "instructions",
+        "text": "Gather the ingredients.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:1",
+        "section": "instructions",
+        "text": "Heat oil over medium-high heat in a large, deep saute pan until shimmering. Add sweet potatoes, then onion; saute, stirring very little at first, then more frequently, until vegetables start to turn golden brown, 7 to 8 minutes.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:2",
+        "section": "instructions",
+        "text": "Reduce heat to low and add butter, sugar and garlic; continue cooking until all vegetables are a rich spotty caramel color, about 10 minutes longer.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:3",
+        "section": "instructions",
+        "text": "Add ginger, nutmeg and cayenne pepper; continue to saute until fragrant, 30 seconds to 1 minute longer.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:4",
+        "section": "instructions",
+        "text": "Add broth; bring to a simmer over medium-high heat. Reduce heat to low and simmer, partially covered, until sweet potatoes are tender, about 10 minutes.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:5",
+        "section": "instructions",
+        "text": "Using an immersion blender or traditional blender, puree until very smooth, 30 seconds to 1 minute. (If using a traditional blender, vent it either by removing the lid&#39;s pop-out center or by lifting one edge of the lid. Drape the blender canister with a kitchen towel. To &#39;clean&#39; the canister, pour in a little half-and-half, blend briefly, then add to the soup.)",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:6",
+        "section": "instructions",
+        "text": "Return to pan (or a soup pot); add enough half-and-half so the mixture is souplike, yet thick enough to float garnish. Taste, and add salt and pepper if needed. Heat through, ladle into bowls, garnish and serve.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      }
+    ],
+    "verification": {
+      "deterministic": true,
+      "entries_replayed": 1,
+      "mismatches": []
+    }
+  }
 }

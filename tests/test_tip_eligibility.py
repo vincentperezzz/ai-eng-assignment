@@ -148,10 +148,20 @@ class TipEligibilityPipelineTests(unittest.TestCase):
                 output_dir=temp_dir,
                 tweak_extractor=UntestedEvidenceStub(),
             )
-            # Only untested tip -> no applied changes -> pipeline returns None
+            # Only untested tip -> no applied changes -> honest no-op pass,
+            # not a hard failure (see ASSESSMENT.md §7 Defect B:
+            # recipes with nothing to apply now still produce an EnhancedRecipe
+            # with status="no_changes" instead of returning None).
             enhanced = pipeline.process_single_recipe(str(recipe_path), save_output=False)
 
-        self.assertIsNone(enhanced)
+        self.assertIsNotNone(enhanced)
+        self.assertEqual(enhanced.status, "no_changes")
+        self.assertEqual(enhanced.ingredients, recipe_data["ingredients"])
+        self.assertEqual(enhanced.instructions, recipe_data["instructions"])
+        self.assertEqual(len(enhanced.modifications_applied), 1)
+        self.assertEqual(enhanced.modifications_applied[0].status, "unapplied")
+        self.assertIsNotNone(enhanced.provenance)
+        self.assertTrue(enhanced.provenance.verification.deterministic)
 
     def test_untested_alongside_tested_keeps_untested_unapplied(self):
         recipe_data = {

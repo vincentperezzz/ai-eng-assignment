@@ -161,6 +161,33 @@ The LLM Analysis Pipeline processes recipes in 3 steps:
 
 Each run produces one enhanced recipe per original recipe, with complete attribution showing what changed, which review suggested it, and the aggregate impact of the applied community tweaks.
 
+## Trust report
+
+`src/tools/trust_report.py` reads already-produced `data/enhanced/enhanced_*.json` files and prints a compact, auditor-facing summary for each recipe: whether the ledger's replay verification is deterministic, how many modifications landed (`applied`/`partial`/`unapplied`), a per-line blame view of the ingredients and instructions (which community tip and reviewer is responsible for each changed line), and every rejected edit with a plain-English reason.
+
+This tool makes **no network or LLM calls** — it only parses JSON the pipeline already wrote, so it runs with no API key configured at all:
+
+```bash
+PYTHONPATH=src python src/tools/trust_report.py data/enhanced/enhanced_*.json
+```
+
+Sample output shape:
+
+```
+Best Chocolate Chip Cookies (Community Enhanced)                    [ENHANCED]
+  replay verification: DETERMINISTIC (14 entries replayed, 0 mismatches)
+  6 applied - 1 partial - 2 unapplied - 0 rejected-silently
+  ---
+  ingredients:
+    1 cup butter, softened                                    (original)
+    0.5 cup white sugar                          <- rev:7c177579#0 (unknown reviewer)
+    ...
+  rejected:
+    - replace on ingredients (rev:2625a5a8): no_op -- "1 cup white sugar"
+```
+
+This is the mechanism behind §7 of `ASSESSMENT.md` ("Post-handoff hardening: provable attribution") — every applied/partial modification's committed edits are backed by a `RecipeLedger` (`src/llm_pipeline/ledger.py`) that replays from the original recipe and byte-compares the result to the pipeline's own output before anything is reported as trustworthy.
+
 ## Development
 
 ```bash

@@ -1,0 +1,570 @@
+{
+  "recipe_id": "19117_enhanced",
+  "original_recipe_id": "19117",
+  "title": "Spicy Apple Cake (Community Enhanced)",
+  "ingredients": [
+    "1.5 cups all-purpose flour",
+    "1 teaspoon ground cinnamon",
+    "1 teaspoon baking powder",
+    "0.5 teaspoon baking soda",
+    "0.5 teaspoon salt",
+    "0.5 teaspoon ground nutmeg",
+    "1 cup brown sugar",
+    "0.5 cup shortening",
+    "0.25 cup white sugar",
+    "2 eggs",
+    "1 teaspoon vanilla extract",
+    "0.5 cup milk",
+    "2 cups apple - peeled, cored, and chopped",
+    "different frosting of choice (substitute for original frosting ingredients)"
+  ],
+  "instructions": [
+    "Preheat the oven to 350 degrees F (175 degrees C). Grease and flour a 9-inch square pan.",
+    "Sift together flour, 1 teaspoon cinnamon, baking powder, baking soda, salt, and nutmeg. Set aside.",
+    "Cream brown sugar, 1/2 cup shortening, and white sugar together in a large bowl until light and fluffy. Beat in eggs one at a time, then stir in vanilla. Beat in flour mixture alternately with milk, mixing until just combined. Stir in chopped apples.",
+    "Spread batter evenly in the prepared pan. Bake in the preheated oven until a toothpick inserted into the center of cake comes out clean, 35 to 40 minutes. Let cool."
+  ],
+  "modifications_applied": [
+    {
+      "modification_id": "rev:3ca4bfb8#0",
+      "source_review": {
+        "text": "Mmmm, this cake was so good. I made it exactly as directed except I used a different frosting only because I had some leftover from another cake. The next time I make this I will add one more cup of apples because more is better right?!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "The reviewer used a different frosting instead of the one specified in the recipe, though they don't specify what frosting they used.",
+      "evidence": "tested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "Will make this one again! (maybe for Thanksgiving dessert) I would prefer some more apple chunks in it, but that is just my preference. Thi…"
+          }
+        ]
+      },
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "2 cups sifted confectioners' sugar",
+          "to_text": "different frosting of choice (substitute for original frosting ingredients)",
+          "operation": "replace"
+        },
+        {
+          "type": "ingredient",
+          "from_text": "0.25 cup shortening",
+          "to_text": "",
+          "operation": "remove"
+        },
+        {
+          "type": "ingredient",
+          "from_text": "0.25 teaspoon ground cinnamon",
+          "to_text": "",
+          "operation": "remove"
+        },
+        {
+          "type": "ingredient",
+          "from_text": "1 pinch ground nutmeg",
+          "to_text": "",
+          "operation": "remove"
+        },
+        {
+          "type": "ingredient",
+          "from_text": "0.25 cup evaporated milk",
+          "to_text": "",
+          "operation": "remove"
+        },
+        {
+          "type": "instruction",
+          "from_text": "Combine confectioners&#39; sugar, 1/4 cup shortening, 1/4 teaspoon cinnamon, and nutmeg in a medium bowl. Beat until frosting is light and creamy. Beat in evaporated milk 1 tablespoon at a time until desired spreading consistency is reached. Spread over top of cooled cake.",
+          "to_text": "",
+          "operation": "remove"
+        }
+      ],
+      "status": "applied",
+      "unapplied_reason": null,
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:3ca4bfb8#1",
+      "source_review": {
+        "text": "Mmmm, this cake was so good. I made it exactly as directed except I used a different frosting only because I had some leftover from another cake. The next time I make this I will add one more cup of apples because more is better right?!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "The reviewer plans to add one more cup of apples next time because they believe more apples would improve the cake.",
+      "evidence": "untested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "Will make this one again! (maybe for Thanksgiving dessert) I would prefer some more apple chunks in it, but that is just my preference. Thi…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+      "rejected_edits": []
+    },
+    {
+      "modification_id": "rev:4d178f3f#0",
+      "source_review": {
+        "text": "Will make this one again! (maybe for Thanksgiving dessert) I would prefer some more apple chunks in it, but that is just my preference. This cake is sweet and delicious.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "quantity_adjustment",
+      "reasoning": "The reviewer prefers more apple chunks in the cake for a more pronounced apple presence.",
+      "evidence": "untested",
+      "consensus": {
+        "support_count": 0,
+        "oppose_count": 0,
+        "neutral_count": 1,
+        "decision": "apply_allowed",
+        "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+        "related_comments": [
+          {
+            "stance": "neutral",
+            "reviewer": null,
+            "rating": 5,
+            "excerpt": "Mmmm, this cake was so good. I made it exactly as directed except I used a different frosting only because I had some leftover from another…"
+          }
+        ]
+      },
+      "changes_made": [],
+      "status": "unapplied",
+      "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+      "rejected_edits": []
+    }
+  ],
+  "modifications_by_review": [
+    {
+      "source_review": {
+        "text": "Mmmm, this cake was so good. I made it exactly as directed except I used a different frosting only because I had some leftover from another cake. The next time I make this I will add one more cup of apples because more is better right?!",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:3ca4bfb8#0",
+          "source_review": {
+            "text": "Mmmm, this cake was so good. I made it exactly as directed except I used a different frosting only because I had some leftover from another cake. The next time I make this I will add one more cup of apples because more is better right?!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "ingredient_substitution",
+          "reasoning": "The reviewer used a different frosting instead of the one specified in the recipe, though they don't specify what frosting they used.",
+          "evidence": "tested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "Will make this one again! (maybe for Thanksgiving dessert) I would prefer some more apple chunks in it, but that is just my preference. Thi…"
+              }
+            ]
+          },
+          "changes_made": [
+            {
+              "type": "ingredient",
+              "from_text": "2 cups sifted confectioners' sugar",
+              "to_text": "different frosting of choice (substitute for original frosting ingredients)",
+              "operation": "replace"
+            },
+            {
+              "type": "ingredient",
+              "from_text": "0.25 cup shortening",
+              "to_text": "",
+              "operation": "remove"
+            },
+            {
+              "type": "ingredient",
+              "from_text": "0.25 teaspoon ground cinnamon",
+              "to_text": "",
+              "operation": "remove"
+            },
+            {
+              "type": "ingredient",
+              "from_text": "1 pinch ground nutmeg",
+              "to_text": "",
+              "operation": "remove"
+            },
+            {
+              "type": "ingredient",
+              "from_text": "0.25 cup evaporated milk",
+              "to_text": "",
+              "operation": "remove"
+            },
+            {
+              "type": "instruction",
+              "from_text": "Combine confectioners&#39; sugar, 1/4 cup shortening, 1/4 teaspoon cinnamon, and nutmeg in a medium bowl. Beat until frosting is light and creamy. Beat in evaporated milk 1 tablespoon at a time until desired spreading consistency is reached. Spread over top of cooled cake.",
+              "to_text": "",
+              "operation": "remove"
+            }
+          ],
+          "status": "applied",
+          "unapplied_reason": null,
+          "rejected_edits": []
+        },
+        {
+          "modification_id": "rev:3ca4bfb8#1",
+          "source_review": {
+            "text": "Mmmm, this cake was so good. I made it exactly as directed except I used a different frosting only because I had some leftover from another cake. The next time I make this I will add one more cup of apples because more is better right?!",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "The reviewer plans to add one more cup of apples next time because they believe more apples would improve the cake.",
+          "evidence": "untested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "Will make this one again! (maybe for Thanksgiving dessert) I would prefer some more apple chunks in it, but that is just my preference. Thi…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+          "rejected_edits": []
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "Will make this one again! (maybe for Thanksgiving dessert) I would prefer some more apple chunks in it, but that is just my preference. This cake is sweet and delicious.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modifications": [
+        {
+          "modification_id": "rev:4d178f3f#0",
+          "source_review": {
+            "text": "Will make this one again! (maybe for Thanksgiving dessert) I would prefer some more apple chunks in it, but that is just my preference. This cake is sweet and delicious.",
+            "reviewer": null,
+            "rating": 5
+          },
+          "modification_type": "quantity_adjustment",
+          "reasoning": "The reviewer prefers more apple chunks in the cake for a more pronounced apple presence.",
+          "evidence": "untested",
+          "consensus": {
+            "support_count": 0,
+            "oppose_count": 0,
+            "neutral_count": 1,
+            "decision": "apply_allowed",
+            "summary": "Consensus signal: 0 support, 0 oppose, 1 related neutral — ranking still decides order",
+            "related_comments": [
+              {
+                "stance": "neutral",
+                "reviewer": null,
+                "rating": 5,
+                "excerpt": "Mmmm, this cake was so good. I made it exactly as directed except I used a different frosting only because I had some leftover from another…"
+              }
+            ]
+          },
+          "changes_made": [],
+          "status": "unapplied",
+          "unapplied_reason": "Untested suggestion (next-time / preference language); kept visible but not auto-applied",
+          "rejected_edits": []
+        }
+      ]
+    }
+  ],
+  "enhancement_summary": {
+    "total_changes": 6,
+    "change_types": [
+      "ingredient_substitution"
+    ],
+    "expected_impact": "The reviewer used a different frosting instead of the one specified in the recipe, though they don't specify what frosting they used."
+  },
+  "description": "This delicious spicy apple cake recipe is made with fresh apples, spices, and sugar. It&#39;s a wonderfully perfect treat for the apple harvest season.",
+  "servings": "9",
+  "prep_time": null,
+  "cook_time": null,
+  "total_time": null,
+  "created_at": "2026-07-28T17:42:46.023013",
+  "pipeline_version": "1.2.0",
+  "max_reviews": 4,
+  "candidates_considered": 2,
+  "status": "enhanced",
+  "provenance": {
+    "original_fingerprint": "fd20609c8c80",
+    "enhanced_fingerprint": "7c9a2942405e",
+    "ledger": [
+      {
+        "entry_id": "e001:rev:3ca4bfb8#0",
+        "modification_id": "rev:3ca4bfb8#0",
+        "review_id": "rev:3ca4bfb8",
+        "section": "ingredients",
+        "operation": "replace",
+        "line_id": "ing:13",
+        "before_text": "2 cups sifted confectioners' sugar",
+        "after_text": "different frosting of choice (substitute for original frosting ingredients)",
+        "before_hash": "1ac60b00a6a0",
+        "after_hash": "0ef31682ee74",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e002:rev:3ca4bfb8#0",
+        "modification_id": "rev:3ca4bfb8#0",
+        "review_id": "rev:3ca4bfb8",
+        "section": "ingredients",
+        "operation": "remove",
+        "line_id": "ing:14",
+        "before_text": "0.25 cup shortening",
+        "after_text": "",
+        "before_hash": "bd17b8140555",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e003:rev:3ca4bfb8#0",
+        "modification_id": "rev:3ca4bfb8#0",
+        "review_id": "rev:3ca4bfb8",
+        "section": "ingredients",
+        "operation": "remove",
+        "line_id": "ing:15",
+        "before_text": "0.25 teaspoon ground cinnamon",
+        "after_text": "",
+        "before_hash": "15e62f017b85",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e004:rev:3ca4bfb8#0",
+        "modification_id": "rev:3ca4bfb8#0",
+        "review_id": "rev:3ca4bfb8",
+        "section": "ingredients",
+        "operation": "remove",
+        "line_id": "ing:16",
+        "before_text": "1 pinch ground nutmeg",
+        "after_text": "",
+        "before_hash": "dd70ec7af93f",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e005:rev:3ca4bfb8#0",
+        "modification_id": "rev:3ca4bfb8#0",
+        "review_id": "rev:3ca4bfb8",
+        "section": "ingredients",
+        "operation": "remove",
+        "line_id": "ing:17",
+        "before_text": "0.25 cup evaporated milk",
+        "after_text": "",
+        "before_hash": "295eec3b7f1b",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "exact"
+      },
+      {
+        "entry_id": "e006:rev:3ca4bfb8#0",
+        "modification_id": "rev:3ca4bfb8#0",
+        "review_id": "rev:3ca4bfb8",
+        "section": "instructions",
+        "operation": "remove",
+        "line_id": "ins:4",
+        "before_text": "Combine confectioners&#39; sugar, 1/4 cup shortening, 1/4 teaspoon cinnamon, and nutmeg in a medium bowl. Beat until frosting is light and creamy. Beat in evaporated milk 1 tablespoon at a time until desired spreading consistency is reached. Spread over top of cooled cake.",
+        "after_text": "",
+        "before_hash": "03a9d54405d2",
+        "after_hash": "e3b0c44298fc",
+        "anchor_line_id": null,
+        "anchor_superseded": false,
+        "match": "guarded_fuzzy"
+      }
+    ],
+    "rejected_edits": [],
+    "blame": [
+      {
+        "line_id": "ing:0",
+        "section": "ingredients",
+        "text": "1.5 cups all-purpose flour",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:1",
+        "section": "ingredients",
+        "text": "1 teaspoon ground cinnamon",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:2",
+        "section": "ingredients",
+        "text": "1 teaspoon baking powder",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:3",
+        "section": "ingredients",
+        "text": "0.5 teaspoon baking soda",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:4",
+        "section": "ingredients",
+        "text": "0.5 teaspoon salt",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:5",
+        "section": "ingredients",
+        "text": "0.5 teaspoon ground nutmeg",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:6",
+        "section": "ingredients",
+        "text": "1 cup brown sugar",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:7",
+        "section": "ingredients",
+        "text": "0.5 cup shortening",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:8",
+        "section": "ingredients",
+        "text": "0.25 cup white sugar",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:9",
+        "section": "ingredients",
+        "text": "2 eggs",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:10",
+        "section": "ingredients",
+        "text": "1 teaspoon vanilla extract",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:11",
+        "section": "ingredients",
+        "text": "0.5 cup milk",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:12",
+        "section": "ingredients",
+        "text": "2 cups apple - peeled, cored, and chopped",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ing:13",
+        "section": "ingredients",
+        "text": "different frosting of choice (substitute for original frosting ingredients)",
+        "origin": "community",
+        "modification_ids": [
+          "rev:3ca4bfb8#0"
+        ],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:0",
+        "section": "instructions",
+        "text": "Preheat the oven to 350 degrees F (175 degrees C). Grease and flour a 9-inch square pan.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:1",
+        "section": "instructions",
+        "text": "Sift together flour, 1 teaspoon cinnamon, baking powder, baking soda, salt, and nutmeg. Set aside.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:2",
+        "section": "instructions",
+        "text": "Cream brown sugar, 1/2 cup shortening, and white sugar together in a large bowl until light and fluffy. Beat in eggs one at a time, then stir in vanilla. Beat in flour mixture alternately with milk, mixing until just combined. Stir in chopped apples.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      },
+      {
+        "line_id": "ins:3",
+        "section": "instructions",
+        "text": "Spread batter evenly in the prepared pan. Bake in the preheated oven until a toothpick inserted into the center of cake comes out clean, 35 to 40 minutes. Let cool.",
+        "origin": "original",
+        "modification_ids": [],
+        "reviewers": []
+      }
+    ],
+    "verification": {
+      "deterministic": true,
+      "entries_replayed": 6,
+      "mismatches": []
+    }
+  }
+}
